@@ -56,12 +56,6 @@
         "selectedIconPath": "imgs/02.png"
       },
       {
-        "pagePath": "pages/classify/classify",
-        "text": "分类",
-        "iconPath": "imgs/03.png",
-        "selectedIconPath": "imgs/04.png"
-      },
-      {
         "pagePath": "pages/shop/shop",
         "text": "购物袋",
         "iconPath": "imgs/05.png",
