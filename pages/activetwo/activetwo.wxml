@@ -1,0 +1,56 @@
+<image src="{{activetwo.TopImgDisplay}}" class="topimg"></image>
+<view class="nav-bg">
+  <image src="{{activetwo.BackgroundImgDisplay}}" class="bgimg"></image>
+  <view class="nav-content">
+    <scroll-view class="nav-scroll" scroll-x>
+      <view class="nav-flex">
+        <view class="nav-discount" wx:for="{{activetwo.CouponList}}" wx:key="{{index}}">
+          <image src="/imgs/activetwodiscount.png" class="nav-discount-img"></image>
+          <view class="nav-discount-text1">
+            <text class="nav-discount-text1-1 {{item.AlreadyTaken?'nav-discount-text2-h':'nav-discount-text2-y'}}">￥</text>
+            <text class="nav-discount-text1-2 {{item.AlreadyTaken?'nav-discount-text2-h':'nav-discount-text2-y'}}">{{item.Amount}}</text>
+          </view>
+          <wxs module="m">
+            var formatTime = function(date) {
+              var d = getDate(date);
+              var data = d.getFullYear() + '.' + (d.getMonth() + 1) + '.' + d.getUTCDate()
+              return data;
+            }
+            module.exports.formatTime = formatTime;
+          </wxs>
+          <view class="nav-discount-text2">
+            <view class="nav-discount-text2-1 {{item.AlreadyTaken?'nav-discount-text2-h':'nav-discount-text2-y'}}">
+              {{item.CouponName}}
+            </view>
+            <view class="nav-discount-text2-2 {{item.AlreadyTaken?'nav-discount-text2-h':'nav-discount-text2-y'}}">
+              满{{item.Limitation}}减{{item.Amount}}
+            </view>
+            <view class="nav-discount-text2-3 {{item.AlreadyTaken?'nav-discount-text2-h':'nav-discount-text2-y'}}">
+              {{m.formatTime(item.StartDate)}}-{{m.formatTime(item.EndDate)}}
+            </view>
+          </view>
+          <view class="nav-discount-text3" wx:if="{{!item.AlreadyTaken}}" data-index='{{index}}' bindtap='getcoupon'>领取</view>
+          <image src="/imgs/got.png" class="nav-discount-got" wx:else></image>
+        </view>
+      </view>
+    </scroll-view>
+    <view class="main-one">
+      <navigator url="/pages/dianpu/dianpu?shopId={{item.ShopId}}" class="main-one-shop" hover-class='none' wx:for="{{activetwo.ShopItemList}}" wx:key="{{index}}">
+        <image src="{{item.CoverImgDisplay}}" class="main-one-shopimg"></image>
+        <view class="main-one-shoptext">
+          <view class="main-one-shoptext1">{{item.Words}}</view>
+          <view class="main-one-shoptext2">点击选购</view>
+        </view>
+      </navigator>
+    </view>
+    <view class="main-two">
+      <view class="main-two-imgall" wx:for="{{activetwo.VideoModels}}" wx:key="{{index}}">
+        <navigator url="/pages/classify/inside/video/video?storeid={{item.StoreId}}" class="main-two-pos" wx:for="{{item.SpecialVideoStoreModels}}" wx:key="{{index}}" hover-class='none'>
+          <image src="{{item.CoverImgDisplay}}" class="" class="main-two-img"></image>
+          <image src="/imgs/play.png" class="main-two-imgplay"></image>
+        </navigator>
+      </view>
+    </view>
+  </view>
+</view>
+<image src="{{activetwo.ActivityImgDisplay}}" class="bottomimg"></image>

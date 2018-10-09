@@ -6,6 +6,7 @@ export default {
     startX: 0, //开始坐标
     startY: 0,
     Products: [], //购物车列表
+    InvalidProducts: [],//购物车失效列表
     browseData: [],//浏览列表
     sellingData: [],//热销列表
     allRadio: false, //全选
@@ -103,7 +104,8 @@ export default {
         }
       }).then((res) => {
         this.setData({
-          Products: res.Value.Products
+          Products: res.Value.Products,
+          InvalidProducts: res.Value.InvalidProducts
         })
         this.getTotalPrice();
         this.getTotalCount();
@@ -339,6 +341,36 @@ export default {
           }
         })
       }
+    },
+
+    //清空失效商品
+    empty() {
+      let that = this;
+      wx.showModal({
+        title: '提示',
+        content: '确认要清空失效宝贝吗？',
+        success(res) {
+          if (res.confirm) {
+            let sku = [];
+            for (let i in that.data.InvalidProducts) {
+              sku.push(that.data.InvalidProducts[i].SkuId)
+            }
+            wx.ajax({
+              url: 'api/cart/removeinvalid',
+              method: 'POST',
+              data: {
+                userid: app.globalData.userid,
+                sign: app.globalData.sign,
+                skuids: sku
+              }
+            }).then((res) => {
+              that.setData({
+                InvalidProducts: []
+              })
+            })
+          }
+        }
+      })
     },
 
     //购物车删除

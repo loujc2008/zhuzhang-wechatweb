@@ -194,3 +194,7 @@ page {
   color: #fff;
   padding-left: 13rpx;
 }
+
+.kong image {
+  margin-top: -120rpx;
+}

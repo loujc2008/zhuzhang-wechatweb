@@ -1,7 +1,7 @@
 <view class="top">
   <image class='bj' src='/imgs/bj.png'></image>
   <view class='shop-title'>
-    <image binderror='logoError' src="{{baseinfo.ShopLogo?baseinfo.ShopLogo:'/imgs/default.jpg'}}"></image>
+    <image binderror='logoError' bindtap='showInfo' src="{{baseinfo.ShopLogo?baseinfo.ShopLogo:'/imgs/default.jpg'}}"></image>
     <view class='shop-info'>
       <text class="shop-name">{{baseinfo.ShopName}}</text>
       <view class='shop-info-num'>
@@ -56,6 +56,41 @@
   </view>
 </view>
 
+<view hidden='{{!showInfo}}' class='shop-brief'>
+  <view class='info'>
+    <view class='brief-title'>
+      <view class='shop-title'>
+        <image binderror='logoError' class='brief-img' bindtap='hideInfo' src="{{baseinfo.ShopLogo?baseinfo.ShopLogo:'/imgs/default.jpg'}}"></image>
+        <view class='shop-info brief-info'>
+          <text class="brief-name">{{baseinfo.ShopName}}</text>
+          <view class='brief-info-num'>
+            关注人数:{{baseinfo.FollowersNum}}
+          </view>
+        </view>
+      </view>
+      <view class='brand'>
+        <view class='brand-address'>
+          <text>所在地</text>
+          <text>{{baseinfo.Address}}</text>
+        </view>
+        <view class='brand-info'>
+          <text>经营品牌</text>
+          <text>{{baseinfo.Brand}}</text>
+        </view>
+      </view>
+      <view class='introWords'>
+        <text class="introWords1">店铺简介</text>
+        <text class="introWords2 {{baseinfo.IntroWords?'':'introWords2-h'}}">{{baseinfo.IntroWords?baseinfo.IntroWords:'商家暂未填写喔~'}}</text>
+      </view>
+    </view>
+    <image class='info-backimg' src='/imgs/shop_info.jpg'></image>
+  </view>
+  <view style="width:40rpx;height:40rpx;" bindtap='hideInfo'>
+    <image class='brief-close' src='/imgs/11.png'></image>
+  </view>
+  <view class='info-mask' bindtap='hideInfo'>
+  </view>
+</view>
 <wxs module="m">
   var formatTime = function(date) {
     var d = getDate(date);
@@ -89,4 +124,17 @@
 </view>
 
 
-<product-list hidden="{{choice!='goods'}}" product-list='{{products}}' page-type='1'></product-list>
+<view hidden="{{choice!='goods'}}" class='goods-list'>
+  <view bindtap='openCommoditydetail' data-idx='{{index}}' wx:for="{{products}}" wx:key="{{index}}" class='goods-li'>
+    <view wx:if='{{item.Promotion.PromotionType==2}}' class='activity-text'>满{{item.Promotion.OrderCredit}}减{{item.Promotion.ReductionAmount}}</view>
+    <image class='goods-img' wx:if="{{item.Promotion.PromotionType==1}}" src="/imgs/cuxiao.png"></image>
+    <image class='goods-img' wx:if="{{item.Promotion.PromotionType==2}}" src="/imgs/manjian.png"></image>
+    <image class='goods-img-miaosha' wx:if="{{item.Promotion.PromotionType==4}}" src="/imgs/miaosha.png"></image>
+    <image src='{{item.ImagePath}}/1_414.png'></image>
+    <text>{{item.ProductName}}</text>
+    <view>
+      <text class='money'>￥ {{item.Promotion&&item.Promotion.PromotionType==4?item.MinSeckillPrice:item.MinSalePrice}}</text>
+      <text class='num'>{{item.SaleCounts>=0?item.SaleCounts:0}}人购买</text>
+    </view>
+  </view>
+</view>

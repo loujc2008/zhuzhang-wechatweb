@@ -10,7 +10,13 @@
   <swiper indicator-dots autoplay circular interval="5000" duration="500" wx:if="{{bannerData.SpecialModels.length>0}}" class="activeswiper">
     <block wx:for="{{bannerData.SpecialModels}}" wx:key="{{index}}" >
       <swiper-item class="swiper-item">
-        <navigator url="/pages/active/active?id={{item.SpecialModel.SpecialId}}" hover-class='none' class="swipernavigator">
+         <navigator url="/pages/activethree/activethree?id={{item.SpecialModel.SpecialId}}" hover-class='none' class="swipernavigator" wx:if="{{item.SpecialModel.TemplateId==3}}">
+          <image src="{{item.SpecialModel.ThumbnailDisplay}}" class="swiperimg" />
+        </navigator> 
+        <navigator url="/pages/active/active?id={{item.SpecialModel.SpecialId}}" hover-class='none' class="swipernavigator" wx:if="{{item.SpecialModel.TemplateId==1}}">
+          <image src="{{item.SpecialModel.ThumbnailDisplay}}" class="swiperimg" />
+        </navigator>
+        <navigator url="/pages/activetwo/activetwo?id={{item.SpecialModel.SpecialId}}" hover-class='none' class="swipernavigator" wx:if="{{item.SpecialModel.TemplateId==2}}">
           <image src="{{item.SpecialModel.ThumbnailDisplay}}" class="swiperimg" />
         </navigator>
       </swiper-item>

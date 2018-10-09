@@ -305,6 +305,75 @@
 
 /*视频列表 end */
 
+/*商品列表 start  */
+
+.goods-list {
+  padding-top: 10rpx;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.goods-li {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  margin-top: 20rpx;
+  flex-basis: 374rpx;
+  position: relative;
+}
+
+.goods-img {
+  width: 83rpx !important;
+  height: 83rpx !important;
+  position: absolute;
+  top: 0;
+  left: 20rpx;
+}
+
+.goods-img-miaosha {
+  width: 76rpx !important;
+  height: 49rpx !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.goods-li image {
+  width: 100%;
+  height: 370rpx;
+}
+
+.goods-li > text {
+  font-size: 26rpx;
+  padding: 0 25rpx;
+  width: 324rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  height: 64rpx;
+  line-height: 32rpx;
+  margin: 25rpx 0;
+}
+
+.goods-li > view {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 25rpx 20rpx 25rpx;
+}
+
+.money {
+  font-weight: 900;
+  font-size: 30rpx;
+}
+
+.num {
+  font-size: 22rpx;
+  color: #ccc;
+}
+
 /*商品列表 end  */
 
 /*直播   */
@@ -371,6 +440,123 @@
   font-size: 24rpx;
 }
 
-product-list {
-  padding-top: 10rpx;
+/*店铺信息  */
+
+.shop-brief {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1000;
+}
+
+.brief-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 750rpx;
+}
+
+.brief-info {
+  justify-content: space-around;
+}
+
+.shop-title .brief-img {
+  width: 140rpx !important;
+  height: 140rpx !important;
+}
+
+.brief-name {
+  font-weight: 900;
+  font-size: 26rpx;
+  color: #000;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-top: 20rpx;
+}
+
+.brief-info-num {
+  color: #999;
+  font-size: 22rpx;
+}
+
+.info {
+  height: 800rpx;
+  position: relative;
+  z-index: 100;
+}
+
+.info-backimg {
+  width: 100%;
+  height: 100%;
+}
+
+.brand {
+  padding: 30rpx 30rpx 0 30rpx;
+}
+
+.brand >view {
+  display: flex;
+}
+
+.brand >view:first-child {
+  margin-bottom: 25rpx;
+}
+
+.brand >view:last-child {
+  margin-bottom: 30rpx;
+}
+
+.brand >view text:first-child {
+  width: 180rpx;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.brand >view text:last-child {
+  font-size: 24rpx;
+  color: #333;
+  width: 510rpx;
+  line-height: 40rpx;
+}
+
+.introWords {
+  padding: 0 30rpx 30rpx 30rpx;
+  font-size: 24rpx;
+  color: #333;
+  line-height: 40rpx;
+  display: flex;
+}
+
+.introWords .introWords1 {
+  color: #999;
+  flex-basis: 180rpx;
+}
+
+.introWords .introWords2 {
+  flex-basis: 510rpx;
+}
+.introWords2-h{
+  /* flex-basis: 510rpx; */
+  color:#999;
+}
+.info-mask {
+  z-index: 99;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.brief-close {
+  position: absolute;
+  top: 30rpx;
+  right: 30rpx;
+  width: 26rpx;
+  height: 26rpx;
+  z-index: 1111;
 }

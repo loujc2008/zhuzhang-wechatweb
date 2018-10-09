@@ -15,8 +15,8 @@ App({
   globalData: {
     scene: 1,
     userInfo: null,
-    // mallApiUrl: "api.urshow.cn/",
-    mallApiUrl: "devapi.urshow.cn/",
+    mallApiUrl: "api.feyjia.com/",
+    // mallApiUrl: "devapi.urshow.cn/",
     // mallApiUrl: "192.168.1.37/",
     // mallApiUrl: "192.168.1.15/",
     // mallApiUrl: "192.168.0.250/",

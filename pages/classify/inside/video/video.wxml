@@ -6,6 +6,32 @@
     </view>
     <video hidden='{{!isPlay}}' id="myVideo" loop bindtimeupdate="getCurrentTime" poster='{{videoImg}}' src="{{videourl}}" controls></video>
   </view>
+</view>
+
+<!--商品列表  -->
+<wxs module="m">
+  var formatTime = function(date) {
+    var start = Date.parse(getDate());
+    var end = Date.parse(date);
+    var time = Math.ceil((end - start) / 3600 / 1000) - 8;
+    console.log(time)
+    var data = {
+      day: parseInt(time / 24),
+      hour: parseInt(time % 24) >= 0 ? parseInt(time % 24) : 0
+    };
+    return data;
+  }
+  var fixed = function(date) {
+    var num = date.toFixed(2);
+    if (date.toFixed(2) < 0.01) {
+      num = 0.01;
+    }
+    return num
+  }
+  module.exports.fixed = fixed;
+  module.exports.formatTime = formatTime;
+</wxs>
+<scroll-view scroll-y style='height:{{srollHeight}}px;'>
   <view class='shop-content'>
     <view class='shop-name'>
       <view class='shop-title'>{{shopdata.storeName}}</view>
@@ -33,73 +59,73 @@
       </view>
     </view>
   </view>
-</view>
-
-<!--商品列表  -->
-<wxs module="m">
-  var formatTime = function(date) {
-    var start = Date.parse(getDate());
-    var end = Date.parse(date);
-    var time = Math.ceil((end - start) / 3600 / 1000) - 8;
-    console.log(time)
-    var data = {
-      day: parseInt(time / 24),
-      hour: parseInt(time % 24) >= 0 ? parseInt(time % 24) : 0
-    };
-    return data;
-  }
-  var fixed = function(date) {
-    var num = date.toFixed(2);
-    if (date.toFixed(2) < 0.01) {
-      num = 0.01;
-    }
-    return num
-  }
-  module.exports.fixed = fixed;
-  module.exports.formatTime = formatTime;
-</wxs>
-<view class="product-list">
-  <view wx:for="{{shopdata.ProductList}}" wx:key="{{index}}" class="product-li">
-    <text>{{item.name}}</text>
-    <view>
-      <view class="product-money">
-        <block wx:if='{{item.Promotion}}'>
-          <block wx:if='{{item.Promotion.PromotionType==4}}'>
-            ￥{{item.MinSeckillPrice}}
+  <view class="product-list">
+    <view wx:for="{{shopdata.ProductList}}" wx:key="{{index}}" class="product-li">
+      <text>{{item.name}}</text>
+      <view>
+        <view class="product-money">
+          <block wx:if='{{item.Promotion}}'>
+            <block wx:if='{{item.Promotion.PromotionType==4}}'>
+              ￥{{item.MinSeckillPrice}}
+            </block>
+            <block wx:else>
+              ￥{{m.fixed(item.price*item.Promotion.PromotionDiscount)}}
+            </block>
           </block>
           <block wx:else>
-            ￥{{m.fixed(item.price*item.Promotion.PromotionDiscount)}}
+            ￥{{item.price}}
           </block>
-        </block>
-        <block wx:else>
-          ￥{{item.price}}
-        </block>
-      </view>
-      <view class="probuy" data-idx="{{item.id}}" data-index="{{index}}" catchtap='Eject'>购买</view>
-    </view>
-    <scroll-view bindtap='openCommoditydetail' data-idx='{{index}}' scroll-x>
-      <view class="product-img-list">
-        <view wx:for="{{item.imgUrlList}}" wx:for-index='img_idx' wx:for-item='img_item' wx:key="{{img_idx}}">
-          <view wx:if='{{img_idx==0&&item.Promotion}}' class='activity-info'>
-            <image wx:if='{{item.Promotion.PromotionType==1}}' src="/imgs/cuxiao.png" class='activity'></image>
-            <image wx:if='{{item.Promotion.PromotionType==2}}' src="/imgs/manjian.png" class='activity'></image>
-            <image wx:if='{{item.Promotion.PromotionType==4}}' src="/imgs/miaosha.png" class='activity-miaosha'></image>
-            <view wx:if='{{item.Promotion.PromotionType==2}}' class='activity-text'>满{{item.Promotion.OrderCredit}}减{{item.Promotion.ReductionAmount}}</view>
-            <view class='activity-mask' wx:if='{{item.Promotion.PromotionType==2||item.Promotion.PromotionType==1}}'></view>
-            <view class='activity-time' wx:if='{{item.Promotion.PromotionType==2||item.Promotion.PromotionType==1}}'>
-              <text>距活动结束还有</text>
-              <text>{{m.formatTime(item.Promotion.EndTime).day}}天{{m.formatTime(item.Promotion.EndTime).hour}}时</text>
-            </view>
-          </view>
-          <image class='product-img' src='{{img_item}}'></image>
         </view>
+        <view class="probuy" data-idx="{{item.id}}" data-index="{{index}}" catchtap='Eject'>购买</view>
       </view>
-    </scroll-view>
+      <scroll-view bindtap='openCommoditydetail' data-idx='{{index}}' scroll-x>
+        <view class="product-img-list">
+          <view wx:for="{{item.imgUrlList}}" wx:for-index='img_idx' wx:for-item='img_item' wx:key="{{img_idx}}">
+            <view wx:if='{{img_idx==0&&item.Promotion}}' class='activity-info'>
+              <image wx:if='{{item.Promotion.PromotionType==1}}' src="/imgs/cuxiao.png" class='activity'></image>
+              <image wx:if='{{item.Promotion.PromotionType==2}}' src="/imgs/manjian.png" class='activity'></image>
+              <image wx:if='{{item.Promotion.PromotionType==4}}' src="/imgs/miaosha.png" class='activity-miaosha'></image>
+              <view wx:if='{{item.Promotion.PromotionType==2}}' class='activity-text'>满{{item.Promotion.OrderCredit}}减{{item.Promotion.ReductionAmount}}</view>
+              <view class='activity-mask' wx:if='{{item.Promotion.PromotionType==2||item.Promotion.PromotionType==1}}'></view>
+              <view class='activity-time' wx:if='{{item.Promotion.PromotionType==2||item.Promotion.PromotionType==1}}'>
+                <text>距活动结束还有</text>
+                <text>{{m.formatTime(item.Promotion.EndTime).day}}天{{m.formatTime(item.Promotion.EndTime).hour}}时</text>
+              </view>
+            </view>
+            <image class='product-img' src='{{img_item}}'></image>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
   </view>
-</view>
+  <!--缺省  -->
+  <view class='no-relation' style='height:{{mainHeight}}px' wx:if='{{shopdata.ProductList.length==0}}'>
+    <image src="/imgs/videokong.png" class="no-relationimg"></image>
+    <view class="no-relationtext">
+      <view>暂无相关商品</view>
+      <view>您可以去店铺看看哦</view>
+    </view>
+  </view>
+</scroll-view>
 
 <!-- 快捷导航 -->
-<navigation></navigation>
+<view class='quick-nav'>
+  <navigator url='/pages/user/user' class='nav _home {{showNavs ? "_show":"_hide"}}' open-type="switchTab">
+    <image src='/pages/commoditydetail/imgs/nav-user.png'></image>
+  </navigator>
+  <navigator url='/pages/shop/shop' class='nav _shop {{showNavs ? "_show":"_hide"}}' open-type="switchTab">
+    <image src='/pages/commoditydetail/imgs/nav-shop.png'></image>
+  </navigator>
+  <navigator url='/pages/choiceness/choiceness' class='nav _user {{showNavs ? "_show":"_hide"}}' open-type="switchTab">
+    <image src='/pages/commoditydetail/imgs/nav-home.png'></image>
+  </navigator>
+  <view class='nav _close {{showNavs ? "_show":"_hide"}}' bindtap='showNav'>
+    <image src='/pages/commoditydetail/imgs/nav-close.png'></image>
+  </view>
+  <view class='nav _main {{showNavs ? "_hide":"_show"}}' bindtap='showNav'>
+    <view>快捷导航</view>
+  </view>
+</view>
 
 <view wx:if='{{shopdata.ProductList.length>0}}' class="purchase" style='height:{{srollHeight}}px' hidden='{{isShow}}'>
   <image src="/imgs/11.png" class="close" bindtap='close'></image>
@@ -235,8 +261,3 @@
 
 <!--优惠券列表  -->
 <!-- <include src="/pages/minmoney/minmoney.wxml" /> -->
-
-<!--缺省  -->
-<view class='no-relation' style='height:{{srollHeight}}px' wx:if='{{shopdata.ProductList.length==0}}'>
-  该视频未关联商品
-</view>

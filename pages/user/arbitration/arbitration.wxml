@@ -1,0 +1,68 @@
+<view class='top'>
+  <view bindtap='btnComplaint' style='{{title==1?"border-bottom: 4rpx solid #fd4663;":""}}'>交易投诉</view>
+  <view bindtap='btnArbitration' style='{{title==2?"border-bottom: 4rpx solid #fd4663;":""}}'>交易仲裁</view>
+</view>
+
+<view class='top-view'>
+  <block wx:if='{{title==1}}' wx:for='{{complaint}}' wx:key='{{index}}'>
+    <view class="shop-title">
+      <text class="shop-name">{{item.ShopName}}</text>
+      <text class='shop-prompt'>{{item.OrderStatusName}}</text>
+    </view>
+    <navigator hover-class="none" open-type='redirect' url='../../order/refundDetail/refundDetail?type=1&id={{item.Id}}' class="product-list">
+      <image src="{{item.ProductImageFullPath}}"></image>
+      <view class="product-info">
+        <view class="product-name">
+          <text>{{item.ProductName}}</text>
+          <text>x{{item.Quantity}}</text>
+        </view>
+        <view class="product-specs">
+          <text><block wx:if="{{item.Color}}">颜色：{{item.Color}}</block><block wx:if="{{item.Size}}"> 尺寸：{{item.Size}}</block><block wx:if="{{item.Version}}"> 版本：{{item.Version}}</block></text>
+        </view>
+        <view class="product-money">
+          <text>￥{{item.SalePrice}}</text>
+        </view>
+      </view>
+    </navigator>
+    <view style='{{item.OrderStatus==1||item.OrderStatus==2?"background-color: #f1f2f4;":""}}' class="order-total">
+      <text>共{{item.Quantity}}件商品</text>
+      <text class="in-total">合计</text>
+      <text class="order-money">￥{{item.RealTotalPrice}}</text>
+    </view>
+    <view wx:if='{{item.OrderStatus==1||item.OrderStatus==2}}' class='order-total'>
+      <view bindtap='cancelComplaint' data-id='{{item.Id}}' class='cancel-complaint'>撤销投诉</view>
+    </view>
+  </block>
+</view>
+
+<view class='top-view'>
+  <block wx:if='{{title==2}}' wx:for='{{arbitration}}' wx:key='{{index}}'>
+    <view class="shop-title">
+      <text class="shop-name">{{item.ShopName}}</text>
+      <text class='shop-prompt'>{{item.OrderStatusName}}</text>
+    </view>
+    <navigator hover-class="none" open-type='redirect' url='../../order/refundDetail/refundDetail?type=2&id={{item.Id}}' class="product-list">
+      <image src="{{item.ProductImageFullPath}}"></image>
+      <view class="product-info">
+        <view class="product-name">
+          <text>{{item.ProductName}}</text>
+          <text>x{{item.Quantity}}</text>
+        </view>
+        <view class="product-specs">
+          <text><block wx:if="{{item.Color}}">颜色：{{item.Color}}</block><block wx:if="{{item.Size}}"> 尺寸：{{item.Size}}</block><block wx:if="{{item.Version}}"> 版本：{{item.Version}}</block></text>
+        </view>
+        <view class="product-money">
+          <text>￥{{item.SalePrice}}</text>
+        </view>
+      </view>
+    </navigator>
+    <view style='{{item.OrderStatus==1||item.OrderStatus==2?"background-color: #f1f2f4;":""}}' class="order-total">
+      <text>共{{item.Quantity}}件商品</text>
+      <text class="in-total">合计</text>
+      <text class="order-money">￥{{item.RealTotalPrice}}</text>
+    </view>
+    <view wx:if='{{item.OrderStatus==1||item.OrderStatus==2}}' class='order-total'>
+      <view bindtap='cancelArbitration' data-id='{{item.Id}}' class='cancel-complaint'>撤销投诉</view>
+    </view>
+  </block>
+</view>

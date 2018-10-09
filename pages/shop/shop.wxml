@@ -1,5 +1,5 @@
 <import src="/pages/template/template.wxml" />
-<block wx:if="{{Products.length>0}}">
+<block wx:if="{{Products.length>0||InvalidProducts.length>0}}">
   <scroll-view scroll-y style='height:{{scrollHeight}}px' class='cart-goods-list'>
     <block wx:for="{{Products}}" wx:key="{{index}}">
       <view class="shop-list">
@@ -39,23 +39,23 @@
       </view>
     </block>
 
-    <!-- <view class="shop-list">
+    <view class="shop-list" wx:if='{{InvalidProducts.length>0}}'>
       <view class="shop-title">
-        <view>失效宝贝</view>
-        <view>清空失效宝贝</view>
+        <view class='invalid-title'>失效宝贝</view>
+        <view class='invalid-action' bindtap='empty'>清空失效宝贝</view>
       </view>
-      <block wx:for="{{item.CartViewModelList}}" wx:key="{{listIdx}}" wx:for-index="listIdx" wx:for-item="listItem">
+      <block wx:for="{{InvalidProducts}}" wx:key="{{listIdx}}" wx:for-index="listIdx" wx:for-item="listItem">
         <view class="touch-item {{listItem.isTouchMove=='2' ? 'touch-move-stop' : ''}} {{listItem.isTouchMove=='1' ? 'touch-move-active' : ''}}" data-idx="{{listIdx}}" data-f-idx="{{index}}" bindtouchstart="touchstart" bindtouchmove='touchmove'>
-          <view class="content" animation="{{animationData}}">
+          <view class="invalid-content">
             <view class="shop-item-list">
-              <view>失效</view>
+              <view class='invalid'>失效</view>
               <view class='shop-content'>
                 <view class='flex' catchtap='openCommoditydetail' data-id="{{listItem.ProductId}}">
                   <image src='{{listItem.ImageUrl}}'></image>
                   <view>
                     <text class="trade-name">{{listItem.ProductName}}</text>
                     <text class="color"><block wx:if="{{listItem.Color}}">颜色: {{listItem.Color}}</block><block wx:if="{{listItem.Size}}"> 尺码: {{listItem.Size}}</block><block wx:if="{{listItem.Version}}"> 版本: {{listItem.Version}}</block></text>
-                    <text class="money">¥ {{m.fixed(listItem.Price)}}</text>
+                    <text class="money">¥ {{listItem.Price}}</text>
                   </view>
                 </view>
                 <view class='shop-num'>
@@ -71,16 +71,20 @@
           </view>
         </view>
       </block>
-    </view> -->
+    </view>
     <block wx:if='{{browseData.length>0||sellingData.length>0}}'>
       <view class='recommend-name'>-猜你喜欢-</view>
       <block wx:if='{{browseData.length>0}}'>
         <view class='recommend-title'>你近期浏览了这些宝贝</view>
-        <product-list product-list='{{browseData}}'></product-list>
+        <view class='recommend-content'>
+          <template is="product_li" data="{{products:browseData}}" />
+        </view>
       </block>
       <block wx:if='{{sellingData.length>0}}'>
         <view class='recommend-title'>大家近期都买了这些宝贝</view>
-        <product-list product-list='{{sellingData}}'></product-list>
+        <view class='recommend-content'>
+          <template is="product_li" data="{{products:sellingData}}" />
+        </view>
       </block>
     </block>
   </scroll-view>
@@ -107,11 +111,15 @@
     <view class='recommend-name'>-猜你喜欢-</view>
     <block wx:if='{{browseData.length>0}}'>
       <view class='recommend-title'>你近期浏览了这些宝贝</view>
-      <product-list product-list='{{browseData}}'></product-list>
+      <view class='recommend-content'>
+        <template is="product_li" data="{{products:browseData}}" />
+      </view>
     </block>
     <block wx:if='{{sellingData.length>0}}'>
       <view class='recommend-title'>大家近期都买了这些宝贝</view>
-     <product-list product-list='{{sellingData}}'></product-list>
+      <view class='recommend-content'>
+        <template is="product_li" data="{{products:sellingData}}" />
+      </view>
     </block>
   </block>
 </block>

@@ -1,0 +1,355 @@
+page {
+  background-color: #f6f7f9;
+}
+
+.shop-title {
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  height: 85rpx;
+  line-height: 85rpx;
+  padding: 0 30rpx;
+}
+
+.shop-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 26rpx;
+  font-weight: bold;
+}
+
+.shop-title> button::after {
+  border: 0;
+}
+
+.contact {
+  width: 140rpx;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+}
+
+.contact image {
+  width: 33rpx;
+  height: 28rpx;
+}
+
+.contact view {
+  color: #999;
+  font-size: 24rpx;
+  font-weight: 100;
+}
+
+.product-list {
+  padding: 20rpx 30rpx;
+  display: flex;
+  width: 690rpx;
+  background-color: #fff;
+}
+
+.product-list image {
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.product-info {
+  margin-left: 30rpx;
+  width: 460rpx;
+  font-size: 26rpx;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  position: relative;
+}
+
+.product-name {
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-name text:first-child {
+  color: #000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.product-name text:last-child {
+  color: #999;
+}
+
+.product-specs {
+  color: #999;
+}
+
+.product-money {
+  font-size: 30rpx;
+}
+
+.refund-term {
+  display: flex;
+  align-items: center;
+  margin-top: 20rpx;
+  position: relative;
+  height: 100rpx;
+  font-size: 26rpx;
+  padding: 0 30rpx;
+  background-color: #fff;
+}
+
+.refund-term input {
+  flex: 1;
+}
+
+.key {
+  color: #ff2121;
+  height: 100rpx;
+  line-height: 100rpx;
+  position: absolute;
+  top: 0;
+  left: 15rpx;
+}
+
+.term-name {
+  flex: 0 0 auto;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+
+.refund-money {
+  color: #ff2121;
+}
+
+.refund-prompt {
+  font-size: 24rpx;
+  color: #999;
+  flex: 0 0 auto;
+}
+
+.term-select {
+  flex: 1;
+  color: #999;
+  font-size: 24rpx;
+  text-align: right;
+}
+
+.term-img {
+  width: 14rpx;
+  height: 20rpx;
+  margin-left: 10rpx;
+}
+
+.math {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  flex: 1;
+}
+
+.math text {
+  font-size: 23rpx;
+  background-color: #f0f0f0;
+  margin: 0 1rpx;
+  width: 66rpx;
+  height: 54rpx;
+  text-align: center;
+  line-height: 54rpx;
+}
+
+.no-btn {
+  background-color: #f7f7f7 !important;
+}
+
+.refund-explain {
+  height: 200rpx;
+  align-items: flex-start;
+}
+
+.refund-explain textarea {
+  height: 200rpx;
+  padding: 34rpx 10rpx;
+  box-sizing: border-box;
+  line-height: 30rpx;
+}
+
+.upload-img {
+  display: flex;
+  font-size: 26rpx;
+  margin-top: 20rpx;
+  padding: 30rpx;
+  background-color: #fff;
+  margin-bottom: 158rpx;
+}
+
+.upload-img-list {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 0 10rpx;
+  flex: 1;
+}
+
+.img-box {
+  width: 160rpx;
+  height: 160rpx;
+  margin-right: 24rpx;
+  position: relative;
+}
+
+.fork-box {
+  position: absolute;
+  height: 50rpx;
+  width: 50rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: -25rpx;
+  right: -25rpx;
+}
+
+.fork {
+  border-radius: 50%;
+  height: 30rpx;
+  line-height: 30rpx;
+  text-align: center;
+  width: 30rpx;
+  background-color: #fff;
+  box-shadow: 0 0 1px #ddd;
+  z-index: 1000;
+}
+
+.img-box>image {
+  width: 160rpx;
+  height: 160rpx;
+}
+
+.upload-btn {
+  width: 160rpx;
+  height: 160rpx;
+  margin-right: 24rpx;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-around;
+  border: 1rpx dotted #ddd;
+  color: #ddd;
+  font-size: 20rpx;
+}
+
+.upload-btn text:first-child {
+  font-size: 100rpx;
+  margin-top: -30rpx;
+}
+
+.upload-btn text:nth-child(2) {
+  margin-top: -20rpx;
+}
+
+.upload-btn text:nth-child(3) {
+  margin-top: -10rpx;
+}
+
+.cannot {
+  background-image: linear-gradient(to right, #d0d0d0, #d0d0d0) !important;
+}
+
+.submit {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 750rpx;
+  height: 108rpx;
+  line-height: 108rpx;
+  background-image: linear-gradient(to right, #fa6e84, #ff4e93);
+  color: #fff;
+  border: none;
+  border-radius: 0;
+  z-index: 999;
+}
+
+.submit::after {
+  border-radius: 0;
+  border: none;
+}
+
+/*退款原因  */
+
+.reason {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.mark {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.reason-list {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  background-color: #fff;
+  position: relative;
+}
+
+.reason-list >text {
+  font-size: 32rpx;
+  color: #999;
+  padding: 30rpx 0 50rpx 0;
+}
+
+.radio-group {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.radio {
+  border-bottom: 1rpx solid #e5e5e5;
+  padding: 30rpx 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 690rpx;
+  font-size: 28rpx;
+}
+
+.radio-select {
+  border-radius: 50%;
+  width: 26rpx;
+  height: 26rpx;
+  border: 1rpx solid #aeaeae;
+  line-height: 16rpx;
+  text-align: center;
+  font-size: 80rpx;
+  color: #aeaeae;
+}
+
+.confirm {
+  width: 750rpx;
+  height: 108rpx;
+  line-height: 108rpx;
+  background-image: linear-gradient(to right, #fa6e84, #ff4e93);
+  color: #fff;
+  border: none;
+  border-radius: 0;
+}
+
+.confirm::after {
+  border-radius: 0;
+  border: none;
+}
+
+.reason-close {
+  width: 32rpx;
+  height: 32rpx;
+  position: absolute;
+  top: 40rpx;
+  right: 40rpx;
+}

@@ -1,0 +1,18 @@
+<view class='upload-img'>
+  <text>添加图片:</text>
+  <view class='upload-img-list'>
+    <view wx:if='{{arr.length<3}}' bindtap='selectImg' class='upload-btn'>
+      <text>+</text>
+      <text>上传图片</text>
+      <text>(最多三张)</text>
+    </view>
+    <view class='img-box' wx:for='{{arr}}' wx:key='{{index}}'>
+      <view class='fork-box' bindtap='deleteImg' data-idx='{{index}}'>
+        <view class='fork'>
+          ×
+        </view>
+      </view>
+      <image src='{{item}}'></image>
+    </view>
+  </view>
+</view>

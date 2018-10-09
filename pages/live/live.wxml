@@ -42,7 +42,7 @@
         </view>
       </view>
     </scroll-view>
-    <template wx:else is="default" data="{{img:'/imgs/no-cart.png',text:'购物车是空的哦，去逛逛吧'}}" />
+    <template wx:else is="default" data="{{img:'/imgs/hot_live.png',text:'当前暂无直播，去逛逛吧'}}" />
   </swiper-item>
   <!-- 最新 -->
   <swiper-item>
@@ -81,7 +81,7 @@
         </view>
       </view>
     </scroll-view>
-    <template wx:else is="default" data="{{img:'/imgs/no-cart.png',text:'购物车是空的哦，去逛逛吧'}}" />
+    <template wx:else is="default" data="{{img:'/imgs/hot_live.png',text:'当前暂无直播，去逛逛吧'}}" />
   </swiper-item>
   <!-- 回放 -->
   <swiper-item>
@@ -119,6 +119,6 @@
         </view>
       </view>
     </scroll-view>
-    <template wx:else is="default" data="{{img:'/imgs/no-cart.png',text:'购物车是空的哦，去逛逛吧'}}" />
+    <template wx:else is="default" data="{{img:'/imgs/back_live.png',text:'当前暂无回放，去逛逛吧'}}" />
   </swiper-item>
 </swiper>

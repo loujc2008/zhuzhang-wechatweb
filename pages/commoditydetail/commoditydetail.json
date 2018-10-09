@@ -1,7 +1,3 @@
 {
-  "navigationBarTitleText": "商品详情",
-  "usingComponents": {
-    "navigation": "/component/navigation/navigation",
-    "product-list": "/component/product/product"
-  }
+  "navigationBarTitleText": "商品详情"
 }

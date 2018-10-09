@@ -1,0 +1,90 @@
+<view>
+  <view class="shop-title">
+    <text class="shop-name">{{detail.ShopName}}</text>
+  </view>
+  <view class="product-list">
+    <image src="{{detail.OrderItemInfo[idx].ImageUrl}}"></image>
+    <view class="product-info">
+      <view class="product-name">
+        <text>{{detail.OrderItemInfo[idx].ProductName}}</text>
+        <text>x{{detail.OrderItemInfo[idx].Quantity}}</text>
+      </view>
+      <view class="product-specs">
+        <text><block wx:if="{{detail.OrderItemInfo[idx].Color}}">颜色：{{detail.OrderItemInfo[idx].Color}}</block><block wx:if="{{detail.OrderItemInfo[idx].Size}}"> 尺寸：{{detail.OrderItemInfo[idx].Size}}</block><block wx:if="{{detail.OrderItemInfo[idx].Version}}"> 版本：{{detail.OrderItemInfo[idx].Version}}</block></text>
+      </view>
+      <view class="product-money">
+        <text>￥{{detail.OrderItemInfo[idx].SalePrice}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class='refund-term'>
+  <text class='key'>*</text>
+  <text class='term-name'>退款金额：</text>
+  <text class='refund-money'>￥</text>
+  <input class='refund-money' value='{{refund_money}}' type='digit' confirm-type='done' bindblur='inputAmount'></input>
+  <text class='refund-prompt'>最多{{detail.OrderItemInfo[idx].SalePrice}}，含邮费￥{{detail.OrderItemInfo[idx].Freight}}</text>
+</view>
+
+<view class='refund-term'>
+  <text class='key'>*</text>
+  <text class='term-name'>退款原因：</text>
+  <text class='refund-money'>{{reasonType==1?arr_refund[reason_idx]:arr_refundgoods[reason_idx]}}</text>
+  <text class='term-select' bindtap='showSelect'>请选择</text>
+  <image class='term-img' src='/imgs/66.png'></image>
+</view>
+
+<view class='refund-term'>
+  <text class='key'>*</text>
+  <text class='term-name'>提交数量：</text>
+  <view class='math'>
+    <text bindtap="{{refund_num>=detail.OrderItemInfo[idx].Quantity?'':'min'}}" class="{{refund_num<=1?'no-btn':''}}">-</text>
+    <text>{{refund_num}}</text>
+    <text bindtap="{{refund_num>=detail.OrderItemInfo[idx].Quantity?'':'add'}}" class="{{refund_num>=detail.OrderItemInfo[idx].Quantity?'no-btn':''}}">+</text>
+  </view>
+  <text class='refund-prompt'>最多可提交数量为{{detail.OrderItemInfo[idx].Quantity}}件</text>
+</view>
+
+<view class='refund-term refund-explain'>
+  <text class='term-name'>退款说明：</text>
+  <textarea placeholder='选填，200字以内，不少于6个字' maxlength='200' placeholder-style='font-size:24rpx;color:#a1a1a1;'></textarea>
+</view>
+
+<view class='upload-img'>
+  <text>添加图片:</text>
+  <view class='upload-img-list'>
+    <view wx:if='{{arr.length<3}}' bindtap='selectImg' class='upload-btn'>
+      <text>+</text>
+      <text>上传图片</text>
+      <text>(最多三张)</text>
+    </view>
+    <view class='img-box' wx:for='{{arr}}' wx:key='{{index}}'>
+      <view class='fork-box' bindtap='deleteImg' data-idx='{{index}}'>
+        <view class='fork'>
+          ×
+        </view>
+      </view>
+      <image src='{{item}}'></image>
+    </view>
+  </view>
+</view>
+
+<button bindtap='{{refund_money<=0||reason_idx<0?"":"cannot"}}' class='{{refund_money<=0||reason_idx<0?"cannot":""}} submit'>
+  提交
+</button>
+
+<view class='reason' hidden='{{isReason}}'>
+  <view class='mark' style='{{reasonType==1?"height:48%;":"height:23%;"}}'></view>
+  <view class='reason-list' style='{{reasonType==1?"height:52%;":"height:77%;"}}'>
+    <image class='reason-close' bindtap='closerReason' src='/imgs/11.png'></image>
+    <text>退款原因</text>
+    <view class="radio" wx:for='{{reasonType==1?arr_refund:arr_refundgoods}}' bindtap='selectReason' data-idx='{{index}}' wx:key='{{index}}'>
+      <text>{{item}}</text>
+      <view class='radio-select'>{{index==reason_idx?'·':''}}</view>
+    </view>
+    <button bindtap='closerReason' class='confirm'>
+      确定
+    </button>
+  </view>
+</view>

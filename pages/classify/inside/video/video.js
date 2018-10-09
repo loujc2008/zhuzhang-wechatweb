@@ -39,7 +39,7 @@ let page = {
       success(res) {
         that.setData({
           srollHeight: ((750 / res.windowWidth) * res.windowHeight - 420) / (750 / res.windowWidth),
-          // mainHeight: ((750 / res.windowWidth) * res.windowHeight - 650) / (750 / res.windowWidth)+115
+          mainHeight: ((750 / res.windowWidth) * res.windowHeight - 650) / (750 / res.windowWidth)
         })
       }
     });

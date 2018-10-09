@@ -25,7 +25,6 @@
     "pages/commoditydetail/commoditydetail",
     "pages/template/template",
     "pages/dianpu/dianpu",
-    "pages/logs/logs",
     "pages/active/active",
     "pages/live/live",
     "pages/horizontallive/horizontallive",
@@ -35,7 +34,9 @@
     "pages/search/search",
     "pages/search/result/result",
     "pages/wxWeb/wxWeb",
-    "pages/christmas/christmas"
+    "pages/christmas/christmas",
+    "pages/activetwo/activetwo",
+    "pages/activethree/activethree"
   ],
   "window": {
     "backgroundTextStyle": "light",

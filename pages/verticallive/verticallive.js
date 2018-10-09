@@ -66,6 +66,7 @@ let page = {
       isSteam: false,
       isHere: false
     })
+    wx.closeSocket();
   },
   onUnload() {
     this.setData({
@@ -427,9 +428,13 @@ let page = {
   },
   //显示聊天框
   msgBox() {
-    this.setData({
-      chat: !this.data.chat
-    })
+    if (this.data.LiveInfo.LiveRoomStatus == 2) {
+      Prompt('回放直播不可评论');
+    } else {
+      this.setData({
+        chat: !this.data.chat
+      })
+    }
   },
   /**直播互动end */
 

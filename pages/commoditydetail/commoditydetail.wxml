@@ -105,7 +105,9 @@
 
   <block wx:if='{{sellingData.length>0}}'>
     <view class='recommend-name'>-商品推荐-</view>
-    <product-list product-list='{{sellingData}}' page-type='1'></product-list>
+    <view class='recommend-content'>
+      <template is="product_li" data="{{type:true,products:sellingData}}" />
+    </view>
   </block>
 
   <view class="detail4">
@@ -119,8 +121,10 @@
       <image src="../../imgs/{{IsFavorite?'collection':'15'}}.png" class="detailimg5"></image>
       <view class="detail4shop {{IsFavorite?'already':''}}">{{IsFavorite?'已收藏':'收藏'}}</view>
     </view>
-    <view class="addbuy" bindtap='btnCart'>加入购物车</view>
-    <view class="nowbuy" bindtap='nowbuy'>立即购买</view>
+    <view class="addbuy" bindtap='{{value.ProductStatus==0?"btnCart":""}}'>加入购物车</view>
+    <view class="nowbuy" wx:if='{{value.ProductStatus==0}}' bindtap='nowbuy'>立即购买</view>
+    <view class="hui" wx:if='{{value.ProductStatus==1}}'>已售完</view>
+    <view class="hui" wx:if='{{value.ProductStatus==2}}'>已下架</view>
   </view>
 
   <view class="{{isShow?'sizetrue':'sizefalse'}}">
@@ -243,7 +247,23 @@
     </view>
   </view>
   <!-- 快捷导航 -->
-  <navigation></navigation>
+  <view class='quick-nav'>
+    <navigator url='/pages/user/user' class='nav _home {{showNavs ? "_show":"_hide"}}' open-type="switchTab">
+      <image src='imgs/nav-user.png'></image>
+    </navigator>
+    <navigator url='/pages/shop/shop' class='nav _shop {{showNavs ? "_show":"_hide"}}' open-type="switchTab">
+      <image src='imgs/nav-shop.png'></image>
+    </navigator>
+    <navigator url='/pages/choiceness/choiceness' class='nav _user {{showNavs ? "_show":"_hide"}}' open-type="switchTab">
+      <image src='imgs/nav-home.png'></image>
+    </navigator>
+    <view class='nav _close {{showNavs ? "_show":"_hide"}}' bindtap='showNav'>
+      <image src='imgs/nav-close.png'></image>
+    </view>
+    <view class='nav _main {{showNavs ? "_hide":"_show"}}' bindtap='showNav'>
+      <view>快捷导航</view>
+    </view>
+  </view>
   <!-- 客服 -->
   <view>
     <button open-type="contact" bindtap='openXiaoneng' class="cbutton" session-from="weapp">

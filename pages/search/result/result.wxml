@@ -11,7 +11,22 @@
 <view class='result-mask'>
   <view class='mask'></view>
 </view>
-<product-list wx:if='{{name=="商品"}}' product-list='{{products.arr}}' page-type='2'></product-list>
+<view wx:if='{{name=="商品"}}' class='goods-list'>
+  <navigator open-type='redirect' hover-class="none" url="/pages/commoditydetail/commoditydetail?id={{item.Id}}" wx:for="{{products.arr}}" wx:key="{{index}}" class='goods-li'>
+    <view wx:if='{{item.Promotion.PromotionType==2}}' class='activity-text'>满{{item.Promotion.OrderCredit}}减{{item.Promotion.ReductionAmount}}</view>
+    <block wx:if="{{item.Promotion}}">
+      <image wx:if="{{item.Promotion.PromotionType==1}}" class='goods-img' src="/imgs/cuxiao.png"></image>
+      <image wx:if="{{item.Promotion.PromotionType==2}}" class='goods-img' src="/imgs/manjian.png"></image>
+      <image wx:if="{{item.Promotion.PromotionType==4}}" class='goods-img-miaosha' src="/imgs/miaosha.png"></image>
+    </block>
+    <image src='{{item.ImagePath}}'></image>
+    <text>{{item.ProductName}}</text>
+    <view>
+      <text class='money'>￥ {{item.Promotion&&item.Promotion.PromotionType==4?item.MinSeckillPrice:item.MinSalePrice}}</text>
+      <text class='num'>{{item.SaleCounts>=0?item.SaleCounts:0}}人购买</text>
+    </view>
+  </navigator>
+</view>
 <view wx:if='{{name=="视频"}}' class='babydis'>
   <navigator open-type='redirect' class="baby" wx:for="{{videos.arr}}" wx:key="{{index}}" url="/pages/classify/inside/video/video?storeid={{item.Id}}&title={{item.Name}}" hover-class="none">
     <image src="{{item.Img}}" mode='scaleToFill'></image>

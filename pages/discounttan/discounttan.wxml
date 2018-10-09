@@ -1,7 +1,7 @@
 <view class="t-tanmask">
 </view>
 <view class="t-tanall">
-  <image src="/imgs/bg1.png" class="t-bg1"></image>
+  <image src="http://urshow-1253203608.file.myqcloud.com/wechatapp/zhuanti/20180108/bg1.png" class="t-bg1"></image>
   <image src="/imgs/bottom.png" class="t-tanimg4" bindtap='closetan'></image>
   <!-- --------------------------------------------------优惠券内容----------------------------------------------------- -->
   <view class="t-tancontent">

@@ -1,0 +1,149 @@
+page {
+  background-color: #f1f2f4;
+}
+
+.top {
+  display: flex;
+  width: 750rpx;
+  height: 70rpx;
+  align-items: center;
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.top-view {
+  margin-top: 90rpx;
+}
+
+.top view {
+  margin: 0 auto;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 26rpx;
+  text-align: center;
+}
+
+.shop-title {
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  height: 85rpx;
+  line-height: 85rpx;
+  padding: 0 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.shop-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 26rpx;
+  font-weight: bold;
+}
+
+.shop-prompt {
+  font-size: 26rpx;
+}
+
+.shop-title> button::after {
+  border: 0;
+}
+
+.contact {
+  width: 140rpx;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+}
+
+.contact image {
+  width: 33rpx;
+  height: 28rpx;
+}
+
+.contact view {
+  color: #999;
+  font-size: 24rpx;
+  font-weight: 100;
+}
+
+.product-list {
+  padding: 20rpx 30rpx;
+  display: flex;
+  width: 690rpx;
+}
+
+.product-list image {
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.product-info {
+  margin-left: 30rpx;
+  width: 460rpx;
+  font-size: 26rpx;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  position: relative;
+}
+
+.product-name {
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-name text:first-child {
+  color: #000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.product-name text:last-child {
+  color: #999;
+}
+
+.product-specs {
+  color: #999;
+}
+
+.product-money {
+  font-size: 30rpx;
+}
+
+.order-total {
+  font-size: 26rpx;
+  background: #fff;
+  height: 115rpx;
+  line-height: 115rpx;
+  box-sizing: border-box;
+  padding: 0 30rpx;
+  display: flex;
+}
+
+.in-total {
+  margin-left: auto;
+  color: #999;
+}
+
+.order-money {
+  margin-left: 40rpx;
+  font-size: 30rpx;
+  color: red;
+}
+
+.cancel-complaint {
+  height: 60rpx;
+  line-height: 60rpx;
+  width: 170rpx;
+  text-align: center;
+  border: 1rpx solid #dadada;
+  color: #999;
+  margin: 26rpx 0 0 auto;
+}

@@ -1,6 +1,5 @@
 page {
   background: #f3f3f3;
-  padding-bottom: 130rpx;
 }
 
 .detail1 {
@@ -333,6 +332,7 @@ swiper {
   flex-flow: column nowrap;
   width: 100%;
   background: #fff;
+  margin-bottom: 130rpx;
 }
 
 .detailimg3 {
@@ -415,6 +415,16 @@ swiper {
   text-align: center;
   font-size: 30rpx;
   background-image: linear-gradient(to right, #fa6e84, #ff4e93);
+}
+
+.hui {
+  width: 243rpx;
+  height: 108rpx;
+  color: #fff;
+  line-height: 108rpx;
+  text-align: center;
+  font-size: 30rpx;
+  background-color: #e4e4e4;
 }
 
 .sizetrue {
@@ -979,9 +989,10 @@ swiper {
 /*商品推荐  */
 
 .recommend-name {
-  font-size: 32rpx;
+  font-size: 28rpx;
   text-align: center;
-  padding: 46rpx 0;
+  padding-bottom: 46rpx;
+  margin-top: -84rpx;
 }
 
 .recommend-content {
@@ -989,4 +1000,75 @@ swiper {
   flex-flow: row wrap;
   justify-content: space-between;
   margin-bottom: 130rpx;
+}
+
+.goods-li {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  background-color: #fff;
+  margin-top: 6rpx;
+  flex-basis: 373rpx;
+  position: relative;
+}
+
+.goods-img {
+  width: 83rpx !important;
+  height: 83rpx !important;
+  position: absolute;
+  top: 0;
+  left: 20rpx;
+}
+
+.goods-img-miaosha {
+  width: 76rpx !important;
+  height: 49rpx !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.goods-li image {
+  width: 100%;
+  height: 370rpx;
+}
+
+.goods-li > text {
+  font-size: 26rpx;
+  padding: 0 25rpx;
+  width: 324rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  height: 64rpx;
+  line-height: 32rpx;
+  margin: 25rpx 0;
+}
+
+.goods-li > view {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 25rpx 20rpx 25rpx;
+}
+
+.money {
+  font-weight: 900;
+  font-size: 30rpx;
+}
+
+.num {
+  font-size: 22rpx;
+  color: #ccc;
+}
+
+.activity-text {
+  position: absolute;
+  border-radius: 8rpx;
+  padding: 0 10rpx !important;
+  right: 16rpx;
+  top: 16rpx;
+  background-color: #fc3;
+  font-size: 24rpx;
 }

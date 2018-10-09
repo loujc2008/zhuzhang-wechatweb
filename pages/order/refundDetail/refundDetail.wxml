@@ -1,0 +1,267 @@
+<view class='step {{pType==1||pType==2?"c-a":""}}'>
+  <view class='step-li {{item.checke?"start":""}} {{!item.checke&&arr[index-1].checke?"ready":""}}' wx:for='{{arr}}' wx:key='{{index}}'>
+    <view class='step-idx'>
+      <view class='{{index>0?"line":""}}'></view>
+      <view class='dian'>{{index==arr.length-1?'√':index+1}}</view>
+      <view class='{{index<arr.length-1?"line":""}}'></view>
+    </view>
+    <text class='step-name'>
+      {{item.text}}
+    </text>
+    <view class='step-time'>
+      {{item.time}}
+    </view>
+  </view>
+</view>
+
+<!--投诉详情  -->
+<view wx:if='{{pType==1||pType==2}}' class='complaint'>
+  <block wx:if='{{pType==1}}'>
+    <view wx:if='{{detail.OrderStatus==1||detail.OrderStatus==2}}' style='background-color:#ffe5e6;' class='complaint-prompt'>
+      卖家已同意退款，请按下方地址寄回，寄出后请务必提交物流信息，如您逾时未处理，本次退款/货将自动关闭
+    </view>
+    <view wx:if='{{detail.OrderStatus==4}}' style='background-color:#f7f7f7;' class='complaint-prompt'>
+      您撤销了投诉申请
+    </view>
+    <view wx:if='{{detail.OrderStatus==5}}' style='background-color:#e2f4ff;' class='complaint-prompt'>
+      卖家已同意退款，请按下方地址寄回，寄出后请务必提交物流信息，如您逾时未处理，本次退款/货将自动关闭
+    </view>
+    <view>
+      <text>投诉编号：</text>{{detail.Id}}
+    </view>
+    <view>
+      <text>投诉原因：</text>{{detail.ComplaintReasonIdString}}
+    </view>
+    <view>
+      <text>投诉说明：</text>{{detail.ComplaintReason}}
+    </view>
+  </block>
+  <block wx:if='{{pType==2}}'>
+    <view wx:if='{{detail.OrderStatus==1||detail.OrderStatus==2}}' style='background-color:#ffe5e6;' class='complaint-prompt'>
+      平台将在5个工作日内进行处理，如有需要将会电话联系您，请保持通讯顺畅，请耐心等待处理结果！
+    </view>
+    <view wx:if='{{detail.OrderStatus==4}}' style='background-color:#f7f7f7;' class='complaint-prompt'>
+      您撤销了仲裁申请
+    </view>
+    <view wx:if='{{detail.OrderStatus==5}}' style='background-color:#e2f4ff;' class='complaint-prompt'>
+      处理结果：卖家同意退款
+    </view>
+    <view>
+      <text>仲裁编号：</text>{{detail.Id}}
+    </view>
+  </block>
+</view>
+
+<block wx:if='{{pType==0}}'>
+  <!--待寄货  -->
+  <view wx:if='{{detail.SellerAuditStatus==2}}'>
+    <view class='send-goods'>卖家已同意退款，请按下方地址寄回，寄出后请务必提交物流信息，如您逾时未处理，本次退款/货将自动关闭 </view>
+    <view class='addres'>
+      <block wx:if='{{detail.SellerAddress}}'>
+        <text>退货地址：{{detail.SellerAddress}}</text>
+        <text>联系人：{{detail.SellerShipTo}}</text>
+        <text>联系电话：{{detail.SellerPhone}}</text>
+      </block>
+      <block wx:else>
+        <view class='contact-service'>详细退货地址请联系
+          <button open-type="contact" session-from="weapp" bindtap='openXiaoneng'>联系客服</button>
+        </view>
+      </block>
+      <image class='addres-img' src='/imgs/tanxuxian.png'></image>
+    </view>
+  </view>
+
+  <!--待收货  -->
+  <view wx:if='{{detail.SellerAuditStatus==3}}'>
+    <view class='logistics-info'>
+      <view>
+        <text>物流公司：</text>{{detail.ExpressCompanyName}}
+      </view>
+      <view>
+        <text>运单号名：</text>{{detail.ShipOrderNumber}}
+      </view>
+      <view>
+        <text>退货说明：</text>{{detail.ReturnGoodsReason}}
+      </view>
+      <view>
+        <text>退货地址：</text>{{detail.SellerAddress}}
+      </view>
+      <view>
+        <text>收件人：</text>{{detail.SellerShipTo}}
+      </view>
+      <view>
+        <text>联系电话：</text>{{detail.SellerPhone}}
+      </view>
+    </view>
+  </view>
+
+  <!--拒绝退款  -->
+  <view wx:if='{{detail.SellerAuditStatus==4}}' class='refuse'>
+    <view>已经拒绝退款</view>
+    <view>拒绝理由： {{detail.SellerRemark}}</view>
+  </view>
+
+  <!--拒绝退款  -->
+  <view wx:if='{{detail.SellerAuditStatus==8}}' class='refuse'>
+    <view>退款关闭</view>
+    <view>卖家拒绝了您的退款申请，您未在规定时间内重新申请，本次退款流程已关闭，交易将正常进行</view>
+  </view>
+</block>
+<!--银行处理中  -->
+<!-- <view wx:if='{{detail.SellerAuditStatus==6}}' class='bank-process'>
+  <view class='refund-money'>
+    <text class='gray'>退款金额：</text>
+    <view>￥200</view>
+  </view>
+  <view class='refund-money'>
+    <text class='gray'>退款路径：</text>
+    <view>微信支付
+      <text class='gray'>（原支付渠道退回）</text>
+    </view>
+  </view>
+  <view class='step bank-step'>
+    <view class='step-li {{item?"start":""}}' wx:for='{{arr2}}' wx:key='{{index}}'>
+      <view class='step-idx {{!item&&arr2[index-1]?"ready":""}}'>
+        <view class='{{index>0?"line":""}}'></view>
+        <view class='bank-step-dian'>√</view>
+        <view class='{{index<arr2.length-1?"line":""}}'></view>
+      </view>
+      <view class='step-name'>
+        买家提交申请
+      </view>
+      <view class='step-time'>
+        2017-1-1
+      </view>
+    </view>
+  </view>
+</view> -->
+
+<view style='margin-bottom:{{pType==2?"158rpx":""}};' wx:if='{{pType==0||pType==2}}' class="order-list">
+  <view class="shop-title">
+    <text class="shop-name">{{detail.ShopName}}</text>
+    <button open-type="contact" class="contact" session-from="weapp" bindtap='openXiaoneng'>
+      <image src="/imgs/wx1.png"></image>
+      <view>联系商家</view>
+    </button>
+  </view>
+  <view class="product-list">
+    <image src="{{detail.ProductImageFullPath}}"></image>
+    <view class="product-info">
+      <view class="product-name">
+        <text>{{detail.ProductName}}</text>
+        <text>x{{detail.Quantity}}</text>
+      </view>
+      <view class="product-specs">
+        <text><block wx:if="{{detail.Color}}">颜色：{{detail.Color}}</block><block wx:if="{{detail.Size}}"> 尺寸：{{detail.Size}}</block><block wx:if="{{detail.Version}}"> 版本：{{detail.Version}}</block></text>
+      </view>
+      <view class="product-money">
+        <text>￥{{detail.SalePrice}}</text>
+      </view>
+    </view>
+  </view>
+  <view class='refund-info'>
+    <text>订单编号： {{detail.OrderId}}</text>
+    <text>退款编号： {{detail.Id}}</text>
+    <text>申请时间： {{detail.ApplyDateString}}</text>
+    <text>申请金额： {{detail.Amount}}</text>
+    <text>申请件数： {{detail.ReturnQuantity}}</text>
+    <text>退款原因： {{detail.Reason}}</text>
+    <text>退款说明： {{detail.ReturnGoodsReason?detail.ReturnGoodsReason:''}}</text>
+    <view>
+      <text>添加图片：</text>
+      <view class='upload-list'>
+        <image src='{{detail.ImageServerUrl+item}}' wx:for='{{detail.UploadImages}}' wx:key='{{index}}'></image>
+      </view>
+    </view>
+  </view>
+  <view class='arbitration-reason' wx:if='{{pType==2}}'>
+    <view>
+      <text>退款状态：</text>
+      <view style='color:#ff4242;'>{{detail.OrderId}}</view>
+    </view>
+    <view>
+      <text>拒绝原因：</text>{{detail.Quantity}}
+    </view>
+  </view>
+</view>
+
+<view wx:if='{{pType==0}}' class='refund-explain'>
+  <view>
+    退款说明：
+  </view>
+  <view>
+    如果退款申请商家未能及时处理，超过时限系统将退款给您如果卖家拒绝申请，您可以修改退款申请、重新发起申请。如果遇退款问题或与卖家
+  </view>
+</view>
+
+<view wx:if='{{pType==0&&detail.SellerAuditStatus==1||detail.SellerAuditStatus==2||detail.SellerAuditStatus==3||detail.SellerAuditStatus==4}}' class='refund-action'>
+  <view wx:if='{{detail.SellerAuditStatus==1}}'>
+    <view class='status-time'>
+      剩
+      <text>{{m.fixed(detail.CloseCountdown).day}}天{{m.fixed(detail.CloseCountdown).hour}}小时{{m.fixed(detail.CloseCountdown).minute}}分钟</text>，系统将自动处理</view>
+    <view class='action-btn' bindtap='closeApply'>撤销申请</view>
+  </view>
+  <view wx:if='{{detail.SellerAuditStatus==2}}'>
+    <view class='status-time'>
+      剩
+      <text>{{m.fixed(detail.CloseCountdown).day}}天{{m.fixed(detail.CloseCountdown).hour}}小时{{m.fixed(detail.CloseCountdown).minute}}分钟</text>
+      <view>请按时退货给卖家</view>
+    </view>
+    <view class='action-btn' bindtap='addLogistics'>我已寄出货物
+      <view>请填写物流信息</view>
+    </view>
+  </view>
+  <view wx:if='{{detail.SellerAuditStatus==3}}'>
+    <view class='status-time goods-receipt'>
+      剩
+      <text>{{m.fixed(detail.CloseCountdown).day}}天{{m.fixed(detail.CloseCountdown).hour}}小时{{m.fixed(detail.CloseCountdown).minute}}分钟</text>请按时退货给卖家
+    </view>
+  </view>
+  <view wx:if='{{detail.SellerAuditStatus==4}}'>
+    <view class='arbitration'>
+      <view class='status-time'>
+        剩
+        <text>{{m.fixed(detail.CloseCountdown).day}}天{{m.fixed(detail.CloseCountdown).hour}}小时{{m.fixed(detail.CloseCountdown).minute}}分钟</text>
+      </view>
+      <text>本次申请将自动关闭</text>
+    </view>
+    <view class='action-btn'>申请平台仲裁</view>
+    <view class='action-btn'>重新提交申请</view>
+  </view>
+</view>
+
+
+<view wx:if='{{pType==1}}' class='complaint' style='margin-bottom:158rpx;'>
+  <text class='order-title'>订单详情</text>
+  <view>
+    <text>卖家：</text>
+    <navigator hover-class="none" open-type='redirect' url='../../dianpu/dianpu?shopId={{detail.shopId}}'>{{detail.ShopName}}</navigator>
+  </view>
+  <view>
+    <text>订单编号：</text>{{detail.OrderId}}
+  </view>
+  <view>
+    <text>商品数量：</text>{{detail.Quantity}}
+  </view>
+  <view>
+    <text>快递运费：</text>{{detail.Freight}}
+  </view>
+  <view>
+    <text>实付款：</text>{{detail.RealTotalPrice}}
+  </view>
+</view>
+<view wx:if='{{(pType==1||pType==2)&&(detail.OrderStatus==1||detail.OrderStatus==2)}}' bindtap='{{pType==1?"cancelComplaint":"cancelArbitration"}}' class='cancel'>{{pType==1?"撤销投诉":"撤销仲裁"}}</view>
+
+<wxs module="m">
+  var fixed = function(date) {
+    var day = parseInt(date / 24 / 60);
+    var hour = parseInt(date / 60) % 24;
+    var minute = date % 60;
+    return {
+      day: day,
+      hour: hour,
+      minute: minute
+    }
+  }
+  module.exports.fixed = fixed;
+</wxs>

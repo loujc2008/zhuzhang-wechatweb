@@ -1,0 +1,229 @@
+page {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.topimg {
+  width: 100%;
+  height: 600rpx;
+}
+
+.nav-bg {
+  /* background: url('http://urshow-1253203608.file.myqcloud.com/wechatapp/zhuanti/20180108/BJ.jpg') no-repeat; *//* background-position: center;
+  background-size: 100% 100%; */
+  width: 100%;
+  height: 4510rpx;
+  position: relative;
+}
+
+.bgimg {
+  width: 100%;
+  height: 100%;
+}
+
+.nav-content {
+  position: absolute;
+  top: 0rpx;
+}
+
+.nav-scroll {
+  padding: 40rpx 0;
+  width: 750rpx;
+  height: 300rpx;
+  box-sizing: border-box;
+}
+
+.nav-flex {
+  display: flex;
+  /* width: 750rpx; */
+  height: 264rpx;
+}
+
+.nav-discount {
+  width: 565rpx;
+  height: 175rpx;
+  position: relative;
+  margin-left: 30rpx;
+  flex: 0 0 auto;
+}
+
+.nav-discount-img {
+  width: 100%;
+  height: 100%;
+  box-shadow: 0rpx 0rpx 20rpx rgba(0, 0, 0, 0.3);
+}
+
+.nav-discount-text1 {
+  width: 171rpx;
+  height: 175rpx;
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-discount-text1-1 {
+  font-size: 30rpx;
+
+  margin-top: 25rpx;
+}
+
+.nav-discount-text1-2 {
+  font-size: 70rpx;
+  font-weight: bold;
+}
+
+.nav-discount-text2 {
+  width: 237rpx;
+  height: 110rpx;
+  position: absolute;
+  top: 35rpx;
+  left: 210rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.nav-discount-text2-1 {
+  font-size: 28rpx;
+}
+
+.nav-discount-text2-y {
+  color: #fe566d;
+}
+
+.nav-discount-text2-2 {
+  font-size: 20rpx;
+  color: #fe566d;
+}
+
+.nav-discount-text2-h {
+  color: #999;
+}
+
+.nav-discount-text2-3 {
+  font-size: 20rpx;
+  color: #999;
+}
+
+.nav-discount-text3 {
+  width: 110rpx;
+  height: 55rpx;
+  line-height: 55rpx;
+  text-align: center;
+  background: #fe566d;
+  font-size: 24rpx;
+  color: #fff;
+  border-radius: 50rpx;
+  position: absolute;
+  top: 60rpx;
+  right: 15rpx;
+}
+
+.nav-discount-got {
+  width: 107rpx;
+  height: 106rpx;
+  position: absolute;
+  top: 0rpx;
+  right: 0rpx;
+}
+
+.main-one {
+  position: absolute;
+  top: 463rpx;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+
+.main-one-shop {
+  width: 690rpx;
+  height: 224rpx;
+  display: flex;
+  margin-bottom: 25rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  position: relative;
+  box-shadow: 0rpx 0rpx 40rpx rgba(0, 0, 0, 0.3);
+}
+
+.main-one-shopimg {
+  width: 325rpx;
+  height: 100%;
+  border-radius: 10rpx;
+}
+
+.main-one-shoptext {
+  width: 365rpx;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-one :nth-child(2n) .main-one-shopimg {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.main-one-shoptext1 {
+  font-size: 24rpx;
+  margin-top: 30rpx;
+  font-weight: bold;
+}
+
+.main-one-shoptext2 {
+  width: 174rpx;
+  height: 46rpx;
+  margin-top: 39rpx;
+  font-size: 24rpx;
+  color: #fff;
+  background: #000;
+  text-align: center;
+  line-height: 46rpx;
+  border-radius: 50rpx;
+}
+
+.main-two {
+  position: absolute;
+  top: 1800rpx;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+
+.main-two-imgall {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-between;
+  width: 690rpx;
+  height: 493rpx;
+  margin-bottom: 185rpx;
+}
+
+.main-two-pos {
+  position: relative;
+}
+
+.main-two-img {
+  background: red;
+  width: 330rpx;
+  height: 230rpx;
+  border-radius: 10rpx;
+}
+
+.main-two-imgplay {
+  width: 78rpx;
+  height: 78rpx;
+  position: absolute;
+  top: 70rpx;
+  left: 130rpx;
+}
+
+.bottomimg {
+  width: 100%;
+  height: 900rpx;
+}

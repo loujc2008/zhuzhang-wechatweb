@@ -9,6 +9,7 @@ Page({
     baseinfo: {},//基本信息
     videos: [],//视频
     products: [],//商品
+    showInfo: false
   },
   onLoad(options) {
     this.setData({
@@ -157,6 +158,18 @@ Page({
         url: `../commoditydetail/commoditydetail?id=${id}`,
       })
     }
+  },
+  //显示店铺详情
+  showInfo() {
+    this.setData({
+      showInfo: true
+    })
+  },
+  //关闭店铺详情
+  hideInfo() {
+    this.setData({
+      showInfo: false
+    })
   },
   //进入视频页
   openVideo(e) {

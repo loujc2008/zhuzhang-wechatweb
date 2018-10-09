@@ -1,0 +1,73 @@
+.upload-img {
+  display: flex;
+  font-size: 26rpx;
+  margin-top: 100rpx;
+}
+
+.upload-img-list {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 0 10rpx;
+  flex: 1;
+}
+
+.img-box {
+  width: 160rpx;
+  height: 160rpx;
+  margin-right: 24rpx;
+  position: relative;
+}
+
+.fork-box {
+  position: absolute;
+  height: 50rpx;
+  width: 50rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: -25rpx;
+  right: -25rpx;
+}
+
+.fork {
+  border-radius: 50%;
+  height: 30rpx;
+  line-height: 30rpx;
+  text-align: center;
+  width: 30rpx;
+  
+  background-color: #fff;
+  box-shadow: 0 0 1px #ddd;
+  z-index: 1000;
+}
+
+.img-box>image {
+  width: 160rpx;
+  height: 160rpx;
+}
+
+.upload-btn {
+  width: 160rpx;
+  height: 160rpx;
+  margin-right: 24rpx;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-around;
+  border: 1rpx dotted #ddd;
+  color: #ddd;
+  font-size: 20rpx;
+}
+
+.upload-btn text:first-child {
+  font-size: 100rpx;
+  margin-top: -30rpx;
+}
+
+.upload-btn text:nth-child(2) {
+  margin-top: -20rpx;
+}
+
+.upload-btn text:nth-child(3) {
+  margin-top: -10rpx;
+}

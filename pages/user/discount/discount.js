@@ -2,21 +2,35 @@ import { install, compatible, showModal } from '../../../utils/util.js'
 import discounttan from '../../discounttan/discounttan.js'
 const app = getApp()
 var mta = require('../../../statistics/mta_analysis.js')
-let page ={
+let page = {
   data: {
     currentTab: 0,// tab切换 
     unused: [],//未使用
     used: [],//已使用
     past: []//已过期
   },
-  onLoad: function (options) {
+  onLoad(options) {
     mta.Page.init()
+  },
+  onShow() {
+    let that = this
+    showModal(function () {
+      app.userLogin().then(() => {
+        that.getNoCoupon();
+        that.getCoupon();
+      })
+    }, function () {
+      that.getNoCoupon();
+      that.getCoupon();
+    })
+  },
+  //获取优惠券
+  getCoupon() {
     // 未使用
     wx.ajax({
       url: 'api/coupon/wechatapp/list',
       data: {
         userId: app.globalData.userid,
-        // UserId: 665,
         Status: 2,
         SessionKey: '',
         sign: app.globalData.sign
@@ -32,7 +46,6 @@ let page ={
       url: 'api/coupon/wechatapp/list',
       data: {
         userId: app.globalData.userid,
-        // UserId: 665,
         Status: 3,
         SessionKey: '',
         sign: app.globalData.sign
@@ -48,7 +61,6 @@ let page ={
       url: 'api/coupon/wechatapp/list',
       data: {
         userId: app.globalData.userid,
-        // UserId: 665,
         Status: 4,
         SessionKey: '',
         sign: app.globalData.sign
@@ -58,22 +70,6 @@ let page ={
       this.setData({
         past: res.Data
       })
-    })
-  },
-  onShow() {
-    let that = this
-    showModal(function () {
-      app.userLogin().then(() => {
-        that.getNoCoupon()
-      })
-    }, function () {
-      if (app.globalData.userInfo) {
-        that.getNoCoupon()
-      } else {
-        app.callback = () => {
-          that.getNoCoupon()
-        }
-      }
     })
   },
   // 未领取优惠券
@@ -87,7 +83,6 @@ let page ={
       },
       method: 'POST'
     }).then((res) => {
-      console.log(res)
       if (res.Data.length > 0) {
         this.setData({
           discount: res.Data,
@@ -125,6 +120,20 @@ let page ={
           title: res.Message,
           icon: 'success',
           duration: 2000
+        })
+        wx.ajax({
+          url: 'api/coupon/wechatapp/list',
+          data: {
+            userId: app.globalData.userid,
+            Status: 2,
+            SessionKey: '',
+            sign: app.globalData.sign
+          },
+          method: 'POST'
+        }).then((res) => {
+          that.setData({
+            unused: res.Data
+          })
         })
       }).catch((err) => {
         console.log(err.data.Message)

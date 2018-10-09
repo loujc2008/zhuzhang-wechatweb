@@ -88,7 +88,6 @@ let page = {
           date.day = (Math.floor(d / (24 * 3600 * 1000))) < 10 ? '0' + Math.floor(d / (24 * 3600 * 1000)) : Math.floor(d / (24 * 3600 * 1000));
           date.hour = (Math.floor(d / (3600 * 1000)) % 24) < 10 ? '0' + Math.floor(d / (3600 * 1000)) % 24 : Math.floor(d / (3600 * 1000)) % 24;
           date.minute = (Math.floor(d / (60 * 1000)) % 60) < 10 ? '0' + Math.floor(d / (60 * 1000)) % 60 : Math.floor(d / (60 * 1000)) % 60;
-          console.log(date)
           this.setData({
             date
           })
