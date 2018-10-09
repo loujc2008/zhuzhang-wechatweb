@@ -35,28 +35,29 @@
   <view class='shop-content'>
     <view class='shop-name'>
       <view class='shop-title'>{{shopdata.storeName}}</view>
-      <view class='shop-zan' bindtap='{{shopdata.AlreadyPraised?"":"appreciation"}}'>
+      <!-- <view class='shop-zan' bindtap='{{shopdata.AlreadyPraised?"":"appreciation"}}'>
         <image src='/imgs/{{shopdata.AlreadyPraised?"video_zan_1":"video_zan_0"}}.png'></image>
         <text>{{shopdata.PraiseCount>0?shopdata.PraiseCountString:'点赞'}}</text>
-      </view>
+      </view> -->
     </view>
     <view class="entershop">
       <view bindtap='openDianpu'>
         <image src="{{shopdata.shopInfo.shopHeadImage?shopdata.shopInfo.shopHeadImage:'/imgs/default.jpg'}}" class="shopimg"></image>
         <view class="shopmsg">
           <view class="shopname">{{shopdata.shopInfo.shopName}}</view>
-          <view class="howattention">{{shopdata.shopInfo.ConcernTotal}}人关注
+          <!-- <view class="howattention">{{shopdata.shopInfo.ConcernTotal}}人关注
             <text>|</text> {{shopdata.VideoTotal}}视频
-            <text>|</text> {{shopdata.ProductTotal}}商品</view>
+            <text>|</text> {{shopdata.ProductTotal}}商品</view> -->
         </view>
       </view>
-      <view class="attention-yes" wx:if="{{shopdata.shopInfo.isBeenConcerned}}" data-state='{{shopdata.shopInfo.isBeenConcerned}}' catchtap='concerned'>
-        <image src='/imgs/gou.png'>
-        </image>已关注</view>
+      <!-- <view class="attention-yes" wx:if="{{shopdata.shopInfo.isBeenConcerned}}" data-state='{{shopdata.shopInfo.isBeenConcerned}}' catchtap='concerned'>
+        <image src='/imgs/gou.png'></image>
+        已关注
+      </view>
       <view class="attention" wx:else data-state='{{shopdata.shopInfo.isBeenConcerned}}' catchtap='concerned'>
         <image src="/imgs/jia.png" class="attentionimg"></image>
         <view class="attentionguan">关注</view>
-      </view>
+      </view> -->
     </view>
   </view>
   <view class="product-list">

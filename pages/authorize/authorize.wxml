@@ -1,0 +1,1 @@
+<button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">微信登录</button>

@@ -228,7 +228,7 @@
           module.exports.formatTime = formatTime;
         </wxs>
         <view class="discountlistall" wx:if="{{quanData.length>0}}">
-          <view class="discount-title">视霓优惠券</view>
+          <view class="discount-title">主章优惠券</view>
           <view class="discountlist" wx:for="{{quanData}}" wx:key="{{index}}">
             <image src="/imgs/discount2.jpg" class="discountlist-img"></image>
             <view class="discount-price">
@@ -265,10 +265,10 @@
     </view>
   </view>
   <!-- 客服 -->
-  <view>
+  <!-- <view>
     <button open-type="contact" bindtap='openXiaoneng' class="cbutton" session-from="weapp">
       <image src="/imgs/wx01.jpg"></image>
       <view>客服</view>
     </button>
-  </view>
+  </view> -->
 </view>

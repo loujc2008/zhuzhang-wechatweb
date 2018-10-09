@@ -4,7 +4,7 @@
     <image binderror='logoError' bindtap='showInfo' src="{{baseinfo.ShopLogo?baseinfo.ShopLogo:'/imgs/default.jpg'}}"></image>
     <view class='shop-info'>
       <text class="shop-name">{{baseinfo.ShopName}}</text>
-      <view class='shop-info-num'>
+      <!-- <view class='shop-info-num'>
         <view class='shop-info-li'>
           <text class="shop-num">{{baseinfo.FollowersNum}}</text>
           <text style='font-size:18rpx'>关注人数</text>
@@ -17,15 +17,15 @@
           <text class="shop-num">{{baseinfo.ProductTotal}}</text>
           <text style='font-size:18rpx'>全部商品</text>
         </view>
-      </view>
+      </view> -->
     </view>
-    <view class="attention-yes" hidden="{{!baseinfo.Concernedshop}}" catchtap='Concern'>
+    <!-- <view class="attention-yes" hidden="{{!baseinfo.Concernedshop}}" catchtap='Concern'>
       <image src='/imgs/gou.png'>
       </image>已关注</view>
     <view class="attention" hidden="{{baseinfo.Concernedshop}}" catchtap='Concern'>
       <text>+</text>
       <text>关注</text>
-    </view>
+    </view> -->
   </view>
   <swiper class='top-swiper' wx:if='{{baseinfo.ShopPromotionList.length>0||baseinfo.PlatformPromotionList.length>0}}' autoplay='{{isAuto}}' vertical>
     <swiper-item wx:for='{{baseinfo.ShopPromotionList}}' wx:key='{{index}}' class='shop-swiper'>

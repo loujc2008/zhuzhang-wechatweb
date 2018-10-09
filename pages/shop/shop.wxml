@@ -105,7 +105,7 @@
   <view class='kong'>
     <image src='/imgs/no-cart.png'></image>
     <view>购物车是空的哦~</view>
-    <navigator hover-class="none" open-type='switchTab' url="/pages/classify/classify">去逛逛</navigator>
+    <navigator hover-class="none" open-type='switchTab' url="/pages/choiceness/choiceness">去逛逛</navigator>
   </view>
   <block wx:if='{{browseData.length>0||sellingData.length>0}}'>
     <view class='recommend-name'>-猜你喜欢-</view>

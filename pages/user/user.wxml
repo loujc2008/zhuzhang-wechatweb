@@ -47,24 +47,24 @@
 
 <view class="setou">
   <!-- <scroll-view class="scroll-user" scroll-y> -->
-  <view class="myfavorite-first">
+  <!-- <view class="myfavorite-first">
     <navigator url="./discount/discount" hover-class='none'>
       <text>优惠券</text>
       <image src="./img/06.png" class="myfavoritecssimage2"></image>
     </navigator>
-  </view>
-  <view class="myfavorite">
+  </view> -->
+  <!-- <view class="myfavorite">
     <navigator url="./collect/collect" hover-class='none'>
       <text>我的收藏</text>
       <image src="./img/06.png" class="myfavoritecssimage2"></image>
     </navigator>
-  </view>
-  <view class="myfavorite">
+  </view> -->
+  <!-- <view class="myfavorite">
     <navigator url="./follow/follow" hover-class='none'>
       <text>我的关注</text>
       <image src="./img/06.png" class="myfavoritecssimage2"></image>
     </navigator>
-  </view>
+  </view> -->
   <view class="myfavorite" bindtap='reciveaddress'>
     <text>收货地址</text>
     <image src="./img/06.png" class="myfavoritecssimage2"></image>
@@ -75,11 +75,11 @@
       <image src="./img/06.png" class="myfavoritecssimage2"></image>
     </navigator>
   </view>
-  <view class="myfavorite-end">
+  <!-- <view class="myfavorite-end">
     <navigator url="../register/register" hover-class='none'>
       <text>绑定手机</text>
       <image src="./img/06.png" class="myfavoritecssimage2"></image>
     </navigator>
-  </view>
+  </view> -->
   <!-- </scroll-view> -->
 </view>

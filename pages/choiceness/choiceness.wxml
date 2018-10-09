@@ -75,7 +75,7 @@
       <view wx:if="{{item.RandomVideoTagName}}" class="videoShoptext4_1">
         #{{item.RandomVideoTagName}}#
       </view>
-      <view class="videoShoptext4_2">{{item.DurationDisplay}}</view>
+      <!-- <view class="videoShoptext4_2">{{item.DurationDisplay}}</view> -->
     </view>
   </navigator>
 </view>
