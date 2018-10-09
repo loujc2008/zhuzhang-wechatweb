@@ -1,0 +1,7 @@
+<navigator class="ify" wx:for="{{ifydata}}" wx:key="{{index}}" url="/pages/classify/inside/inside?tittle={{item.name}}&id1={{id}}&id2={{item.id}}" hover-class="none" wx:if="{{ifydata.length>0}}">
+  <image mode='scaleToFill' src="{{item.ImageUrlFull?item.ImageUrlFull:'/imgs/chang.jpg'}}" class="ifyimg"></image>
+</navigator>
+<view wx:if="{{ifydata.length<=0}}" class="kong">
+  <image src="/imgs/ship.png" class="kontu"></image>
+  <view class="kongzi">还没有视频哦~</view>
+</view>

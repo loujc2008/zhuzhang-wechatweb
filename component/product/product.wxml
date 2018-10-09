@@ -1,0 +1,14 @@
+<view class='product-list'>
+  <navigator hover-class="none" open-type='{{pageType?"redirect":"navigate"}}' url="/pages/commoditydetail/commoditydetail?id={{item.Id}}" data-idx='{{index}}' wx:for="{{productList}}" wx:key="{{index}}" class='goods-li'>
+    <view wx:if='{{item.Promotion.PromotionType==2}}' class='activity-text'>满{{item.Promotion.OrderCredit}}减{{item.Promotion.ReductionAmount}}</view>
+    <image class='goods-img' wx:if="{{item.Promotion.PromotionType==1}}" src="/imgs/cuxiao.png"></image>
+    <image class='goods-img' wx:if="{{item.Promotion.PromotionType==2}}" src="/imgs/manjian.png"></image>
+    <image class='goods-img-miaosha' wx:if="{{item.Promotion.PromotionType==4}}" src="/imgs/miaosha.png"></image>
+    <image src='{{item.ImagePath}}{{pageType==2?"":"/1_414.png"}}'></image>
+    <text class='goods-name'>{{item.ProductName}}</text>
+    <view class='goods-info'>
+      <text class='money'>￥ {{item.Promotion&&item.Promotion.PromotionType==4?item.MinSeckillPrice:item.MinSalePrice}}</text>
+      <text class='num'>{{item.SaleCounts>=0?item.SaleCounts:0}}人购买</text>
+    </view>
+  </navigator>
+</view>

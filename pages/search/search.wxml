@@ -1,0 +1,17 @@
+<view class='search'>
+  <view class='search-input'>
+    <image class='s-icon' src='/imgs/search.png'></image>
+    <input value='{{text}}' type='' cursor='3' maxlength='30' placeholder='输入关键词(区分大小写)，搜索您感兴趣的内容' focus bindinput='searchConfirm' bindconfirm='openResult' confirm-type='search' placeholder-class='search-placeholder'></input>
+    <image class='x-icon' hidden='{{!text}}' bindtap='empty' src='/imgs/search-x.png'></image>
+  </view>
+  <view class='search-btn' bindtap='openResult'>搜索</view>
+</view>
+<view class='history' wx:if="{{list.length>0}}">
+  <view class='history-title'>
+    <view>历史搜索</view>
+    <image src='/imgs/del.png' bindtap='deleteList'></image>
+  </view>
+  <view class='history-list'>
+    <view wx:for='{{list}}' bindtap='openResult' data-text="{{item}}" wx:key='{{index}}'>{{item}}</view>
+  </view>
+</view>

@@ -1,0 +1,276 @@
+<import src="/pages/template/template.wxml" />
+<include src="/pages/minmoney/minmoney.wxml" />
+<wxs module="m">
+  var formatTime = function(str) {
+    var data;
+    if (str.length > 2) {
+      data = str.substring(0, 1) + '***' + str.substring(str.length - 1, str.length)
+    }
+    if (str.length == 2) {
+      data = str.substring(0, 1) + '***'
+    }
+    if (str.length == 1) {
+      data = str
+    }
+    return data;
+  }
+  var fixed = function(date) {
+    var num = date.toFixed(2);
+    if (date.toFixed(2) < 0.01) {
+      num = 0.01;
+    }
+    return num
+  }
+  module.exports.fixed = fixed;
+  module.exports.formatTime = formatTime;
+</wxs>
+<block wx:if="{{LiveInfo.LiveRoomStatus!=3}}">
+  <view class="all">
+    <!-- 头部 -->
+    <view class="vltop">
+      <image src="{{LiveInfo.ShopLogo?LiveInfo.ShopLogo:'/imgs/default.jpg'}}" class="vltop1img1"></image>
+      <view class="vltop1name">
+        <view class="name">{{LiveInfo.LiveRoomName}}</view>
+        <view class="vltop1attention">
+          <view class="attention">人气值：</view>
+          <view class="attentio1">{{LiveInfo.Ranking}}</view>
+        </view>
+      </view>
+      <view class="vltop2" data-state="{{LiveInfo.IsConcernedShop}}" bindtap='concerned'>{{LiveInfo.IsConcernedShop?'已关注':'+ 关注'}}</view>
+      <view class="vltop4" bindtap="{{LiveInfo.AlreadyPraised?'':'appreciation'}}">
+        <image src="/imgs/{{LiveInfo.AlreadyPraised?'video_zan_1':'10'}}.png" class="vltop4img"></image>
+      </view>
+      <view bindtap='openLive' class="vltop5">
+        更多直播
+      </view>
+    </view>
+    <!-- 视屏与商品部分 -->
+    <view class="vlnav">
+      <!-- <view class='loading' wx:if='{{LiveInfo.LiveRoomStatus==2}}' hidden='{{isSteam||!isSku}}'>
+        <image src='/imgs/live_over.png'></image>
+        <text>直播已结束,返回查看更多</text>
+      </view> -->
+      <view class='loading' hidden='{{isSteam||!isSku}}'>
+        <image src='/imgs/live_hurry.png'></image>
+        <text>主播正在赶来的路上...</text>
+      </view>
+      <video id='myVideo' src="{{LiveInfo.LiveRoomStatus==2?LiveInfo.ReplayUrl_H5:LiveInfo.LiveAddress_H5}}" bindtimeupdate='{{isSteam?"":"videoPause"}}' class="vlvideo {{isSku?'':'hidden'}} {{isSteam?'':'hidden'}}" autoplay='{{isSwitch}}' controls='{{LiveInfo.LiveRoomStatus==2}}'
+        style='height:{{height-145}}px;'></video>
+      <view class="blackb" hidden='{{isSku}}'>
+        <image src="/imgs/11.png" class="close" bindtap='close'></image>
+        <view class="info" bindtap='openDetail' data-id='{{shopDetail.id}}'>
+          <image src="{{shopDetail.imgUrl}}" class="detailimg6"></image>
+          <view class="moneyandsize">
+            <view class='number'>
+              <text class='{{idx==-1?"red":""}}'>{{idx==-1?'直播中':idx+1}}</text>
+            </view>
+            <view class="changesize2">{{shopDetail.name}}</view>
+            <view class="detailmoney1">
+              <text class="money1" wx:if="{{promition}}">
+              <block wx:if='{{promition.PromotionType==4}}'>
+              ¥ {{sku.SeckillPrice?sku.SeckillPrice:shopDetail.MinSeckillPrice}}
+              </block>
+              <block wx:else>
+              ¥ {{sku.SalePrice?m.fixed(sku.SalePrice*promition.PromotionDiscount):m.fixed(shopDetail.price*promition.PromotionDiscount)}}
+              </block>
+              </text>
+              <text class="money1" wx:else>¥ {{sku.SalePrice?sku.SalePrice:shopDetail.price}}</text>
+            </view>
+          </view>
+        </view>
+
+        <scroll-view style='height:{{height-331}}px' scroll-y='true'>
+          <view class='scroll-list'>
+            <view class="changecolor" wx:if="{{colors.length>0}}">
+              <view class="color">颜色</view>
+              <view class="color1">
+                <text wx:if="{{colors.length>0}}" class="ctext {{index==color?'ccolor':''}}" wx:for="{{colors}}" data-idx="{{index}}" bindtap='btnColor' wx:key="{{index}}">{{item}}</text>
+              </view>
+            </view>
+            <view class="changecolor" wx:if="{{sizes.length>0}}">
+              <view class="color">尺码</view>
+              <view class="color1">
+                <text wx:if="{{sizes.length>0}}" wx:for="{{sizes}}" class="ctext {{index==size?'ccolor':''}}" data-idx="{{index}}" bindtap='btnSize' wx:key="{{index}}">{{item}}</text>
+              </view>
+            </view>
+            <view class="changecolor" wx:if="{{versions.length>0}}">
+              <view class="color">版本</view>
+              <view class="color1">
+                <text wx:if="{{versions.length>0}}" wx:for="{{versions}}" class="ctext {{index==version?'ccolor':''}}" data-idx="{{index}}" bindtap='btnVersion' wx:key="{{index}}">{{item}}</text>
+              </view>
+            </view>
+            <view class="math">
+              <view class="math1">数量</view>
+              <view class="math2">
+                <text bindtap='min' class="{{num<=1?'no-btn':''}}">-</text>
+                <text>{{num}}</text>
+                <text bindtap='add' class="{{num>=sku.Stock?'no-btn':''}}">+</text>
+              </view>
+            </view>
+          </view>
+        </scroll-view>
+        <view class='blackb-btn'>
+          <view bindtap='openShopBag'>
+            <image src='/imgs/05.png'></image>
+            购物袋
+          </view>
+          <button class='affirm' bindtap='addCart'>加入购物车</button>
+          <button class='buy-now' bindtap='rapid'>立即购买</button>
+        </view>
+      </view>
+      <scroll-view scroll-y class="vlproduceall" style='height:{{height-145}}px'>
+        <view class='vlproduceall-content'>
+          <view class="vlproduce" wx:if="{{LiveInfo.CurrentLiveProduct}}" data-id='{{LiveInfo.CurrentLiveProduct.ProductId}}' data-idx='-1' catchtap='Eject'>
+            <view class='liveing'>直播中</view>
+            <image src="{{LiveInfo.CurrentLiveProduct.ProductImage}}" class="vlproduceimg"></image>
+            <view class="vlproduceprice">¥{{LiveInfo.CurrentLiveProduct.Promotion&&LiveInfo.CurrentLiveProduct.Promotion.PromotionType==4?LiveInfo.CurrentLiveProduct.MinSeckillPrice:LiveInfo.CurrentLiveProduct.MinSalePrice}}</view>
+            <view class='triangle' hidden='{{!(!isSku&&idx==-1)}}'></view>
+          </view>
+          <view wx:for="{{LiveInfo.LiveProductList}}" class="vlproduce" wx:key="{{index}}" data-id='{{item.ProductId}}' data-idx='{{index}}' catchtap='{{!shelf[item.ProductId]?"Eject":""}}'>
+            <view hidden="{{!shelf[item.ProductId]}}" class='shelf'>
+              该商品已下架
+            </view>
+            <view class='live-num'>{{index+1}}</view>
+            <image src="{{item.ProductImage}}" class="vlproduceimg"></image>
+            <view class="vlproduceprice">¥{{item.Promotion&&item.Promotion.PromotionType==4?item.MinSeckillPrice:item.MinSalePrice}}</view>
+            <view class='triangle' hidden='{{!(!isSku&&index==idx)}}'></view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+    <!-- 互动部分 -->
+    <view class="vlbottom">
+      <!-- <view class='mask'></view> -->
+      <view class='bubble' hidden='{{cardList.length==0}}'>
+        <image src='{{cardList[cardIdx].img}}'></image>
+        <view>
+          <text>{{cardList[cardIdx].NickName?m.formatTime(cardList[cardIdx].NickName):''}}</text>
+          <text>{{cardList[cardIdx].MessageContent}}</text>
+        </view>
+      </view>
+      <scroll-view scroll-top="{{top}}" class="vlscroll" scroll-y>
+        <view class='scroll-content'>
+          <view id="{{index==arr.length-1?'max':''}}" class="{{item.MessageType==0?'vlbottomtext':'vlbottom-action'}}" wx:key="{{index}}" wx:for="{{arr}}">
+            <view>
+              <text class='scroll-name'>{{item.MessageType==0?item.NickName:m.formatTime(item.NickName)}}</text>
+              <block wx:if='{{item.MessageType==0}}'>
+                <view class='title' wx:if="{{item.Rank==1}}">
+                  <image src='/imgs/003.png'>
+                    <text class='fs'>粉丝</text>
+                  </image>
+                </view>
+                <view class='title' wx:if="{{item.Rank==2}}">
+                  <image src='/imgs/0002.png'>
+                    <text class='ds'>已剁手</text>
+                  </image>
+                </view>
+              </block>
+              <text class='scroll-text'>{{item.MessageContent}}</text>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+      <view class="vlbottominput" hidden='{{!chat}}'>
+        <view class='input-close' bindtap='msgBox'>
+          <image src='/imgs/11.png'></image>
+        </view>
+        <input placeholder="说点什么..." value='{{inputValue}}' bindinput='inputMsg' class="vlbottominput1" />
+        <view class='send' bindtap='msgSend'>发送</view>
+      </view>
+      <image src="/imgs/19.png" hidden='{{chat}}' class="vlbottomimg" bindtap='msgBox'></image>
+    </view>
+    <!-- 立即购买 -->
+    <view class="purchase" style='height:{{srollHeight}}px' hidden='{{isDetail}}'>
+      <image src="/imgs/11.png" class="close" bindtap='rapidclose'></image>
+      <scroll-view scroll-y style='height:{{srollHeight-52}}px' class="buy-scroll">
+        <view class="product-info">
+          <image src="{{shopDetail.imgUrl}}" class="product-info-img"></image>
+          <view class="product-info-money">
+            <view class='money-text'>
+              <text class="info-money">￥{{promition&&promition.PromotionType==4?sku.SeckillPrice:m.fixed(sku.SalePrice*discount)}}</text>
+              <text class="info-freight">运费{{Freight===null?'0':Freight}}元</text>
+            </view>
+            <view class="info-prompt">
+              规格：{{sku.Color?sku.Color:''}}{{sku.Size?'，'+sku.Size:''}}{{sku.Version?'，'+sku.Version:''}}
+            </view>
+          </view>
+        </view>
+        <!--收货地址-->
+        <view class='address-wrap pdlr'>
+          <view class='address' hidden='{{!isAddress}}' bindtap='chooseAddress'>
+            <view class='address-icon'>
+              <image src='/pages/confirmorder/imgs/address_location.png'></image>
+            </view>
+            <view class='address-detail'>
+              <text class='contacts'>{{choosedAddressInfo.userName}} {{choosedAddressInfo.telNumber}}</text>
+              <text class='address-details'>收货地址：{{choosedAddressInfo.detailInfo}}</text>
+            </view>
+            <view class='arrow2r'>
+              <image src='/pages/confirmorder/imgs/arrow2r.png'></image>
+            </view>
+          </view>
+          <view class='no-address-yet' hidden='{{isAddress}}' bindtap='chooseAddress'>
+            <view class='add-address-btn' type='default'>
+              <image src='/pages/confirmorder/imgs/confirm_address_icon.png'></image>
+            </view>
+            <text class='no-daddress-tips color9'>您还没有收货地址，点击这里添加</text>
+          </view>
+          <view class='address-bg'>
+            <image src='/imgs/orders/confirm_address_line.png'></image>
+          </view>
+        </view>
+        <!--运费  -->
+        <view class='freight'>
+          <view>
+            <text>快递运费：</text>
+            <text class='freight-money' wx:if='{{Freight===null}}'>请选择地址</text>
+            <text class='freight-money' wx:else>{{Freight<=0?'商家包邮':'￥ '+Freight}}</text>
+          </view>
+          <view wx:if='{{promition&&promition.PromotionType==1}}'>
+            <text>折扣金额：</text>
+            <text class='freight-money'>{{m.fixed(sku.SalePrice-sku.SalePrice*discount)*num}}</text>
+          </view>
+          <view wx:if='{{promition&&promition.PromotionType==4}}'>
+            <text>优惠金额：</text>
+            <text class='freight-money'>{{m.fixed(sku.SalePrice-sku.SeckillPrice)*num}}</text>
+          </view>
+          <view wx:if='{{promition&&promition.PromotionType==2&&total>=promition.OrderCredit}}'>
+            <text>满减金额：</text>
+            <text class='freight-money'>{{reductionAmount}}</text>
+          </view>
+          <view wx:if='{{sIdx!=-1}}'>
+            <text class="videocoupon1text1">使用平台优惠券：</text>
+            <text class="videocoupon1text2">
+        <block wx:if='{{fororder[sIdx].Limitation>0}}'>满{{fororder[sIdx].Limitation}}减{{fororder[sIdx].Amount}}</block>
+        <block wx:else>无金额限制{{fororder[sIdx].Amount}}元券</block>
+        </text>
+          </view>
+          <view>
+            <text>店铺合计：</text>
+            <view class='yunfei'>含运费
+              <text class='money'>￥ {{total*discount-sale-reductionAmount+Freight}}</text>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+      <button class='payment' bindtap='payment'>提交订单</button>
+    </view>
+
+    <!-- 购物袋  -->
+    <view class='rapid gouwuche' hidden="{{!shopBag}}">
+      <view class="rapidcover"></view>
+      <view class="shop-bag">
+        <view class="shop-bag-title">
+          <view class="rapidtoptext">购物袋</view>
+          <image src="/imgs/11.png" class="rapidclose" bindtap='shopBagclose'></image>
+        </view>
+        <view class='shop-bag-content' style='height:{{height*0.65-58}}px'>
+          <include src="/pages/shop/shop.wxml" />
+        </view>
+      </view>
+    </view>
+  </view>
+</block>
+<block wx:if='{{LiveInfo.LiveRoomStatus==3}}'>
+  <template is="default" data="{{img:'/imgs/Illegal.png',text:'该直播涉嫌违规，已下架！'}}" />
+</block>

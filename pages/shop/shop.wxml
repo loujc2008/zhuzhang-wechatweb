@@ -1,0 +1,128 @@
+<import src="/pages/template/template.wxml" />
+<block wx:if="{{Products.length>0}}">
+  <scroll-view scroll-y style='height:{{scrollHeight}}px' class='cart-goods-list'>
+    <block wx:for="{{Products}}" wx:key="{{index}}">
+      <view class="shop-list">
+        <view class="shop-title">
+          <icon bindtap='FRadio' data-f-idx="{{index}}" type="{{item.IsChecked?'success':'circle'}}" color="{{item.IsChecked?'rgb(251,109,131)':''}}" size="18" />
+          <navigator hover-class="none" url="/pages/dianpu/dianpu?shopId={{item.ShopId}}">{{item.ShopName}}</navigator>
+          <image bindtap='removeCart' data-f-idx="{{index}}" src='/imgs/del.png'></image>
+        </view>
+        <block wx:for="{{item.CartViewModelList}}" wx:key="{{listIdx}}" wx:for-index="listIdx" wx:for-item="listItem">
+          <view class="touch-item {{listItem.isTouchMove=='2' ? 'touch-move-stop' : ''}} {{listItem.isTouchMove=='1' ? 'touch-move-active' : ''}}" data-idx="{{listIdx}}" data-f-idx="{{index}}" bindtouchstart="touchstart" bindtouchmove='touchmove'>
+            <view class="content" animation="{{animationData}}">
+              <view class="shop-item-list">
+                <icon bindtap='listRadio' type="{{listItem.IsChecked? 'success': 'circle'}} " color="{{listItem.IsChecked?'rgb(251,109,131)':''}}" size="18" data-f-idx="{{index}}" data-idx="{{listIdx}}" />
+                <view class='shop-content'>
+                  <view class='flex' catchtap='openCommoditydetail' data-id="{{listItem.ProductId}}">
+                    <image src='{{listItem.ImageUrl}}'></image>
+                    <view>
+                      <text class="trade-name">{{listItem.ProductName}}</text>
+                      <text class="color"><block wx:if="{{listItem.Color}}">颜色: {{listItem.Color}}</block><block wx:if="{{listItem.Size}}"> 尺码: {{listItem.Size}}</block><block wx:if="{{listItem.Version}}"> 版本: {{listItem.Version}}</block></text>
+                      <text class="money">¥ {{m.fixed(listItem.Price)}}</text>
+                    </view>
+                  </view>
+                  <view class='shop-num'>
+                    <text class="trade-num">X{{listItem.Quantity}}</text>
+                    <view class='edit-quntity'>
+                      <button class='{{listItem.Quantity<=1?"hui":""}}' data-idx="{{listIdx}}" data-f-idx="{{index}}" catchtap='minusQuantity'>-</button>
+                      <text class='quantitys'>{{listItem.Quantity}}</text>
+                      <button class='{{listItem.Quantity>=listItem.Stock?"hui":""}}' data-idx="{{listIdx}}" data-f-idx="{{index}}" catchtap='addQuantity'>+</button>
+                    </view>
+                  </view>
+                </view>
+                <view data-idx="{{listIdx}}" data-f-idx="{{index}}" data-sku-id='{{listItem.SkuId}}' bindtap='cartDelete' class='delete'>删除</view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </block>
+
+    <!-- <view class="shop-list">
+      <view class="shop-title">
+        <view>失效宝贝</view>
+        <view>清空失效宝贝</view>
+      </view>
+      <block wx:for="{{item.CartViewModelList}}" wx:key="{{listIdx}}" wx:for-index="listIdx" wx:for-item="listItem">
+        <view class="touch-item {{listItem.isTouchMove=='2' ? 'touch-move-stop' : ''}} {{listItem.isTouchMove=='1' ? 'touch-move-active' : ''}}" data-idx="{{listIdx}}" data-f-idx="{{index}}" bindtouchstart="touchstart" bindtouchmove='touchmove'>
+          <view class="content" animation="{{animationData}}">
+            <view class="shop-item-list">
+              <view>失效</view>
+              <view class='shop-content'>
+                <view class='flex' catchtap='openCommoditydetail' data-id="{{listItem.ProductId}}">
+                  <image src='{{listItem.ImageUrl}}'></image>
+                  <view>
+                    <text class="trade-name">{{listItem.ProductName}}</text>
+                    <text class="color"><block wx:if="{{listItem.Color}}">颜色: {{listItem.Color}}</block><block wx:if="{{listItem.Size}}"> 尺码: {{listItem.Size}}</block><block wx:if="{{listItem.Version}}"> 版本: {{listItem.Version}}</block></text>
+                    <text class="money">¥ {{m.fixed(listItem.Price)}}</text>
+                  </view>
+                </view>
+                <view class='shop-num'>
+                  <text class="trade-num">X{{listItem.Quantity}}</text>
+                  <view class='edit-quntity'>
+                    <button class='{{listItem.Quantity<=1?"hui":""}}' data-idx="{{listIdx}}" data-f-idx="{{index}}" catchtap='minusQuantity'>-</button>
+                    <text class='quantitys'>{{listItem.Quantity}}</text>
+                    <button class='{{listItem.Quantity>=listItem.Stock?"hui":""}}' data-idx="{{listIdx}}" data-f-idx="{{index}}" catchtap='addQuantity'>+</button>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view> -->
+    <block wx:if='{{browseData.length>0||sellingData.length>0}}'>
+      <view class='recommend-name'>-猜你喜欢-</view>
+      <block wx:if='{{browseData.length>0}}'>
+        <view class='recommend-title'>你近期浏览了这些宝贝</view>
+        <product-list product-list='{{browseData}}'></product-list>
+      </block>
+      <block wx:if='{{sellingData.length>0}}'>
+        <view class='recommend-title'>大家近期都买了这些宝贝</view>
+        <product-list product-list='{{sellingData}}'></product-list>
+      </block>
+    </block>
+  </scroll-view>
+  <view class='settlement'>
+    <icon bindtap='allRadio' type="{{allRadio? 'success': 'circle'}} " color="{{allRadio?'rgb(251,109,131)':''}}" size='18' />
+    <view class='all-xuan'>全选</view>
+    <view class='all-total'>
+      <view>
+        合计:
+        <text class='total'>¥ {{totalAmount}}</text>
+      </view>
+      <!-- <text class="discount ">已优惠¥ 22.00</text> -->
+    </view>
+    <button bindtap='openConfirmorder'>去结算 ({{totalCount}})</button>
+  </view>
+</block>
+<block wx:else>
+  <view class='kong'>
+    <image src='/imgs/no-cart.png'></image>
+    <view>购物车是空的哦~</view>
+    <navigator hover-class="none" open-type='switchTab' url="/pages/classify/classify">去逛逛</navigator>
+  </view>
+  <block wx:if='{{browseData.length>0||sellingData.length>0}}'>
+    <view class='recommend-name'>-猜你喜欢-</view>
+    <block wx:if='{{browseData.length>0}}'>
+      <view class='recommend-title'>你近期浏览了这些宝贝</view>
+      <product-list product-list='{{browseData}}'></product-list>
+    </block>
+    <block wx:if='{{sellingData.length>0}}'>
+      <view class='recommend-title'>大家近期都买了这些宝贝</view>
+     <product-list product-list='{{sellingData}}'></product-list>
+    </block>
+  </block>
+</block>
+
+<wxs module="m">
+  var fixed = function(date) {
+    var num = date.toFixed(2);
+    if (date.toFixed(2) < 0.01) {
+      num = 0.01;
+    }
+    return num
+  }
+  module.exports.fixed = fixed;
+</wxs>

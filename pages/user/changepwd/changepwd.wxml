@@ -1,0 +1,14 @@
+<view class='edit-pw-wrap pdlr'>
+  <view class="input-wrap oldpwd">
+    <text class='input-label'>原密码：</text>
+    <input type="password" placeholder='6-20位字母、数字或符号' placeholder-class='placeholders' bindinput='opwd'/>
+  </view>
+  <view class="input-wrap">
+    <text class='input-label'>新密码：</text>
+    <input type="password" placeholder='6-20位字母、数字或符号' placeholder-class='placeholders' bindinput='npwd'/>
+  </view>
+  <button class='full-btn nobor gradual-bg' bindtap='change'>确定</button>
+</view>
+
+   
+

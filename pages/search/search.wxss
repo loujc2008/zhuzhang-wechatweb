@@ -1,0 +1,93 @@
+.search {
+  background-color: #fff;
+  z-index: 111;
+  width: 690rpx;
+  padding: 20rpx 30rpx;
+  display: flex;
+  align-items: center;
+}
+
+.search image {
+  position: absolute;
+  z-index: 199;
+  width: 24rpx;
+  height: 24rpx;
+}
+
+.s-icon {
+  top: 18rpx;
+  left: 18rpx;
+}
+
+.x-icon {
+  top: 0;
+  right: 0;
+  padding: 18rpx;
+  width: 27rpx!important;
+  height: 27rpx!important;
+}
+
+.search-input {
+  flex: 1;
+  position: relative;
+}
+
+.search input {
+  border-radius: 6rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  background-color: #f6f6f6;
+  padding-left: 60rpx;
+  flex: 1;
+  font-size: 24rpx;
+}
+
+.search-btn {
+  margin-left: 30rpx;
+  font-size: 26rpx;
+}
+
+.search-placeholder {
+  font-size: 24rpx;
+  color: #999;
+  /* height: 60rpx;
+  line-height: 60rpx; */
+}
+
+.history {
+  padding: 30rpx;
+  width: 690rpx;
+}
+
+.history-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 43rpx;
+}
+
+.history-title >view {
+  color: #000;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.history-title image {
+  width: 25rpx;
+  height: 24rpx;
+}
+
+.history-list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+.history-list view {
+  border: 1px solid #f2f2f2;
+  border-radius: 50rpx;
+  margin: 10rpx 20rpx 10rpx 0;
+  padding: 16rpx 24rpx;
+  font-size: 24rpx;
+  text-align: center;
+}

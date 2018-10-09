@@ -1,0 +1,135 @@
+<include src="/pages/minmoney/minmoney.wxml" />
+ <view class="upright ">
+  <view class="padding">
+    <video src="{{videourl}}" class="upvideo {{zczc?'zczc':'zczc1'}}" controls="{{controls}}"></video>
+  </view>
+  <view class="uprightshop">
+    <scroll-view scroll-x class="scrollx">
+      <view class="uprightshopflex">
+         <view class="uprightshopimg" data-idx="{{item.id}}" bindtap='shuEject' wx:for="{{shopdata.ProductList}}" wx:key="{{index}}">
+          <image src="{{item.imgUrl}}"></image>
+          <view class="uprightprice">￥{{item.price}}</view>
+        </view> 
+      </view>
+    </scroll-view>
+  </view>
+
+   <!-- 弹窗  -->
+  <view class="verticalpurchase" wx:if='{{!isvertical}}'>
+
+    <view class="detail5">
+      <image src="{{shopDetail.imgUrl}}" class="detailimg6"></image>
+      <view class="moneyandsize">
+        <view class="detailmoney1">
+          <text class="money1">￥{{sku.SalePrice?sku.SalePrice:shopdata.ProductList[index].price}}</text>
+          <!-- <text class="freight1">运费{{Freight}}元</text> -->
+          <image src="/imgs/11.png" class="shudetailimg7" bindtap='verticalclose'></image>
+        </view>
+        <view class="changesize2">请选择： 颜色、尺码、数量</view>
+      </view>
+    </view>
+
+    <scroll-view class='shuscroll' scroll-y='true'>
+      <view class='scroll-list'>
+        <view class="changecolor" wx:if="{{colors.length>0}}">
+          <view class="color">颜色</view>
+          <view class="color1">
+            <text wx:if="{{colors.length>0}}" class="ctext {{index==color?'ccolor':''}}" wx:for="{{colors}}" data-idx="{{index}}" bindtap='btnColor' wx:key="{{index}}">{{item}}</text>
+          </view>
+        </view>
+
+
+        <view class="size" wx:if="{{sizes.length>0}}">
+          <view class="size1">尺码</view>
+          <view class="size2">
+            <text wx:if="{{sizes.length>0}}" wx:for="{{sizes}}" class="stext {{index==size?'csize':''}}" data-idx="{{index}}" bindtap='btnSize' wx:key="{{index}}">{{item}}</text>
+          </view>
+        </view>
+
+        <view class="size" wx:if="{{versions.length>0}}">
+          <view class="size1">版本</view>
+          <view class="size2">
+            <text wx:if="{{versions.length>0}}" wx:for="{{versions}}" class="stext {{index==version?'csize':''}}" data-idx="{{index}}" bindtap='btnVersion' wx:key="{{index}}">{{item}}</text>
+          </view>
+        </view>
+
+        <view class="shumath">
+          <view class="math1">数量</view>
+          <view class="math2">
+            <text bindtap='min'>-</text>
+            <text>{{num}}</text>
+            <text bindtap='add'>+</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+
+    <view class="affirm">
+      <button  class='add-cart' bindtap='addCart'>加入购物车</button>
+      <button  class='now-buy' bindtap='nowBuy'>立即购买</button>
+    </view>
+  </view>
+
+
+  <view class="verticalpurchase" wx:if='{{!isverticalDetail}}'>
+    <view class="detail-title">
+      <text>订单信息</text>
+      <image src="/imgs/11.png" bindtap='shudetailClose'></image>
+    </view>
+    <!--收货地址-->
+    <view class='address-wrap pdlr'>
+      <view class='address' hidden='{{!isAddress}}' bindtap='chooseAddress'>
+        <view class='address-icon'>
+          <image src='/pages/confirmorder/imgs/address_location.png'></image>
+        </view>
+        <view class='address-detail'>
+          <text class='contacts'>{{choosedAddressInfo.userName}} {{choosedAddressInfo.telNumber}}</text>
+          <text class='address-details'>收货地址：{{choosedAddressInfo.detailInfo}}</text>
+        </view>
+        <view class='arrow2r'>
+          <image src='/pages/confirmorder/imgs/arrow2r.png'></image>
+        </view>
+      </view>
+      <view class='no-address-yet' hidden='{{isAddress}}' bindtap='chooseAddress'>
+        <view class='add-address-btn' type='default'>
+          <image src='/pages/confirmorder/imgs/confirm_address_icon.png'></image>
+        </view>
+        <text class='no-daddress-tips color9'>您还没有收货地址，点击这里添加</text>
+      </view>
+      <view class='address-bg'>
+        <image src='/imgs/orders/confirm_address_line.png'></image>
+      </view>
+    </view>
+    <!--详情  -->
+    <view class="shop-detail">
+      <image src='{{shopDetail.imgUrl}}'></image>
+      <view>
+        <text>{{shopDetail.name}}</text>
+        <text class='Specifications'>规格：{{sku.Color?sku.Color+'，':''}}{{sku.Size?sku.Size+'，':''}}{{sku.Version}}</text>
+        <text class='Specifications'>数量：{{num}}</text>
+      </view>
+    </view>
+    <!--运费  -->
+    <view class='freight'>
+      <view>
+        <text>运费：</text>
+        <text class='freight-money'>￥ {{Freight}}</text>
+      </view>
+      <view>
+        <text>合计：</text>
+        <text class='money'>￥ {{total}}</text>
+      </view>
+    </view>
+    <view class="videocoupon" bindtap='minmoneytan'>
+      <view class="videocoupon1">
+        <text class="videocoupon1text1">平台优惠</text>
+        <text class="videocoupon1text2"><block wx:if='{{sIdx!=fororder.length&&fororder[sIdx].Limitation>0}}'>满{{fororder[sIdx].Limitation}}减{{fororder[sIdx].Amount}}</block><block wx:if='{{sIdx!=fororder.length&&fororder[sIdx].Limitation==0}}'>无金额限制{{fororder[sIdx].Amount}}元券</block></text>
+      </view>
+      <view class="videocoupon2">
+        <text class="videocoupon2text1"><block wx:if='{{sIdx==fororder.length}}'>不使用优惠券</block><block wx:else>- {{fororder[sIdx].Amount}}</block></text>
+        <text class="videocoupon2text2">></text>
+      </view>
+    </view>
+    <button class='payment' bindtap='payment'>微信支付</button>
+  </view>
+ </view> 

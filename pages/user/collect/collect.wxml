@@ -1,0 +1,16 @@
+<view class="babydis" wx:if="{{productData.length>0}}">
+  <view class="baby" wx:for="{{productData}}" wx:key="{{index}}">
+    <navigator open-type='redirect' hover-class="none" url="../../commoditydetail/commoditydetail?id={{item.ProductId}}">
+      <image src="{{item.ImagePath?item.ImagePath+'/1_414.png':'/imgs/default.jpg'}}"></image>
+      <view class="babyname">{{item.ProductName}}</view>
+      <view class="buy">
+        <text class="buyprice">￥{{item.Price}}</text>
+        <text class="buypeople">{{item.SaleCount}}人购买</text>
+      </view>
+    </navigator>
+  </view>
+</view>
+<view wx:if="{{productData.length<=0}}" class="kong">
+  <image src="/imgs/sc.png" class="kontu"></image>
+  <view class="kongzi">还没有收藏任何商品哦~</view>
+</view>

@@ -1,0 +1,126 @@
+.coupon {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.couponcontent {
+  height: 65%;
+  width: 100%;
+  background: #fff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.couponcontent1 {
+  font-size: 30rpx;
+  color: #000;
+  text-align: center;
+  margin-top: 45rpx;
+  margin-bottom: 30rpx;
+  font-weight: bold;
+}
+
+.couponcontent2 {
+  height: 85rpx;
+  line-height: 85rpx;
+  font-size: 26rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.couponscroll {
+  height: 60%;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+
+.closecoupon {
+  height: 28rpx;
+  width: 28rpx;
+  position: fixed;
+  top: 466rpx;
+  right: 30rpx;
+}
+
+.discountlist {
+  position: relative;
+}
+
+.discountlist-img {
+  width: 688rpx;
+  height: 175rpx;
+}
+
+.discount-price {
+  position: absolute;
+  top: 40rpx;
+  color: #fe566d;
+  font-weight: bold;
+  width: 170rpx;
+  text-align: center;
+}
+
+.discount-price1 {
+  font-size: 32rpx;
+}
+
+.discount-price2 {
+  font-size: 75rpx;
+}
+
+.discountmsg {
+  position: absolute;
+  top: 25rpx;
+  color: #fe566d;
+  left: 215rpx;
+  height: 120rpx;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+}
+
+.msg1 {
+  font-size: 28rpx;
+}
+
+.msg2 {
+  font-size: 20rpx;
+}
+
+.msg3 {
+  font-size: 20rpx;
+  color: #999;
+}
+
+.bg {
+  position: absolute;
+  top: 65rpx;
+  right: 40rpx;
+}
+
+.attend {
+  width: 100%;
+  text-align: center;
+  color: #999;
+  font-size: 24rpx;
+  line-height: 155rpx;
+}
+.nomz{
+  color:#999999;
+}
+.diyong{
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  background: #ffffe5;
+  padding-left: 20rpx;
+  box-sizing: border-box;
+  height:48rpx;
+  line-height: 48rpx;
+  margin-bottom: 15rpx;
+}

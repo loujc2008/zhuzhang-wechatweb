@@ -1,0 +1,30 @@
+ page {
+  background-color: #fff;
+  height: 100%;
+}
+
+.ify {
+  height: 252rpx;
+  margin-bottom: 10rpx;
+}
+
+.ifyimg {
+  width: 100%;
+  height: 252rpx;
+} 
+.kong{
+  height:100%;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+  width: 100%;
+}
+.kontu {
+  width: 358rpx!important;
+  height: 229rpx!important;
+}
+.kongzi{
+  font-size: 26rpx;
+  color:#878787;
+}

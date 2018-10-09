@@ -1,0 +1,191 @@
+.navigator {
+  position: relative;
+}
+
+.topimg2 {
+  position: absolute;
+  top: 195rpx;
+  left: 350rpx;
+  width: 78rpx;
+  height: 78rpx;
+}
+
+.topimg {
+  width: 100%;
+  height: 500rpx;
+}
+
+.active1all {
+  width: 100%;
+  padding: 0 15rpx;
+  box-sizing: border-box;
+  margin-top: 60rpx;
+}
+
+.bg {
+  padding: 50rpx 15rpx 0 15rpx;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 8rpx;
+  background: #fff;
+}
+
+.activetitle {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+
+.activetitle1 {
+  font-size: 34rpx;
+  font-weight: bold;
+}
+
+.activetitle2 {
+  font-size: 22rpx;
+  color: #c9c9c9;
+}
+
+.avall {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.av {
+  width: 337rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 50rpx;
+}
+
+.avimg {
+  position: relative;
+}
+
+.avimg1 {
+  width: 337rpx;
+  height: 206rpx;
+  border-radius: 8rpx;
+}
+
+.avimg2 {
+  width: 78rpx;
+  height: 78rpx;
+  position: absolute;
+  top: 60rpx;
+  left: 135rpx;
+}
+
+.avtitle {
+  font-size: 26rpx;
+  font-weight: bold;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.main2 {
+  box-sizing: border-box;
+  padding: 0 15rpx;
+  margin-top: 26rpx;
+  padding-bottom: 46rpx;
+}
+
+.activeall2 {
+  width: 100%;
+  margin-top: 60rpx;
+  background: #fff;
+  padding: 0 15rpx;
+  padding-top: 50rpx;
+  box-sizing: border-box;
+  border-radius: 8rpx;
+}
+
+.activetitle22 {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+
+.activetitle2-1 {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #000;
+}
+
+.activetitle2-2 {
+  font-size: 22rpx;
+  color: #c9c9c9;
+}
+
+.apall {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding-bottom: 25rpx;
+  border-bottom: 2rpx solid #f7f7f7;
+  margin-top: 20rpx;
+}
+
+.apimg {
+  width: 220rpx;
+  height: 220rpx;
+}
+
+.aptext {
+  display: flex;
+  height: 220rpx;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.aptitle {
+  word-break: break-all;
+  text-overflow: ellipsis;
+  display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+  -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+  -webkit-line-clamp: 2; /** 显示的行数 **/
+  overflow: hidden; /** 隐藏超出的内容 **/
+  width: 400rpx;
+  font-size: 26rpx;
+}
+
+.pands {
+  display: flex;
+  justify-content: space-between;
+  width: 400rpx;
+}
+
+.shop {
+  background: #f33a56;
+  width: 116rpx;
+  height: 53rpx;
+  border-radius: 30rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 10rpx 10rpx 20rpx rgba(248, 98, 120, 0.5);
+}
+
+.shopimg {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.price {
+  font-size: 32rpx;
+  color: #df4343;
+  font-weight: bold;
+}
+
+.price text {
+  font-size: 20rpx;
+  margin-left: 5rpx;
+}
+
+.border {
+  border-bottom: 0;
+}

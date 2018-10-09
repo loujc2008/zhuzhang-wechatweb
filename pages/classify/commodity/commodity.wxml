@@ -1,0 +1,40 @@
+<view wx:if="{{commodity.length>0}}">
+  <view class="top">
+    <view class="paixu" bindtap='sale'>
+      <view>销量</view>
+      <view class="topimg">
+        <image src="/imgs/shang.png" wx:if="{{sort==2&&!isAsc}}"></image>
+        <image src="/imgs/xia.png" wx:if="{{sort==2&&isAsc}}"></image>
+        <image src="/imgs/mo.png" wx:if="{{sort==3}}"></image>
+      </view>
+    </view>
+    <view class="paixu" bindtap='price'>
+      <view>价格</view>
+      <view class="topimg">
+        <image src="/imgs/shang.png" wx:if="{{sort==3&&!isAsc}}"></image>
+        <image src="/imgs/xia.png" wx:if="{{sort==3&&isAsc}}"></image>
+        <image src="/imgs/mo.png" wx:if="{{sort==2}}"></image>
+      </view>
+    </view>
+  </view>
+  <view class="mask"></view>
+  <scroll-view class="scroll" scroll-y="true" scroll-top="{{scrollTop.scroll_top}}" bindscrolltolower="binddown">
+    <view class="babydis">
+      <view class="baby" wx:for="{{commodity}}" wx:key="{{index}}">
+        <navigator hover-class="none" url="../../commoditydetail/commoditydetail?id={{item.Id}}">
+          <image src="{{item.ImagePath?item.ImagePath:'/imgs/default.jpg'}}"></image>
+          <view class="babyname">{{item.ProductName}}</view>
+          <view class="buy">
+            <text class="buyprice">￥{{item.MinSalePrice}}</text>
+            <text class="buypeople">{{item.SaleCounts}}人购买</text>
+          </view>
+        </navigator>
+      </view>
+    </view>
+     <view wx:if="{{!also}}" class="also">没有更多了</view> 
+  </scroll-view>
+</view>
+<view wx:if="{{commodity.length<=0}}" class="kong">
+  <image src="/imgs/shangp.png" class="kontu"></image>
+  <view class="kongzi">还没有商品哦~</view>
+</view>

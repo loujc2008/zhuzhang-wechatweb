@@ -1,0 +1,195 @@
+<import src="../../template/template.wxml" />
+
+<wxs module="m">
+  var formatTime = function(date) {
+    var d = getDate(date),
+      Hours = d.getUTCHours(),
+      Minutes = d.getMinutes(),
+      Seconds = d.getSeconds();
+    console.log(d.getDate())
+    if (Hours < 10) {
+      Hours = '0' + Hours;
+    }
+    if (Minutes < 10) {
+      Minutes = '0' + Minutes;
+    }
+    if (Seconds < 10) {
+      Seconds = '0' + Seconds;
+    }
+    var data = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + (d.getDate() - 1) + ' ' + Hours + ':' + Minutes + ':' + Seconds
+    return data;
+  }
+  var fixed = function(date) {
+    var num = date.toFixed(2);
+    if (date.toFixed(2) < 0.01) {
+      num = 0.01;
+    }
+    return num
+  }
+  module.exports.fixed = fixed;
+  module.exports.formatTime = formatTime;
+</wxs>
+
+<view class='state-block gradual-bg'>
+  <block wx:if="{{orderStatus==4}}">
+    <view>
+      <text class='_t1 _block'>交易已关闭</text>
+      <text class='_t2 _block'>已关闭订单</text>
+    </view>
+    <image class='card-icon' src='/imgs/order03.png'></image>
+  </block>
+  <block wx:if="{{orderStatus==1}}">
+    <view>
+      <text class='_t1 _block'>等待买家付款</text>
+      <!-- <text class='_t2 _block'>已关闭订单</text> -->
+    </view>
+    <image class='card-icon' src='/imgs/order05.png'></image>
+  </block>
+  <block wx:if="{{orderStatus==2}}">
+    <view>
+      <text class='_t1 _block'>买家已付款</text>
+      <text class='_t2 _block'>等待卖家发货</text>
+    </view>
+    <image class='card-icon' src='/imgs/order02.png'></image>
+  </block>
+  <block wx:if="{{orderStatus==3}}">
+    <view>
+      <text class='_t1 _block'>卖家已发货</text>
+      <text class='_t2 _block'>等待买家确认</text>
+    </view>
+    <image class='card-icon' src='/imgs/order01.png'></image>
+  </block>
+  <block wx:if="{{orderStatus==5}}">
+    <view>
+      <text class='_t1 _block'>交易已完成</text>
+    </view>
+    <image class='card-icon' src='/imgs/order04.png'></image>
+  </block>
+</view>
+
+
+<!--收货地址-->
+<view class='address-wrap pdlr'>
+  <!--已有地址 : display:flex;-->
+  <view class='address' style='display:flex;'>
+    <view class='address-icon'>
+      <image src='/imgs/orders/address_location.png'></image>
+    </view>
+    <view class='address-detail'>
+      <text class='contacts'>{{detaildata.ShipTo}} {{detaildata.CellPhone}}</text>
+      <text class='address-details'>收货地址：{{detaildata.Address}}</text>
+    </view>
+  </view>
+
+  <!--背景虚线-->
+  <view class='address-bg'>
+    <image src='../../../imgs/orders/confirm_address_line.png'></image>
+  </view>
+</view>
+
+<!--店铺 start -->
+<view class='cart-goods-wrap'>
+  <!--商家信息-->
+  <view class='shop-name pdlr'>
+    <text>{{detaildata.ShopName}}</text>
+    <button open-type="contact" class="cbutton" session-from="weapp" bindtap='openXiaoneng'>
+      <image src="/imgs/wx1.png"></image>
+      <view>联系商家</view>
+    </button>
+  </view>
+  <!-- 商品 列表 start-->
+  <navigator open-type='redirect' hover-class="none" url='/pages/commoditydetail/commoditydetail?id={{item.ProductId}}' class='cart-goods-list' wx:key="{{index}}" wx:for="{{detaildata.OrderItemList}}">
+    <view class='goods-img'>
+      <image src='{{item.ThumbnailsUrl}}'></image>
+    </view>
+    <view class='goods-info'>
+      <view class='flex between'>
+        <text class='goods-title'>{{item.ProductName}}</text>
+        <text class='goods-quantity color9'>X{{item.Quantity}}</text>
+      </view>
+      <text class='goods-color color9'>
+        <block wx:if="{{item.Color}}">颜色：{{item.Color}} </block>
+        <block wx:if="{{item.Size}}">尺码：{{item.Size}} </block>
+        <block wx:if="{{item.Version}}">版本：{{item.Version}}</block>
+      </text>
+      <view class='discounted-info' wx:if="{{item.CurrentShopPromotion&&item.CurrentShopPromotion.PromotionType==1||item.CurrentShopPromotion.PromotionType==4}}">
+        {{item.CurrentShopPromotion.PromotionDescriptionProduct}}
+      </view>
+      <view class='flex'>
+        <text class='goods-price'>¥ {{item.SalePrice}}</text>
+        <text class='old-money' wx:if="{{item.CurrentShopPromotion}}">
+        <block wx:if='{{item.CurrentShopPromotion.PromotionType==1}}'>¥ {{m.fixed(item.SalePrice/item.CurrentShopPromotion.PromotionDiscount)}}</block>
+        <block wx:if='{{item.CurrentShopPromotion.PromotionType==4}}'>¥ {{item.CostPrice}}</block>
+        </text>
+        <button class="refund" catchtap='refund' data-index="{{index}}" wx:if="{{item.RefundButtonStatus==1}}">
+          退款
+        </button>
+        <button class="refund" catchtap='refundDetail' data-index="{{index}}" wx:if="{{item.RefundButtonStatus==2}}">
+          退款成功
+        </button>
+        <button class="refund" catchtap='refund' data-index="{{index}}" wx:if="{{item.RefundButtonStatus==3}}">
+          退款中
+        </button>
+        <button class="refund" catchtap='refund' data-index="{{index}}" wx:if="{{item.RefundButtonStatus==4}}">
+          退货/退款
+        </button>
+        <button class="refund" catchtap='refund' data-index="{{index}}" wx:if="{{item.RefundButtonStatus==5}}">
+          退款关闭
+        </button>
+      </view>
+    </view>
+  </navigator>
+  <!-- 商品 列表 end-->
+
+  <!-- 店铺商品 + 运费 + 合计 start-->
+  <view class='shop-amount'>
+    <view class='consumer-msg flex'>
+      <text>买家留言：</text>
+      <input class='msg-input' type='text' value='{{detaildata.MsgFromBuyer?detaildata.MsgFromBuyer:"无"}}' disabled="{{orderStatus!=1}}" placeholder='有什么想对商家说的可以在这里写哦' placeholder-class='placeholders'></input>
+    </view>
+    <view class='shop-freight'>快递运费：
+      <text class='color9'>{{freight
+        <=0? '商家包邮': '¥ '+freight}} </text>
+    </view>
+    <view class='shop-freight' wx:if='{{reduction>0}}'>店铺优惠：
+      <text class='color9'>{{m.fixed(reduction)}} </text>
+    </view>
+    <view class='shop-freight' wx:if='{{detaildata.DiscountAmount>0}}'>平台优惠：
+      <text class='color9'>{{detaildata.DiscountAmount}} </text>
+    </view>
+    <view class='shop-total flex'>实付款：
+      <view class='color9'>含运费
+        <text class='colred'> ¥ {{detaildata.OrderTotalAmount}}</text>
+      </view>
+    </view>
+  </view>
+  <!-- 店铺商品 + 运费 + 合计 end-->
+  <view class='order-no pdlr'>
+    <text class='_block color9'>订单编号： {{detaildata.OrderId}}</text>
+    <text class='_block color9'>下单时间： {{m.formatTime(detaildata.OrderDate)}}</text>
+    <text wx:if="{{orderStatus==2||orderStatus==3||orderStatus==5}}" class='_block color9'>付款时间： {{m.formatTime(detaildata.PayDate)}}</text>
+    <text wx:if="{{orderStatus==3||orderStatus==5}}" class='_block color9'>发货时间： {{m.formatTime(detaildata.ShippingDate)}}</text>
+    <text wx:if="{{orderStatus==5}}" class='_block color9'>成交时间： {{m.formatTime(detaildata.FinishDate)}}</text>
+  </view>
+</view>
+<!--店铺 end -->
+
+<!-- 确认订单页面 底部 -->
+
+<view class='confirm-btm pdlr'>
+  <text class='order-amount'>总价:</text>
+  <text class='order-amount _price'>¥ {{detaildata.OrderTotalAmount}}</text>
+  <block wx:if="{{orderStatus==1}}">
+    <form bindsubmit="cancel" report-submit>
+      <button class='obtn s2' type='default' bindtap='payment'>付款</button>
+      <button class='obtn' type='default' formType="submit">取消订单</button>
+    </form>
+  </block>
+  <block wx:if="{{orderStatus==3}}">
+    <button class='obtn s2' type='default' bindtap='confirmReceipt'>确认收货</button>
+    <button class='obtn' type='default' bindtap='openLogistics'>查看物流</button>
+  </block>
+  <block wx:if="{{orderStatus==5}}">
+    <button class='obtn' type='default' bindtap='openLogistics'>查看物流</button>
+  </block>
+</view>

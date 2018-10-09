@@ -1,0 +1,62 @@
+<!--店铺 start -->
+<template name="order">
+  <view class='cart-goods-list' wx:key="{{index}}" wx:for="{{list}}">
+    <view class='goods-img'>
+      <image src='{{item.ImageUrl}}'></image>
+    </view>
+    <view class='goods-info'>
+      <view class='flex between'>
+        <text class='goods-title'>{{item.ProductName}}</text>
+        <text class='goods-quantity color9'>X{{item.Quantity}}</text>
+      </view>
+      <text class='goods-color color9'>
+        <block wx:if="{{item.Color}}">颜色：{{item.Color}} </block>
+        <block wx:if="{{item.Size}}">尺码：{{item.Size}}</block>
+        <block wx:if="{{item.Size}}">版本：{{item.Version}}</block>
+      </text>
+      <view class='discounted-info' wx:if='{{item.Promotion.PromotionType==1||item.Promotion.PromotionType==4}}'>
+        {{item.Promotion.PromotionDescriptionProduct}}
+      </view>
+      <view class='flex'>
+        <block wx:if='{{item.Promotion.PromotionType==1||item.Promotion.PromotionType==4}}'>
+          <text class='goods-price'>¥ {{item.Price}}</text>
+          <text class='old-money'>¥ {{item.CostPrice}}</text>
+        </block>
+        <text wx:else class='goods-price'>¥ {{item.CostPrice}}</text>
+        <button class="refund" bindtap='refund' data-index="{{index}}" wx:if="{{orderStatus==2||orderStatus==3}}">退款</button>
+        <view wx:if="{{orderStatus==1}}" class='edit-quntity'>
+          <button bindtap='reduce' data-idx="{{index}}" data-f-idx="{{f_idx}}">-</button>
+          <text class='quantitys'>{{item.Quantity}}</text>
+          <button bindtap='plus' data-idx="{{index}}" data-f-idx="{{f_idx}}">+</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+<!--店铺 end -->
+
+<!-- 缺省页 start  -->
+<template name='default'>
+  <view class='kong'>
+    <image src='{{img}}'></image>
+    <view>{{text}}</view>
+  </view>
+</template>
+<!-- 缺省页 end  -->
+
+<!-- 商品 start  -->
+<template name='product_li'>
+  <navigator hover-class="none" open-type='{{type?"redirect":"navigate"}}' url="/pages/commoditydetail/commoditydetail?id={{item.Id}}" data-idx='{{index}}' wx:for="{{products}}" wx:key="{{index}}" class='goods-li'>
+    <view wx:if='{{item.Promotion.PromotionType==2}}' class='activity-text'>满{{item.Promotion.OrderCredit}}减{{item.Promotion.ReductionAmount}}</view>
+    <image class='goods-img' wx:if="{{item.Promotion.PromotionType==1}}" src="/imgs/cuxiao.png"></image>
+    <image class='goods-img' wx:if="{{item.Promotion.PromotionType==2}}" src="/imgs/manjian.png"></image>
+    <image class='goods-img-miaosha' wx:if="{{item.Promotion.PromotionType==4}}" src="/imgs/miaosha.png"></image>
+    <image src='{{item.ImagePath}}/1_414.png'></image>
+    <text>{{item.ProductName}}</text>
+    <view>
+      <text class='money'>￥ {{item.Promotion&&item.Promotion.PromotionType==4?item.MinSeckillPrice:item.MinSalePrice}}</text>
+      <text class='num'>{{item.SaleCounts>=0?item.SaleCounts:0}}人购买</text>
+    </view>
+  </navigator>
+</template>
+<!-- 商品 end  -->

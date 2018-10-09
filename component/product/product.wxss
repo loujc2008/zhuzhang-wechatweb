@@ -1,0 +1,76 @@
+.product-list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.goods-li {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  background-color: #fff;
+  margin-top: 6rpx;
+  flex-basis: 373rpx;
+  position: relative;
+}
+
+.goods-img {
+  width: 83rpx !important;
+  height: 83rpx !important;
+  position: absolute;
+  top: 0;
+  left: 20rpx;
+}
+
+.goods-img-miaosha {
+  width: 76rpx !important;
+  height: 49rpx !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.goods-li image {
+  width: 100%;
+  height: 370rpx;
+}
+
+.activity-text {
+  position: absolute;
+  border-radius: 8rpx;
+  padding: 0 10rpx !important;
+  right: 16rpx;
+  top: 16rpx;
+  background-color: #fc3;
+  font-size: 24rpx;
+}
+
+.goods-name {
+  font-size: 26rpx;
+  padding: 0 25rpx;
+  width: 324rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  height: 64rpx;
+  line-height: 32rpx;
+  margin: 25rpx 0;
+}
+
+.goods-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 25rpx 20rpx 25rpx;
+}
+
+.money {
+  font-weight: 900;
+  font-size: 30rpx;
+}
+
+.num {
+  font-size: 22rpx;
+  color: #ccc;
+}

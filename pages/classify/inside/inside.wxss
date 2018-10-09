@@ -1,0 +1,58 @@
+page {
+  background: #fff;
+  height: 100%;
+}
+
+.babydis {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 21rpx;
+}
+
+.baby {
+  margin-bottom: 41rpx;
+}
+
+.baby image {
+  width: 372rpx;
+  height: 215rpx;
+}
+
+.babyname {
+  width: 340rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 28rpx;
+  padding-left: 23rpx;
+}
+
+.buy {
+  font-size: 24rpx;
+  color: #9b9b9b;
+  padding-left: 23rpx;
+}
+.kong{
+  height:100%;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+  width: 100%;
+}
+.kontu {
+  width: 358rpx!important;
+  height: 229rpx!important;
+}
+.kongzi{
+  font-size: 26rpx;
+  color:#878787;
+}
+.also{
+  width: 100%;
+  font-size: 26rpx;
+  text-align: center;
+  height:80rpx;
+  line-height: 80rpx;
+}

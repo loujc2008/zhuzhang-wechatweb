@@ -1,0 +1,28 @@
+<view class='form'>
+  <view class="input-wrap " style='border-bottom:1px solid #ededed;'>
+    <text class='input-label'>退款类型</text>
+    <text wx:if="{{refundType==1}}" class='tips color9'>仅退款</text>
+    <picker wx:if="{{refundType==2}}" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+      <view class="picker">
+        {{array[index]}}
+      </view>
+    </picker>
+  </view>
+
+  <view class="input-wrap" hidden="{{index==0}}">
+    <text class='input-label' style='width:280rpx;'>退货数量</text>
+    <input type='number' bindblur='returned' value='{{returned}}' placeholder='最多{{maxRefundGoodsAmount}}件' placeholder-class='placeholders'></input>
+  </view>
+
+  <view class="input-wrap">
+    <text class='input-label' style='width:280rpx;'>退款金额</text>
+    <input type='digit' bindblur='amount' value='{{amount}}' placeholder='最多¥{{maxAmount}}' placeholder-class='placeholders'></input>
+  </view>
+
+  <view class="input-wrap" style='margin-top:30rpx;'>
+    <text class='input-label'>退款说明：</text>
+    <input placeholder='不少于6个字' bindblur='explain' placeholder-class='placeholders' />
+  </view>
+
+  <button class='full-btn nobor gradual-bg' bindtap='nextStep'>下一步</button>
+</view>

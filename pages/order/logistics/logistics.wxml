@@ -1,0 +1,40 @@
+<view class='logistics'>
+  <view class='info'>
+    <image mode='widthFix' src='{{logistics.ImageUrl}}'></image>
+    <view>
+      <text>承运来源：<text class='f'>{{logistics.ExpressCompanyName}}</text></text>
+      <text>运单编号：<text class='f'>{{logistics.ExpressCode}}</text></text>
+      <text>订单编号：<text class='f'>{{logistics.OrderId}}</text></text>
+    </view>
+  </view>
+  <wxs module="m">
+    var formatTime = function(date) {
+      var d = getDate(date),
+        Hours = d.getUTCHours(),
+        Minutes = d.getMinutes(),
+        Seconds = d.getSeconds();
+        console.log(getDate(date))
+      if (Hours < 10) {
+        Hours = '0' + Hours;
+      }
+      if (Minutes < 10) {
+        Minutes = '0' + Minutes;
+      }
+      if (Seconds < 10) {
+        Seconds = '0' + Seconds;
+      }
+      var data = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + Hours + ':' + Minutes + ':' + Seconds
+      return data;
+    }
+    module.exports.formatTime = formatTime;
+  </wxs>
+  <view class='steps {{index==0?"_end":""}} {{index==logistics.ExpressData.length-1?"_start":""}}' wx:for="{{logistics.ExpressData}}" wx:key="{{index}}">
+    <text class='_t1 _block'>{{item.Content}}</text>
+    <text class='_t2 _block'>{{m.formatTime(item.Time)}}</text>
+    <icon class='step-icon'>
+      <image wx:if="{{index==0}}" src='./imgs/home.png'></image>
+      <image wx:elif="{{index==logistics.ExpressData.length-1}}" src='./imgs/icon1.png'></image>
+      <image wx:else src='./imgs/arrow_up.png'></image>
+    </icon>
+  </view>
+</view>

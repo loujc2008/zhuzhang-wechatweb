@@ -1,0 +1,254 @@
+<import src="/pages/template/template.wxml" />
+<view class="detailall">
+  <view class="detail1">
+    <view wx:if="{{HasPromotion}}" class='pticon-y'>
+      <image wx:if="{{ShopPromotion.PromotionType==1}}" src='/imgs/cuxiao.png'></image>
+      <image wx:if="{{ShopPromotion.PromotionType==2}}" src='/imgs/manjian.png'></image>
+    </view>
+    <swiper indicator-dots="indicatorDots" interval="500" duration="500">
+      <block wx:key="{{index}}" wx:for="{{shopDetail.imgUrlList}}">
+        <swiper-item>
+          <image bindtap='openBannerPreview' data-idx='{{index}}' src="{{item}}" class="detailimg1" wx:if="{{item}}" />
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class='miaosha' wx:if='{{ShopPromotion.PromotionType==4}}'>
+      <image src='/imgs/miaosha.jpg'></image>
+      <view class='miaosha-info'>
+        <view>
+          <view class='miaosha-money'>￥
+            <text class="money">{{m.formatTime(sku.SeckillPrice?sku.SeckillPrice:shopDetail.MinSeckillPrice)}}</text>
+          </view>
+          <text class='miaosha-price'>{{m.formatTime(sku.SalePrice?sku.SalePrice:shopDetail.price)}}</text>
+        </view>
+        <view class='miaosha-date'>
+          <text class='miaosha-prompt'>距活动结束还仅剩</text>
+          <view>
+            <view class="view">{{date.day}}</view> 天
+            <view class="view">{{date.hour}}</view>:
+            <view class="view">{{date.minute}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="detail2">
+      <view class="introducename">{{shopDetail.name}}</view>
+      <view bindtap='openVideo' class="introducev">
+        <image src="../../imgs/13.png" class="detailimg2"></image>
+        <view class="introducev_text">查看视频</view>
+      </view>
+      <wxs module="m">
+        var formatTime = function(date) {
+          var num = date.toFixed(2);
+          if (date.toFixed(2) < 0.01) {
+            num = 0.01;
+          }
+          return num
+        }
+        module.exports.formatTime = formatTime;
+      </wxs>
+      <view class="detailmoney">
+        <text class="money" wx:if='{{ShopPromotion.PromotionType==4}}'>￥<text>{{m.formatTime(sku.SeckillPrice?sku.SeckillPrice:shopDetail.MinSeckillPrice)}}</text></text>
+        <text class="money" wx:else>￥<text>{{sku.SalePrice?m.formatTime(sku.SalePrice*discount):m.formatTime(shopDetail.price*discount)}}</text></text>
+        <text wx:if="{{ShopPromotion.PromotionType==1}}" class="old-money">￥<text>{{sku.SalePrice?sku.SalePrice:shopDetail.price}}</text></text>
+        <view class="yunfei" wx:if="{{value.FreightInfo}}">运费 {{value.FreightInfo}}</view>
+      </view>
+    </view>
+    <view bindtap='coupon' class="activeall">
+      <view class="active {{quanData.length>0?'paddingbottom':''}}" wx:if="{{value.ShopPromotionList.length>0||value.CouponList.length>0}}">
+        <view class="huodong">
+          <block wx:if='{{value.ShopPromotionList.length>0}}'>
+            <view class="active1" wx:if="{{value.ShopPromotionList[0].PromotionType==1}}">折</view>
+            <view class="man" wx:if="{{value.ShopPromotionList[0].PromotionType==2}}">满</view>
+            <view class="active1" wx:if="{{value.ShopPromotionList[0].PromotionType==4}}">秒</view>
+            <view class="active2">{{value.ShopPromotionList[0].PromotionDescriptionProduct}}</view>
+          </block>
+          <block wx:else>
+            <view class="man">满</view>
+            <view class="active2">{{value.CouponList[0].CouponDescription}}</view>
+          </block>
+        </view>
+        <view class="hdimg">
+          <!-- <text class="hdimg1">{{value.ShopPromotionList.length+value.CouponList.length}}个活动</text> -->
+          <image src="../../imgs/you.png" class="changesizeimg"></image>
+        </view>
+      </view>
+      <view class="discount" wx:if="{{quanData.length>0}}">
+        <view class="discount2">
+          <text>券</text>
+          <image src="/imgs/quan.jpg"></image>
+        </view>
+        <view>领取优惠券</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="changesize" bindtap='changesize'>
+    <view class="changesize1" wx:if="{{!isOperation}}">选择尺寸颜色</view>
+    <view class="colorsize" wx:else>
+      <view class="iscolor" wx:if="{{colors.length>0||sizes.length>0||versions.length>0}}">
+        <text class="iscolor1">规格:</text>
+        <text class="iscolor2">{{sku.Color?sku.Color:''}}{{sku.Size?','+sku.Size:''}}{{sku.Version?','+sku.Version:''}}</text>
+      </view>
+      <view class="issize">
+        <text class="issize1">数量:</text>
+        <text class="issize2">{{num}}</text>
+      </view>
+    </view>
+    <image src="../../imgs/you.png" class="changesizeimg"></image>
+  </view>
+
+  <view class="datail3">
+    <image src="../../imgs/detail.png" class="detailimg3"></image>
+    <image src="{{item}}" wx:for="{{ProductDescriptionAllImages}}" wx:key="{{index}}" bindtap='openDetailPreview' class="detailimg4" mode="widthFix" data-idx='{{index}}' bindload='imageLoad' binderror='imgerror'></image>
+  </view>
+
+  <block wx:if='{{sellingData.length>0}}'>
+    <view class='recommend-name'>-商品推荐-</view>
+    <product-list product-list='{{sellingData}}' page-type='1'></product-list>
+  </block>
+
+  <view class="detail4">
+    <view bindtap='openDianpu' url="../dianpu/dianpu?shopId={{shopDetail.shopId}}" hover-class='none'>
+      <view class="lookandcollect lookshop">
+        <image src="../../imgs/14.png" class="detailimg5"></image>
+        <view class="detail4shop">店铺</view>
+      </view>
+    </view>
+    <view class="lookandcollect collect" bindtap='collect'>
+      <image src="../../imgs/{{IsFavorite?'collection':'15'}}.png" class="detailimg5"></image>
+      <view class="detail4shop {{IsFavorite?'already':''}}">{{IsFavorite?'已收藏':'收藏'}}</view>
+    </view>
+    <view class="addbuy" bindtap='btnCart'>加入购物车</view>
+    <view class="nowbuy" bindtap='nowbuy'>立即购买</view>
+  </view>
+
+  <view class="{{isShow?'sizetrue':'sizefalse'}}">
+    <view class="mask" bindtap='closesku'></view>
+    <view class="blackb">
+      <view class="detail5">
+        <image src="{{shopDetail.imgUrl}}" class="detailimg6"></image>
+        <view class="moneyandsize">
+          <view class="detailmoney1">
+            <text class="money1"><block wx:if='{{ShopPromotion&&ShopPromotion.PromotionType==4}}'>
+              ￥ {{sku.SeckillPrice?sku.SeckillPrice:shopDetail.MinSeckillPrice}}
+            </block>
+            <block wx:else>
+              ￥ {{sku.SalePrice?m.formatTime(sku.SalePrice*discount):m.formatTime(shopDetail.price*discount)}}
+            </block></text>
+            <image src="../../imgs/11.png" class="detailimg7" bindtap='close'></image>
+          </view>
+          <view class="changesize2">请选择： 颜色、尺码、数量</view>
+        </view>
+      </view>
+
+      <scroll-view class='scroll' scroll-y='true'>
+        <view class='scroll-list'>
+          <view class="size" wx:if="{{colors.length>0}}">
+            <view class="size1">颜色</view>
+            <view class="size2">
+              <text class="stext {{index===color?'csize':''}}" wx:for="{{colors}}" data-idx="{{index}}" bindtap='btnColor' wx:key="{{index}}">{{item}}</text>
+            </view>
+          </view>
+
+
+          <view class="size" wx:if="{{sizes.length>0}}">
+            <view class="size1">尺码</view>
+            <view class="size2">
+              <text wx:for="{{sizes}}" class="stext {{index===size?'csize':''}}" data-idx="{{index}}" bindtap='btnSize' wx:key="{{index}}">{{item}}</text>
+            </view>
+          </view>
+
+          <view class="size" wx:if="{{versions.length>0}}">
+            <view class="size1">版本</view>
+            <view class="size2">
+              <text wx:for="{{versions}}" class="stext {{index===version?'csize':''}}" data-idx="{{index}}" bindtap='btnVersion' wx:key="{{index}}">{{item}}</text>
+            </view>
+          </view>
+
+          <view class="math">
+            <view class="math1">数量</view>
+            <view class="math2">
+              <text bindtap='min' class="{{num<=1?'no-btn':''}}">-</text>
+              <text>{{num}}</text>
+              <text bindtap='add' class="{{num>=sku.Stock?'no-btn':''}}">+</text>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+
+      <button class='affirm' bindtap='affirm'>确认</button>
+    </view>
+  </view>
+  <view class="{{ishuodong?'sizetrue':'sizefalse'}}">
+    <view class="mask" bindtap='closesku'></view>
+    <view class="blackb">
+      <scroll-view scroll-y class="discountscroll">
+        <image src="/imgs/11.png" class="huodongimg" bindtap='hdclose'></image>
+        <view class="huod" wx:if="{{value.ShopPromotionList.length>0||value.CouponList.length>0}}">
+          <view class="hdtop">
+            <view class="hd1">
+              <text class="hd1-text1">活动信息</text>
+              <text class="hd1-text2"></text>
+            </view>
+          </view>
+          <view class="hdlist">
+            <view wx:for="{{value.ShopPromotionList}}" wx:key="{{index}}">
+              <view class="huodong">
+                <view wx:if='{{item.PromotionType==1}}' class="active1">折</view>
+                <view wx:if='{{item.PromotionType==2}}' class="dian">店</view>
+                <view wx:if='{{item.PromotionType==4}}' class="active1">秒</view>
+                <view class='hd-text'>
+                  <view class="active2">{{item.PromotionDescriptionProduct}}</view>
+                  <view class='shop-time'>{{item.TimeRangeDescripiton}}</view>
+                </view>
+              </view>
+            </view>
+            <view wx:for="{{value.CouponList}}" wx:key='{{index}}'>
+              <view class="huodong">
+                <view class="man">满</view>
+                <view class='hd-text'>
+                  <view class="active2">{{item.CouponDescription}}</view>
+                  <view class='shop-time'>{{item.TimeRangeDescripiton}}</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <wxs module="n">
+          var formatTime = function(date) {
+            var d = getDate(date)
+            var data = d.getFullYear() + '.' + (d.getMonth() + 1) + '.' + d.getUTCDate()
+            return data;
+          }
+          module.exports.formatTime = formatTime;
+        </wxs>
+        <view class="discountlistall" wx:if="{{quanData.length>0}}">
+          <view class="discount-title">视霓优惠券</view>
+          <view class="discountlist" wx:for="{{quanData}}" wx:key="{{index}}">
+            <image src="/imgs/discount2.jpg" class="discountlist-img"></image>
+            <view class="discount-price">
+              <text class="discount-price1">￥</text>
+              <text class="discount-price2">{{item.Amount}}</text>
+            </view>
+            <view class="discountmsg">
+              <view class="msg1">{{item.CouponName}}</view>
+              <view class="msg2">{{item.CouponDescription}}</view>
+              <view class="msg3">{{n.formatTime(item.StartDate)}}-{{n.formatTime(item.EndDate)}}</view>
+            </view>
+            <view class="{{item.AlreadyTaken?'bg':'discountget'}}" bindtap='{{item.AlreadyTaken?"":"getyouhui"}}' data-index="{{index}}">{{item.AlreadyTaken?'已领取':'领取'}}</view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  <!-- 快捷导航 -->
+  <navigation></navigation>
+  <!-- 客服 -->
+  <view>
+    <button open-type="contact" bindtap='openXiaoneng' class="cbutton" session-from="weapp">
+      <image src="/imgs/wx01.jpg"></image>
+      <view>客服</view>
+    </button>
+  </view>
+</view>

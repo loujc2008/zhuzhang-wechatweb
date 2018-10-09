@@ -1,0 +1,92 @@
+<view class="top">
+  <image class='bj' src='/imgs/bj.png'></image>
+  <view class='shop-title'>
+    <image binderror='logoError' src="{{baseinfo.ShopLogo?baseinfo.ShopLogo:'/imgs/default.jpg'}}"></image>
+    <view class='shop-info'>
+      <text class="shop-name">{{baseinfo.ShopName}}</text>
+      <view class='shop-info-num'>
+        <view class='shop-info-li'>
+          <text class="shop-num">{{baseinfo.FollowersNum}}</text>
+          <text style='font-size:18rpx'>关注人数</text>
+        </view>
+        <view class='shop-info-li'>
+          <text class="shop-num">{{baseinfo.ViedoTotal}}</text>
+          <text style='font-size:18rpx'>全部视频</text>
+        </view>
+        <view class='shop-info-li'>
+          <text class="shop-num">{{baseinfo.ProductTotal}}</text>
+          <text style='font-size:18rpx'>全部商品</text>
+        </view>
+      </view>
+    </view>
+    <view class="attention-yes" hidden="{{!baseinfo.Concernedshop}}" catchtap='Concern'>
+      <image src='/imgs/gou.png'>
+      </image>已关注</view>
+    <view class="attention" hidden="{{baseinfo.Concernedshop}}" catchtap='Concern'>
+      <text>+</text>
+      <text>关注</text>
+    </view>
+  </view>
+  <swiper class='top-swiper' wx:if='{{baseinfo.ShopPromotionList.length>0||baseinfo.PlatformPromotionList.length>0}}' autoplay='{{isAuto}}' vertical>
+    <swiper-item wx:for='{{baseinfo.ShopPromotionList}}' wx:key='{{index}}' class='shop-swiper'>
+      <view wx:if='{{item.PromotionType==2}}' class='shop-tel purple'>
+        店
+      </view>
+      <view wx:if='{{item.PromotionType==1||item.PromotionType==4}}' class='shop-tel'>{{item.PromotionType==1?'折':"秒"}}</view>
+      <view class='shop-swiper-text'>{{item.PromotionDescriptionShop}}</view>
+    </swiper-item>
+    <swiper-item wx:for='{{baseinfo.PlatformPromotionList}}' wx:key='{{index}}' class='shop-swiper'>
+      <view class='shop-tel yellow'>满</view>
+      <view class='shop-swiper-text'>{{item.CouponDescription}}</view>
+    </swiper-item>
+  </swiper>
+  <navigator hover-class="none" url="/pages/verticallive/verticallive?Id={{baseinfo.ShopLiveRoom.Id}}">
+    <view class='liveing' wx:if="{{baseinfo.ShopLiveRoom&&baseinfo.ShopLiveRoom.LiveRoomStatusString!='已结束'}}">
+      <image src='{{baseinfo.ShopLiveRoom.LiveRoomLogoFullPath}}'></image>
+      <view class='live-title'>
+        <image src='/imgs/dpbj.png'></image>
+        <text>{{baseinfo.ShopLiveRoom.LiveRoomTitle}}</text>
+        <view>{{baseinfo.ShopLiveRoom.LiveRoomStatusString}}</view>
+      </view>
+    </view>
+  </navigator>
+  <view class="choice">
+    <view class="{{choice=='video'?'on':''}}" data-choice="video" bindtap='btnChoice'>店铺视频</view>
+    <view class="{{choice=='goods'?'on':''}}" data-choice="goods" bindtap='btnChoice'>店铺商品</view>
+  </view>
+</view>
+
+<wxs module="m">
+  var formatTime = function(date) {
+    var d = getDate(date);
+    var data = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
+    return data;
+  }
+  module.exports.formatTime = formatTime;
+</wxs>
+
+<view hidden="{{choice!='video'}}" class='video-list'>
+  <view bindtap='openVideo' data-idx='{{index}}' wx:for="{{videos}}" wx:key="{{index}}" class="li" url='../classify/inside/video/video?storeid={{item.Id}}&title={{item.Name}}'>
+    <view class='video-img'>
+      <image class='cover' src='{{item.Img}}' mode="center"></image>
+      <view class='mask'>
+      </view>
+      <view wx:if="{{item.TagName}}" class='tag-name'>
+        #{{item.TagName}}#
+      </view>
+      <view class='cover-length'>
+        {{item.DurationDisplay}}
+      </view>
+    </view>
+    <view class="li-info">
+      <text class="li-name">{{item.Name}}</text>
+      <view>
+        <image src='/imgs/video_zan.png'></image> {{item.PraiseCount}}
+        <image src='/imgs/000.png'></image> {{item.PlayCount}}
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<product-list hidden="{{choice!='goods'}}" product-list='{{products}}' page-type='1'></product-list>

@@ -1,0 +1,112 @@
+page {
+  background: #f4f8f9;
+}
+
+.h-fl {
+  width: 100%;
+  padding: 0 13rpx;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.h-scroll {
+  width: 100%;
+}
+
+.dis {
+  padding-top: 10rpx;
+  padding-left: 10rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 463rpx;
+  width: 100%;
+}
+
+.h-nrall {
+  text-align: center;
+  margin-right: 7rpx;
+  margin-top: 30rpx;
+}
+
+.h-img {
+  /* background: red; */
+  width: 136rpx;
+  height: 136rpx;
+}
+
+.h-text {
+  font-size: 24rpx;
+}
+
+.b-fl {
+  width: 100%;
+}
+.b-all{
+  padding-left: 30rpx;
+  box-sizing: border-box;
+  background: #fff;
+  margin-top: 20rpx;
+  width: 100%;
+}
+.b-tltle {
+  width: 689rpx;
+  box-sizing: border-box;
+  padding: 40rpx 0 30rpx 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.b-tltle1 {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.b-tltlemore {
+  font-size: 20rpx;
+  color: #999;
+}
+.b-tltlemore navigator{
+   display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height:50rpx;
+  width:200rpx;
+}
+.b-tltlemore image {
+  width: 10rpx;
+  height: 17rpx;
+  margin-left: 10rpx;
+}
+
+.b-scroll {
+  width: 100%;
+  height: 200rpx;
+}
+
+.b-dis {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 200rpx;
+  width: 100%;
+}
+
+.b-nrall {
+  width: 400rpx;
+  height: 180rpx;
+}
+
+.b-nrall image {
+  width: 100%;
+  height: 100%;
+}
+
+.ify {
+  width: 400rpx;
+  height: 180rpx;
+  margin-right:20rpx;
+
+}

@@ -1,0 +1,73 @@
+/* pages/order/orderdetail/orderdetail.wxss */
+
+page{
+  background: #f6f7f9;
+}
+
+.logistics{
+  margin: 20px 0;
+  padding:0 30rpx 30rpx;
+  background: #fff;
+}
+
+.steps{
+  position: relative;
+  padding:30rpx 0 30rpx 65rpx;
+  /*
+  border-bottom:1px solid #f3f3f5;*/
+}
+
+.steps::before{
+  position: absolute;
+  top:0;
+  left:18rpx;
+  display:block;
+  content:"";
+  width:2rpx;
+  height:100%;
+  background: #e7e8ec;
+}
+
+.steps::after{
+  position: absolute;
+  bottom:0;
+  left:65rpx;
+  display:block;
+  content:"";
+  width:88%;
+  height:2rpx;
+  background: #e7e8ec;
+}
+
+.steps:last-child{
+  border-bottom:0;
+}
+
+.step-icon{
+  position: absolute;
+  top:40rpx;
+  left:10rpx;
+  width:16rpx;
+  height:16rpx;
+  padding: 6rpx 4rpx 5rpx;
+  border-radius: 50%;
+  background: #d2d2d2;
+  text-align: center;
+}
+
+.step-icon image{
+  width:8rpx;
+  height:5rpx;
+  display: block;
+}
+
+.steps ._t1{
+ margin-bottom:15rpx;
+ line-height: 40rpx;
+}
+
+.steps ._t2{
+  font-size:24rpx;
+  color:#898989;
+}
+

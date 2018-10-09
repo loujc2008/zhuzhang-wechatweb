@@ -1,0 +1,110 @@
+<wxs module="m">
+  var formatTime = function(date) {
+    var d = getDate(date)
+    var data = d.getFullYear() + '.' + (d.getMonth() + 1) + '.' + d.getUTCDate()
+    return data;
+  }
+  module.exports.formatTime = formatTime;
+</wxs>
+<include src="/pages/discounttan/discounttan.wxml" wx:if="{{istan}}" />
+<view class="swiper-tab">
+  <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">未使用</view>
+  <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">已使用</view>
+  <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">已过期</view>
+</view>
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" bindchange="bindChange">
+  <wxs module="m">
+    var formatTime = function(date) {
+      var d = getDate(date);
+      var data = d.getFullYear() + '.' + (d.getMonth() + 1) + '.' + d.getUTCDate()
+      return data;
+    }
+    module.exports.formatTime = formatTime;
+  </wxs>
+  <swiper-item class="{{unused.length>0?'swiper-item':''}}">
+  <image src="/imgs/coupon.png" wx:if="{{unused.length<=0}}" class="kongimg"></image>
+     <scroll-view scroll-y style="height:100%;" wx:else >
+      <view class="unused" wx:for="{{unused}}" wx:key="{{index}}">
+        <view class="blank">
+          <image src="/imgs/quanxin.png" class="blankimg"></image>
+          <image src="/imgs/status.png" class="blankimg2"></image>
+          <view class="blanktxt">
+            <view class="blanktxt-1">
+              <view class="blanktxt-1-price">
+                <text class="one">￥</text>
+                <text class="two">{{item.Amount}}</text>
+              </view>
+              <view class="blanktxt-2">
+                <view class="blanktxt-2-type">{{item.CouponName}}</view>
+                <view class="blanktxt-2-count" wx:if="{{item.Limitation==0}}">无限制</view>
+                <view class="blanktxt-2-count" wx:else>满{{item.Limitation}}减{{item.Amount}}</view>
+              </view>
+            </view>
+            <view class="blanktxt-3">
+              <view class="blanktxt-3-usedate">优惠券使用日期</view>
+              <view class="blanktxt-3-date">{{m.formatTime(item.StartDate)}}-{{m.formatTime(item.EndDate)}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view> 
+  </swiper-item>
+  <!-- --------------------------------------------------已使用华丽分割线------------------------------------------------  -->
+  <swiper-item class="{{used.length>0?'swiper-item':''}}">
+  <image src="/imgs/coupon.png" wx:if="{{used.length<=0}}" class="kongimg"></image>
+    <scroll-view scroll-y style="height:100%;" wx:else>
+      <view class="unused" wx:for="{{used}}" wx:key="{{index}}">
+        <view class="blank">
+          <image src="/imgs/quanxin.png" class="blankimg"></image>
+          <image src="/imgs/status2.png" class="blankimg2"></image>
+          <view class="blanktxt">
+            <view class="blanktxt-1">
+              <view class="blanktxt-1-priceuse">
+                <text class="one">￥</text>
+                <text class="two">{{item.Amount}}</text>
+              </view>
+              <view class="blanktxt-2">
+                <view class="blanktxt-2-typeuse">{{item.CouponName}}</view>
+                <view class="blanktxt-2-countuse" wx:if="{{item.Limitation==0}}">无限制</view>
+                <view class="blanktxt-2-countuse" wx:else>满{{item.Limitation}}减{{item.Amount}}</view>
+              </view>
+            </view>
+            <view class="blanktxt-3">
+              <view class="blanktxt-3-usedate">优惠券使用日期</view>
+              <view class="blanktxt-3-date">{{m.formatTime(item.StartDate)}}-{{m.formatTime(item.EndDate)}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <!-- --------------------------------------------------已过期华丽分割线------------------------------------------------  -->
+  <swiper-item class="{{past.length>0?'swiper-item':''}}">
+  <image src="/imgs/coupon.png" wx:if="{{past.length<=0}}" class="kongimg"></image>
+    <scroll-view scroll-y style="height:100%;" wx:else>
+      <view class="unused" wx:for="{{past}}" wx:key="{{index}}">
+        <view class="blank">
+          <image src="/imgs/quanxin.png" class="blankimg"></image>
+          <image src="/imgs/status1.png" class="blankimg2"></image>
+          <view class="blanktxt">
+            <view class="blanktxt-1">
+              <view class="blanktxt-1-priceuse">
+                <text class="one">￥</text>
+                <text class="two">{{item.Amount}}</text>
+              </view>
+              <view class="blanktxt-2">
+                <view class="blanktxt-2-typeuse">{{item.CouponName}}</view>
+                <view class="blanktxt-2-countuse" wx:if="{{item.Limitation==0}}">无限制</view>
+                <view class="blanktxt-2-countuse" wx:else>满{{item.Limitation}}减{{item.Amount}}</view>
+              </view>
+            </view>
+            <view class="blanktxt-3">
+              <view class="blanktxt-3-usedate">优惠券使用日期</view>
+              <view class="blanktxt-3-date">{{m.formatTime(item.StartDate)}}-{{m.formatTime(item.EndDate)}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+</swiper>

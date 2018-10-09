@@ -1,0 +1,26 @@
+<view class='main-title pdlr'>
+  <text class='h1'>下一步</text>
+  <text class='h2'>我们将发送验证码到您填写的手机</text>
+</view>
+
+<view class='registe-form pdlr'>
+  <view class="input-wrap">
+    <text class='input-label'>手机号：</text>
+    <input type="text" placeholder='输入你的手机号' placeholder-class='placeholders' bindinput='phone' />
+  </view>
+
+  <view class="input-wrap code-input">
+    <text class='input-label'>验证码：</text>
+    <input type="text" placeholder='输入验证码' placeholder-class='placeholders' bindinput='verification' />
+    <button class='get-verification-code' bindtap='acquire'wx:if="{{vic}}">获取验证码</button>
+     <button class='get-verification-code' wx:else>{{countdown}}s后重发</button>
+  </view>
+
+  <view class="input-wrap">
+    <text class='input-label'>密码：</text>
+    <input password placeholder='输入登录密码' placeholder-class='placeholders' bindinput='pwd' />
+  </view>
+
+  <button class="full-btn gradual-bg nobor" disabled='true' bindtap='binding' wx:if="{{phone==''||pwd==''||verification==''}}">确定</button>
+  <button class="full-btn gradual-bg changenobor" bindtap='binding' wx:else>确定</button>
+</view>

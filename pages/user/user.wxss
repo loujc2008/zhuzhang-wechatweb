@@ -1,0 +1,162 @@
+
+page {
+  background: #f3f3f3;
+  padding-bottom: 86rpx;
+}
+
+.login {
+  width: 100%;
+  height: 355rpx;
+  position: relative;
+  margin-bottom: 30rpx;
+}
+
+.bg {
+  height: 355rpx;
+  width: 100%;
+  z-index: 1;
+}
+
+.lg {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 355rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.head {
+  height: 148rpx;
+  width: 151rpx;
+  line-height: 148rpx;
+  border-radius: 50%;
+  margin-top: 100rpx;
+  color: #fff;
+  z-index: 10;
+}
+
+.loginmessage {
+  font-weight: bold;
+  z-index: 10;
+  width: 500rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.ordertext {
+  background: #fff;
+}
+
+.ordertext navigator {
+  width: 690rpx;
+  height: 110rpx;
+  margin-left: 30rpx;
+  line-height: 110rpx;
+  display: flex;
+  justify-content: space-between;
+  font-size: 34rpx;
+  border-bottom: 3rpx solid #e7e7e7;
+}
+
+.ordertext navigator image {
+  width: 13rpx;
+  height: 22rpx;
+  padding-left: 15rpx;
+}
+
+.ordertext2 {
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.ordertext1 {
+  font-size: 28rpx;
+  color: #9b9a9a;
+}
+
+.orderdatail {
+  background: #fff;
+  height: 166rpx;
+  padding: 0 50rpx;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30rpx;
+  font-size: 25rpx;
+}
+
+.orderdatail navigator{
+  position: relative;
+}
+
+.orderdatail image {
+  height: 52rpx;
+  width: 52rpx;
+  margin-top: 45rpx;
+  margin-left: 16rpx;
+}
+
+.num {
+  height: 30rpx;
+  width: 30rpx;
+  border-radius: 50%;
+  background-color: red;
+  color: #fff;
+  position: absolute;
+  top: 35rpx;
+  right: -5rpx;
+  text-align: center;
+  font-size: 20rpx;
+}
+
+.setou {
+  background: #fff;
+}
+
+.setou text {
+  font-size: 30rpx;
+  /* font-weight: bold; */
+}
+
+.myfavorite-first {
+  border-bottom: 2rpx solid #e7e7e7;
+  height: 110rpx;
+  width: 690rpx;
+  line-height: 110rpx;
+  margin-left: 30rpx;
+}
+
+.myfavorite-first navigator image {
+  margin-left: 580rpx;
+}
+
+.myfavorite {
+  border-bottom: 2rpx solid #e7e7e7;
+  height: 110rpx;
+  width: 690rpx;
+  line-height: 110rpx;
+  margin-left: 30rpx;
+}
+
+.myfavoritecssimage2 {
+  width: 13rpx;
+  height: 22rpx;
+  margin-left: 550rpx;
+}
+
+.myfavorite-end {
+  border: none;
+  height: 110rpx;
+  width: 690rpx;
+  line-height: 110rpx;
+  margin-left: 30rpx;
+}
+
+.scroll-user {
+  height: 390rpx;
+}

@@ -1,0 +1,32 @@
+/**app.wxss**/
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}
+
+.kong {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: #fff;
+  color: #a3a7ac;
+  font-size: 28rpx;
+}
+
+.kong image {
+  margin-top: -217px;
+  width: 318rpx;
+  height: 256rpx;
+}
+
+.kong view {
+  margin-top: 74rpx;
+}

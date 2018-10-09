@@ -1,0 +1,35 @@
+<view class="h-fl">
+  <scroll-view class="h-scroll" scroll-x>
+    <view class="dis">
+      <view class="h-nrall" wx:for="{{productdata}}" wx:key="{{index}}">
+        <navigator url="./commodity/commodity?id={{item.Id}}&title={{item.Name}}" hover-class="none">
+          <image src="{{item.Icon?item.Icon:'/imgs/fang.jpg'}}" class="h-img"></image>
+          <view class="h-text">{{item.Name}}</view>
+        </navigator>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+
+<view class="b-fl">
+  <view class="b-all" wx:for="{{ifydata}}" wx:key="{{index}}">
+    <view class="b-tltle">
+      <view class="b-tltle1">{{item.name}}</view>
+      <view class="b-tltlemore">
+        <navigator url="/pages/classify/more/more?tittle={{item.name}}&id={{item.id}}" hover-class="none">
+          <text>查看更多</text>
+          <image src="/imgs/you.png"></image>
+        </navigator>
+      </view>
+    </view>
+    <scroll-view class="b-scroll" scroll-x>
+      <view class="b-dis">
+        <navigator class="ify" wx:for="{{item.subList}}" wx:key="{{index}}" wx:for-item="items" url="/pages/classify/inside/inside?tittle={{items.name}}&id1={{item.id}}&id2={{items.id}}" hover-class="none">
+          <view class="b-nrall">
+             <image src="{{items.ImageUrlFull?items.ImageUrlFull:'/imgs/chang.jpg'}}" mode="aspectFill"></image> 
+          </view>
+        </navigator>
+      </view>
+    </scroll-view>
+  </view>
+</view>

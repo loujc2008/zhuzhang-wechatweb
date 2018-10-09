@@ -1,0 +1,111 @@
+<import src="../template/template.wxml" />
+<include src="/pages/minmoney/minmoney.wxml" />
+<!--收货地址-->
+<view class='address-wrap pdlr'>
+  <!--已有地址-->
+  <view class='address' hidden='{{!isAddress}}' bindtap='chooseAddress'>
+    <view class='address-icon'>
+      <image src='imgs/address_location.png'></image>
+    </view>
+    <view class='address-detail'>
+      <text class='contacts'>{{choosedAddressInfo.userName}} {{choosedAddressInfo.telNumber}}</text>
+      <text class='address-details'>收货地址：{{choosedAddressInfo.detailInfo}}</text>
+    </view>
+    <view class='arrow2r'>
+      <image src='imgs/arrow2r.png'></image>
+    </view>
+  </view>
+
+  <!--还没有添加任何地址时-->
+  <view class='no-address-yet' hidden='{{isAddress}}' bindtap='chooseAddress'>
+    <view class='add-address-btn' type='default'>
+      <image src='imgs/confirm_address_icon.png'></image>
+    </view>
+    <text class='no-daddress-tips color9'>您还没有收货地址，点击这里添加</text>
+  </view>
+
+  <!--背景虚线-->
+  <view class='address-bg'>
+    <image src='imgs/confirm_address_line.png'></image>
+  </view>
+</view>
+
+<block wx:for="{{Products}}" wx:key="{{index}}">
+  <!--店铺 start -->
+  <view class='cart-goods-wrap'>
+    <!--商家信息-->
+    <view class='shop-name pdlr'>
+      <text>{{item.ShopName}}</text>
+      <button open-type="contact" class="cbutton" session-from="weapp" bindtap='openXiaoneng'>
+        <image src="/imgs/wx1.png"></image>
+        <view>联系商家</view>
+      </button>
+    </view>
+    <template is="order" data="{{f_idx:index,list:item.CartViewModelList}}" />
+    <!-- 店铺商品 + 运费 + 合计 start-->
+    <view class='shop-amount'>
+      <view class='consumer-msg flex'>
+        <text>买家留言：</text>
+        <input class='msg-input' bindblur='inputMsg' data-idx="{{index}}" type='text' placeholder='有什么想对商家说的可以在这里写哦' placeholder-class='placeholders'></input>
+      </view>
+      <view class='shop-freight'>快递运费：
+        <text class='color9'>
+          <block wx:if="{{item.Freight===undefined}}">请填写地址 </block>
+          <block wx:else>{{item.Freight<=0?'商家包邮':item.Freight}}</block>
+        </text>
+      </view>
+      <view class='shop-freight' wx:if='{{item.discountMoney>0||item.reductionAmount>0||item.miaoshaMoney>0}}'>
+        <block wx:if='{{item.discountMoney>0}}'>折扣金额：</block>
+        <block wx:if='{{item.reductionAmount>0}}'>满减金额：</block>
+        <block wx:if='{{item.miaoshaMoney>0}}'>优惠金额：</block>
+        <text class='color9'>
+        <block wx:if='{{item.discountMoney>0}}'>{{m.toFixed(item.discountMoney)}}</block>
+        <block wx:if='{{item.reductionAmount>0}}'>{{m.toFixed(item.reductionAmount)}}</block>
+        <block wx:if='{{item.miaoshaMoney>0}}'>{{m.toFixed(item.miaoshaMoney)}}</block>
+        </text>
+      </view>
+      <view class='shop-total flex'>店铺合计：
+        <view class='color9'>共{{item.CartViewModelList.length}}件商品
+          <text class='colred'> ¥ {{m.toFixed(item.total+item.Freight)}}</text>
+        </view>
+      </view>
+    </view>
+    <!-- 店铺商品 + 运费 + 合计 end-->
+  </view>
+  <!--店铺 end -->
+</block>
+
+<block wx:if="{{fororder.length>0}}">
+  <view bindtap='openFororder' class='shop-total fororder flex'>平台优惠
+    <text><block wx:if='{{sIdx!=-1&&fororder[sIdx].Limitation>0}}'>满{{fororder[sIdx].Limitation}}减{{fororder[sIdx].Amount}}</block><block wx:if='{{sIdx!=-1&&fororder[sIdx].Limitation==0}}'>无金额限制{{fororder[sIdx].Amount}}元券</block></text>
+    <view class='color9'>
+      <text class='colred'><block wx:if='{{sIdx==-1}}'>无可使用的优惠券</block><block wx:else>- {{fororder[sIdx].Amount}}</block></text>
+      <text class='open-for'>></text>
+    </view>
+  </view>
+</block>
+<wxs module="m">
+  var toFixed = function(date) {
+    var num = date.toFixed(2);
+    if (date.toFixed(2) < 0) {
+      num = 0;
+    }
+    return num
+  }
+  module.exports.toFixed = toFixed;
+</wxs>
+<wxs module="n">
+  var formatTime = function(date) {
+    console.log('88888888888888')
+    var d = getDate(date)
+    var data = d.getFullYear() + '.' + (d.getMonth() + 1) + '.' + d.getUTCDate()
+    return data;
+  }
+  module.exports.formatTime = formatTime;
+</wxs>
+<!-- 确认订单页面 底部 -->
+<view class='confirm-btm pdlr' style='padding-right:0;'>
+  <text class='order-amount'>总价：</text>
+  <text class='order-amount _price'>¥ {{m.toFixed(sIdx==-1?totalAmount:totalAmount-fororder[sIdx].Amount)}}</text>
+  <button class='confirm-btn gradual-bg' type='default' bindtap='{{status==1?"submitOrderByCart":"insertAddress"}}'>提交订单</button>
+</view>

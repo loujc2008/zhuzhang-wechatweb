@@ -1,0 +1,26 @@
+<view class="t-tanmask">
+</view>
+<view class="t-tanall">
+  <image src="/imgs/bg1.png" class="t-bg1"></image>
+  <image src="/imgs/bottom.png" class="t-tanimg4" bindtap='closetan'></image>
+  <!-- --------------------------------------------------优惠券内容----------------------------------------------------- -->
+  <view class="t-tancontent">
+    <scroll-view scroll-y class="t-tanscroll">
+      <view class="t-unused" wx:for="{{discount}}" wx:key="{{index}}">
+        <view class="t-blank">
+          <image src="/imgs/discount3.png" class="t-blankimg"></image>
+              <view class="t-blanktxt-2">
+                <view class="t-blanktxt-2-type">{{item.CouponName}}</view>
+                <view class="t-blanktxt-2-count">满{{item.Limitation}}减{{item.Amount}}</view>
+                <view class="t-blanktxt-3-date">{{m.formatTime(item.StartDate)}}-{{m.formatTime(item.EndDate)}}</view>
+              </view>
+              <view class="t-blanktxt-1-price">
+                <text class="t-one">￥</text>
+                <text class="t-two">{{item.Amount}}</text>
+              </view>
+        </view>
+      </view>
+    </scroll-view>
+    <view class="t-clickget" bindtap='clickget'>点击领取</view>
+  </view>
+</view>

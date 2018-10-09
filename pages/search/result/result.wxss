@@ -1,0 +1,245 @@
+page {
+  padding-top: 96px;
+}
+
+.search {
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: #fff;
+  z-index: 111;
+  width: 690rpx;
+  padding: 10px 30rpx;
+  display: flex;
+  align-items: center;
+}
+
+.search >image {
+  position: absolute;
+  left: 50rpx;
+  top: 19px;
+  z-index: 199;
+  width: 12px;
+  height: 12px;
+}
+
+.search input {
+  border-radius: 5rpx;
+  height: 30px;
+  line-height: 30px;
+  background-color: #f6f6f6;
+  padding-left: 60rpx;
+  flex: 1;
+  font-size: 24rpx;
+  font-weight: 100;
+}
+
+.search view {
+  margin-left: 30rpx;
+  font-size: 26rpx;
+}
+
+.search-placeholder {
+  font-size: 24rpx;
+  font-weight: 100;
+  color: #878787;
+  line-height: 60rpx;
+}
+
+.result-title {
+  display: flex;
+  position: fixed;
+  width: 690rpx;
+  padding: 0 30rpx;
+  left: 0;
+  top: 50px;
+  z-index: 100;
+  background-color: #fff;
+}
+
+.result-mask {
+  position: fixed;
+  left: 0;
+  top: 86px;
+  z-index: 100;
+  height: 10px;
+  width: 100%;
+  background-color: #fff;
+}
+
+.mask {
+  height: 10px;
+  width: 100%;
+  background-image: linear-gradient(to top, rgba(255, 255, 255, 0.03), rgba(0, 0, 0, 0.03));
+}
+
+.on {
+  border-bottom: 6rpx solid #f00 !important;
+}
+
+.result-title view {
+  margin: 0 auto;
+  width: 82rpx;
+  height: 36px;
+  line-height: 36px;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 26rpx;
+}
+
+/*视频列表 start */
+
+.babydis {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.baby {
+  margin-bottom: 41rpx;
+}
+
+.baby image {
+  width: 372rpx;
+  height: 215rpx;
+}
+
+.babyname {
+  width: 340rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 28rpx;
+  padding-left: 23rpx;
+}
+
+.buy {
+  font-size: 24rpx;
+  color: #9b9b9b;
+  padding-left: 23rpx;
+}
+
+/*视频列表 end  */
+
+/*店铺列表 start  */
+
+.shop-title {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 22rpx;
+  color: #a5a6ae;
+  padding-left: 30rpx;
+  z-index: 100;
+}
+
+.shop-title >image {
+  width: 96rpx;
+  height: 96rpx;
+  margin-right: 30rpx;
+}
+
+.shop-content {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  border-bottom: 2rpx solid #f3f3f3;
+  padding: 30rpx 30rpx 30rpx 0;
+  height: 90rpx;
+}
+
+.shop-content>image {
+  width: 15rpx;
+  height: 27rpx;
+  opacity: 0.7;
+}
+
+.shop-info {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  flex: 1;
+  width: 310rpx;
+  height: 90rpx;
+}
+
+.shop-info-num {
+  display: flex;
+}
+
+.shop-info-num text {
+  font-size: 24rpx;
+  color: #a3a3a3;
+  margin-right: 10rpx;
+  padding-right: 10rpx;
+}
+
+.shop-name {
+  font-weight: 900;
+  font-size: 26rpx;
+  color: #000;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.shop-num {
+  font-weight: bold;
+  font-size: 28rpx;
+  color: #000;
+  text-align: center;
+}
+
+.attention {
+  font-size: 22rpx;
+  color: #f683a2;
+  width: 155rpx;
+  height: 55rpx;
+  border: 1px solid #f683a2;
+  border-radius: 50rpx;
+  text-align: center;
+  line-height: 55rpx;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+}
+
+/*店铺列表 end  */
+
+.default {
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  position: fixed;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 26rpx;
+  color: #878787;
+}
+
+.default image {
+  width: 305rpx;
+  height: 195rpx;
+  margin-bottom: 50rpx;
+  margin-left: 18rpx;
+}
+
+.default text {
+  margin-bottom: 76rpx;
+}
+
+.no-more {
+  display: flex;
+  justify-content: center;
+  font-size: 26rpx;
+  color: #666;
+  margin-top: 10rpx;
+  padding: 20rpx;
+}

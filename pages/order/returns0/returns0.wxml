@@ -1,0 +1,196 @@
+<view class='logistics'>
+
+  <view class='steps _end'>
+    <text class='_t1 _block'>申请已经提交，请等待商家审核</text>
+    <text class='_t2 _block'>商家将在48小时内审核，未处理的申请将自动通过</text>
+    <icon class='step-icon'>
+      <image class='' src='./imgs/home.png'></image>
+    </icon>
+  </view>
+
+  <!--买家取消退款  -->
+  <block wx:if="{{SellerAuditStatus==0}}">
+    <view class='steps'>
+      <text class='_t1 _block'>买家取消了退货/退款</text>
+      <text class='_t2 _block'>申请已关闭</text>
+      <icon class='step-icon'>
+        <image class='' src='./imgs/arrow_up.png'></image>
+      </icon>
+    </view>
+  </block>
+
+  <!-- <view class='steps _start' wx:if="{{m.formatTime(detail.FinishDate,detail.SalesReturnTimeout)}}">
+      <button class='obtn' bindtap='resubmit'>重新提交申请</button>
+      <icon class='step-icon'>
+        <image class='' src='./imgs/icon1.png'></image>
+      </icon>
+    </view> -->
+
+  <!--买家申请退款失败 -->
+  <block wx:if="{{SellerAuditStatus==4}}">
+    <view class='steps _reject'>
+      <text class='_t1 _block'>商家拒绝了退款</text>
+      <text class='_t2 _block'>{{detail.SellerRemark}}</text>
+      <icon class='step-icon'>
+        <image class='' src='./imgs/arrow_up.png'></image>
+      </icon>
+    </view>
+    <!-- <view class='steps _start'>
+      <button class='obtn' bindtap='arbitration'>申请仲裁</button>
+      <icon class='step-icon'>
+        <image class='' src='./imgs/icon1.png'></image>
+      </icon>
+    </view> -->
+    <!-- <view class='steps _start' wx:if="{{m.formatTime(detail.FinishDate,detail.SalesReturnTimeout)}}">
+      <button class='obtn' bindtap='resubmit'>重新提交申请</button>
+      <icon class='step-icon'>
+        <image class='' src='./imgs/icon1.png'></image>
+      </icon>
+    </view> -->
+  </block>
+
+  <!--买家申请退货退款成功  -->
+  <block wx:if="{{SellerAuditStatus==2&&detail.RefundMode==3}}">
+    <view class='steps _lightup _reject'>
+      <text class='_t1 _block'>申请已经通过，请退货</text>
+      <text class='_t2 _block'>请点击填写退货信息</text>
+      <icon class='step-icon'>
+        <image class='' src='./imgs/arrow_up.png'></image>
+      </icon>
+    </view>
+    <view class='steps _start'>
+      <button class='obtn' bindtap='openLogistics'>填写物流信息</button>
+      <icon class='step-icon'>
+        <image class='' src='./imgs/icon1.png'></image>
+      </icon>
+    </view>
+  </block>
+
+  <!--买家申请退货退款成功  -->
+  <block wx:if="{{SellerAuditStatus==3&&detail.RefundMode==3}}">
+    <view class='steps _start _reject'>
+      <text class='_t1 _block'>您已退货，请等待商家确认收货。</text>
+      <text class='_t2 _block'>物流公司：{{detail.ExpressCompanyName}}</text>
+      <text class='_t2 _block'>物流单号：{{detail.ShipOrderNumber}}</text>
+      <icon class='step-icon'>
+        <image class='' src='./imgs/arrow_up.png'></image>
+      </icon>
+    </view>
+  </block>
+
+  <!--买家申请退款成功  -->
+  <block wx:if="{{SellerAuditStatus==5}}">
+    <!-- &&detail.ManagerConfirmStatus!=7 -->
+    <block wx:if="{{detail.IsReceiveGoods==1}}">
+      <view class='steps _start _reject'>
+        <text class='_t1 _block'>申请已通过，请等待商家退款。</text>
+        <icon class='step-icon'>
+          <image class='' src='./imgs/arrow_up.png'></image>
+        </icon>
+      </view>
+    </block>
+    <block wx:elif="{{detail.IsReceiveGoods==2}}">
+      <view class='steps _start _reject'>
+        <text class='_t1 _block'>商家未收到货，请等待平台确认。</text>
+        <icon class='step-icon'>
+          <image class='' src='./imgs/arrow_up.png'></image>
+        </icon>
+      </view>
+    </block>
+    <block wx:else>
+      <view class='steps _start _reject'>
+        <text class='_t1 _block'>申请已通过，请等待商家退款。</text>
+        <icon class='step-icon'>
+          <image class='' src='./imgs/arrow_up.png'></image>
+        </icon>
+      </view>
+    </block>
+  </block>
+
+  <!--退款关闭  -->
+  <block wx:if="{{SellerAuditStatus==8}}">
+    <view class='steps _lightup _reject'>
+      <text class='_t1 _block'>退款已关闭。</text>
+      <icon class='step-icon'>
+        <image class='' src='./imgs/arrow_up.png'></image>
+      </icon>
+    </view>
+  </block>
+
+  <!--退款成功  -->
+  <block wx:if="{{SellerAuditStatus==5&&detail.ManagerConfirmStatus==7}}">
+    <!-- <view class='steps _lightup'>
+      <text class='_t1 _block'>申请已经通过</text>
+      <text class='_t2 _block'>请耐心等待退款，预计2-3个工作日</text>
+      <icon class='step-icon'>
+        <image class='' src='./imgs/arrow_up.png'></image>
+      </icon>
+    </view> -->
+    <view class='steps _start _reject'>
+      <text class='_t1 _block'>退款成功</text>
+      <text class='_t2 _block'>感谢您的合作</text>
+      <icon class='step-icon'>
+        <image class='' src='./imgs/arrow_up.png'></image>
+      </icon>
+    </view>
+  </block>
+
+
+  <!-- 买家未做操作 -->
+  <view wx:if="{{SellerAuditStatus==1}}" class='steps _start'>
+    <button class='obtn' bindtap='cancel'>取消退款申请</button>
+    <icon class='step-icon'>
+      <image class='' src='./imgs/icon1.png'></image>
+    </icon>
+  </view>
+
+  <!--重新提交  -->
+  <block wx:if="{{detail.OrderStatus==5}}">
+    <view class='steps _start' wx:if="{{RefundAuditStatus==4&&m.formatTime(detail.FinishDate,detail.SalesReturnTimeout)}}">
+      <button class='obtn' bindtap='resubmit'>重新提交申请</button>
+      <icon class='step-icon'>
+        <image class='' src='./imgs/icon1.png'></image>
+      </icon>
+    </view>
+    <view class='steps _start' wx:if="{{RefundAuditStatus==8&&(detail.RefundCloseReason==0||detail.RefundCloseReason==1)&&m.formatTime(detail.FinishDate,detail.SalesReturnTimeout)}}">
+      <button class='obtn' bindtap='resubmit'>重新提交申请</button>
+      <icon class='step-icon'>
+        <image class='' src='./imgs/icon1.png'></image>
+      </icon>
+    </view>
+  </block>
+  <block wx:else>
+    <view class='steps _start' wx:if="{{RefundAuditStatus==4}}">
+      <button class='obtn' bindtap='resubmit'>重新提交申请</button>
+      <icon class='step-icon'>
+        <image class='' src='./imgs/icon1.png'></image>
+      </icon>
+    </view>
+    <view class='steps _start' wx:if="{{RefundAuditStatus==8&&(detail.RefundCloseReason==3||detail.RefundCloseReason==1)}}">
+      <button class='obtn' bindtap='resubmit'>重新提交申请</button>
+      <icon class='step-icon'>
+        <image class='' src='./imgs/icon1.png'></image>
+      </icon>
+    </view>
+  </block>
+
+
+
+  <wxs module="m">
+    var formatTime = function(date, num) {
+      if (!date) {
+        return;
+      }
+      var newD = Date.parse(getDate()) / 1000,
+        oldD = Date.parse(getDate(date)) / 1000,
+        numD = num * 24 * 60 * 60;
+      if (newD - oldD > numD) {
+        return;
+      } else {
+        return true;
+      }
+    }
+    module.exports.formatTime = formatTime;
+  </wxs>
+
+</view>

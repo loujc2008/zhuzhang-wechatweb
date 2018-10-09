@@ -1,0 +1,115 @@
+/* pages/order/apply/apply.wxss */
+
+page {
+  width: 100%;
+  font-size: 26rpx;
+  color: #010101;
+  background: #f6f7f9;
+  margin-top: 30rpx;
+}
+
+view, button, image, icon {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box; /* Firefox */
+  -webkit-box-sizing: border-box; /* Safari */
+}
+
+.color9 {
+  color: #999;
+}
+
+.colred {
+  float: right;
+  font-weight: bold;
+  color: #ff2121;
+}
+
+button {
+  padding-left: 0;
+  padding-right: 0;
+  background-color: none;
+  color: #fff;
+  border: 0;
+  border-radius: 0;
+  text-align: center;
+}
+
+image {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+button::after {
+  border: 0;
+}
+
+.gradual-bg {
+  background: linear-gradient(to right, #fa6e84, #ff4e93);
+}
+
+.placeholders {
+  color: #dcdcdc;
+}
+
+.full-btn {
+  display: block;
+  width: 100%;
+  margin-top: 32rpx;
+  color: #fff;
+}
+
+.input-wrap {
+  position: relative;
+  width: 100%;
+  display: block;
+  background: #fff;
+  padding: 22rpx 30rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  border-bottom: 1px solid #ededed;
+}
+
+.input-wrap:last-child {
+  border-bottom: 0;
+}
+
+.input-wrap input {
+  display: block;
+  padding-left: 160rpx;
+}
+
+.input-label {
+  position: absolute;
+  top: 0;
+  left: 30rpx;
+  width: 150rpx;
+  display: inline-block;
+  color: #000;
+  font-weight: bold;
+}
+
+.full-btn {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 108rpx;
+  line-height: 108rpx;
+}
+
+.tips {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 30rpx;
+  font-weight: bold;
+}
+
+picker {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  font-weight: bold;
+  right: 30rpx;
+}

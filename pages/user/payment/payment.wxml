@@ -1,0 +1,328 @@
+<!--pages/user/payment/payment.wxml-->
+
+<view class="swiper-tab">
+  <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">
+    全部</view>
+  <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">待付款
+    <view class='num' wx:if='{{info.WaitingForPay>0}}'>{{info.WaitingForPay}}</view>
+  </view>
+  <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">待发货
+    <view class='num' wx:if='{{info.WaitDelivery>0}}'>{{info.WaitDelivery}}</view>
+  </view>
+  <view class="swiper-tab-list {{currentTab==3 ? 'on' : ''}}" data-current="3" bindtap="swichNav">待收货
+    <view class='num' wx:if='{{info.WaitingForRecieve>0}}'>{{info.WaitingForRecieve}}</view>
+  </view>
+  <view class="swiper-tab-list {{currentTab==4 ? 'on' : ''}}" data-current="4" bindtap="swichNav">已完成
+  </view>
+  <view class="swiper-tab-list {{currentTab==5 ? 'on' : ''}}" data-current="5" bindtap="swichNav">退款/货
+    <view class='num' wx:if='{{info.RefundOrderCount>0}}'>{{info.RefundOrderCount}}</view>
+  </view>
+</view>
+<swiper current="{{currentTab}}" class="swiper-box" duration="800" circular style="height:{{winHeight - 42}}px" bindchange="bindChange">
+  <!-- ////////////////////全部 -->
+  <swiper-item>
+    <view class="{{orderData.length>0?'huikongbai':'kongbai'}}"></view>
+    <scroll-view lower-threshold='1' scroll-y style='height:{{winHeight - 52}}px' bindscrolltolower="upref" wx:if="{{orderData.length>0}}">
+      <view class="payall" wx:key="{{index}}" wx:for="{{orderData}}" wx:for-item="items">
+        <view class="tradename">
+          <text class="tradename1">{{items.ShopName}}</text>
+          <text class="tradename2 {{items.HasOrderRefund?'red':''}}">{{items.OrderStatusDescription}}<block wx:if="{{items.HasOrderRefund}}">(有退款记录)</block></text>
+        </view>
+        <navigator url="/pages/order/orderdetail/orderdetail?orderid={{items.OrderId}}&status={{items.OrderStatus}}" hover-class='none' class="allnavgatior">
+          <view class="shangpin" wx:key="{{index}}" wx:for="{{items.OrderItemList}}">
+            <view class="shangpin1">
+              <image src="{{item.ThumbnailsUrl}}"></image>
+              <view class="description">
+                <view class="quantity">
+                  <text class="text1">{{item.ProductName}}</text>
+                  <text class="text2">x{{item.Quantity}}</text>
+                </view>
+                <view class="quantity1">
+                  <text class="text3"><block wx:if="{{item.Color}}">颜色：{{item.Color}}</block><block wx:if="{{item.Color}}"> 尺寸：{{item.Size}}</block><block wx:if="{{item.Version}}"> 版本：{{item.Version}}</block></text>
+                </view>
+                <view class="quantity2">
+                  <text class="text4">￥</text>
+                  <text class="text5">{{item.SalePrice}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </navigator>
+        <view class="border">
+          <view class="total">
+            <text>共{{items.OrderItemList.length}}件商品</text>
+            <text class="text7">合计</text>
+            <text class="text8">￥{{items.OrderTotalAmount}}</text>
+          </view>
+        </view>
+        <form wx:if='{{items.OrderStatus==1}}' data-name='all' data-cancel="{{items.OrderId}}" data-idx="{{index}}" bindsubmit="cancel" report-submit>
+          <view class="waitpayment">
+            <view class="waitpaytop">
+              <button class="waitpaytext9" formType="submit">取消订单</button>
+              <view class="waitpaytext10" data-idx="{{index}}" data-name='all' bindtap='payment'>付款</view>
+            </view>
+          </view>
+        </form>
+      </view>
+    </scroll-view>
+    <view class='kong' wx:else if="{{orderData.length==0}}">
+      <image src='/imgs/dingdan.png'></image>
+      <view>亲，您还没有订单信息</view>
+    </view>
+
+  </swiper-item>
+
+  <!-- 代付款 -->
+
+  <swiper-item>
+    <view class="{{toPayOrderData.length>0?'huikongbai':'kongbai'}}"></view>
+    <scroll-view lower-threshold='1' scroll-y style='height:{{winHeight - 55}}px' bindscrolltolower="upref" wx:if="{{toPayOrderData.length>0}}">
+      <view class="waitpay" wx:key="{{index}}" wx:for="{{toPayOrderData}}" wx:for-item="items">
+        <view class="waitpayname">
+          <text class="waitpayname1">{{items.ShopName}}</text>
+          <text class="waitpayname2">{{items.OrderStatusDescription}}</text>
+        </view>
+        <navigator url="/pages/order/orderdetail/orderdetail?orderid={{items.OrderId}}&status={{items.OrderStatus}}">
+          <view class="waitpayshop" wx:key="{{idx}}" wx:for-index="idx" wx:for="{{items.OrderItemList}}">
+            <image src="{{item.ThumbnailsUrl}}"></image>
+            <view class="waitpaydescription">
+              <view class="waitpayquantity">
+                <text class="waitpaytext1">{{item.ProductName}}</text>
+                <text class="waitpaytext2">x{{item.Quantity}}</text>
+              </view>
+              <view class="waitpayquantity1">
+                <text class="waitpaytext3"><block wx:if="{{item.Color}}">颜色：{{item.Color}}</block><block wx:if="{{item.Color}}"> 尺寸：{{item.Size}}</block><block wx:if="{{item.Version}}"> 版本：{{item.Version}}</block></text>
+              </view>
+              <view class="waitpayquantity2">
+                <text class="waitpaytext4">￥</text>
+                <text class="waitpaytext5">{{item.SalePrice}}</text>
+              </view>
+            </view>
+          </view>
+        </navigator>
+        <view class="waitpaytotal">
+          <view class="waitpaytotal1">
+            <text>共{{items.num}}件商品</text>
+            <block wx:if="{{items.DiscountAmount}}">
+              <text class="waitpaytext-7">已优惠</text>
+              <text class="waitpaytext-8">￥{{items.DiscountAmount}}</text>
+            </block>
+            <text class="{{items.PlatformCouponId?'waitpaytext-7-1':'waitpaytext7'}}">合计</text>
+            <text class="waitpaytext8">￥{{items.OrderTotalAmount}}</text>
+          </view>
+        </view>
+        <form data-cancel="{{items.OrderId}}" data-idx="{{index}}" bindsubmit="cancel" report-submit>
+          <view class="waitpayment">
+            <view class="waitpaytop">
+              <button class="waitpaytext9" formType="submit">取消订单</button>
+              <view class="waitpaytext10" data-idx="{{index}}" bindtap='payment'>付款</view>
+            </view>
+          </view>
+        </form>
+      </view>
+    </scroll-view>
+    <view class='kong' wx:else if="{{toPayOrderData.length==0}}">
+      <image src='/imgs/dingdan.png'></image>
+      <view>亲，您还没有订单信息</view>
+    </view>
+  </swiper-item>
+
+  <!-- ////////////////////////////////待发货 -->
+  <swiper-item>
+    <view class="{{toSendOrderData.length>0?'huikongbai':'kongbai'}}"></view>
+    <scroll-view lower-threshold='1' scroll-y style='height:{{winHeight - 55}}px' bindscrolltolower="upref" wx:if="{{toSendOrderData.length>0}}">
+      <view class="waitpay" wx:key="{{index}}" wx:for="{{toSendOrderData}}" wx:for-item="items">
+        <view class="waitpayname">
+          <text class="waitpayname1">{{items.ShopName}}</text>
+          <text class="waitpayname2 {{items.HasOrderRefund?'red':''}}">{{items.OrderStatusDescription}}<block wx:if="{{items.HasOrderRefund}}">(有退款记录)</block></text>
+        </view>
+        <navigator url="/pages/order/orderdetail/orderdetail?orderid={{items.OrderId}}&status={{items.OrderStatus}}">
+          <view class="waitpayshop" wx:key="{{index}}" wx:for="{{items.OrderItemList}}">
+            <image src="{{item.ThumbnailsUrl}}"></image>
+            <view class="waitpaydescription">
+              <view class="waitpayquantity">
+                <text class="waitpaytext1">{{item.ProductName}}</text>
+                <text class="waitpaytext2">x{{item.Quantity}}</text>
+              </view>
+              <view class="waitpayquantity1">
+                <text class="waitpaytext3"><block wx:if="{{item.Color}}">颜色：{{item.Color}}</block><block wx:if="{{item.Color}}"> 尺寸：{{item.Size}}</block><block wx:if="{{item.Version}}"> 版本：{{item.Version}}</block></text>
+              </view>
+              <view class="waitpayquantity2">
+                <text class="waitpaytext4">￥</text>
+                <text class="waitpaytext5">{{item.SalePrice}}</text>
+              </view>
+            </view>
+          </view>
+        </navigator>
+        <view class="waitsend">
+          <view class="waitsend1">
+            <text>共{{items.OrderItemList.length}}件商品</text>
+            <text class="waitsendtext7">合计</text>
+            <text class="waitsendtext8">￥{{items.OrderTotalAmount}}</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+    <view class='kong' wx:else if="{{toSendOrderData.length==0}}">
+      <image src='/imgs/dingdan.png'></image>
+      <view>亲，您还没有订单信息</view>
+    </view>
+  </swiper-item>
+
+  <!-- //////////////////////////////////////待收货 -->
+
+  <swiper-item>
+    <view class="{{toReceiveOrderData.length>0?'huikongbai':'kongbai'}}"></view>
+    <scroll-view lower-threshold='1' scroll-y style='height:{{winHeight - 55}}px' bindscrolltolower="upref" wx:if="{{toReceiveOrderData.length>0}}">
+      <view class="waitpay" wx:key="{{index}}" wx:for="{{toReceiveOrderData}}" wx:for-item="items">
+        <view class="waitpayname">
+          <text class="waitpayname1">{{items.ShopName}}</text>
+          <!-- <text class="waitpayname2">{{items.OrderStatusDescription}}</text> -->
+          <text class="waitpayname2 {{items.HasOrderRefund?'red':''}}">{{items.OrderStatusDescription}}<block wx:if="{{items.HasOrderRefund}}">(有退款记录)</block></text>
+        </view>
+        <navigator url="/pages/order/orderdetail/orderdetail?orderid={{items.OrderId}}&status={{items.OrderStatus}}">
+          <view class="waitpayshop" wx:key="{{index}}" wx:for="{{items.OrderItemList}}">
+            <image src="{{item.ThumbnailsUrl}}"></image>
+            <view class="waitpaydescription">
+              <view class="waitpayquantity">
+                <text class="waitpaytext1">{{item.ProductName}}</text>
+                <text class="waitpaytext2">x{{item.Quantity}}</text>
+              </view>
+              <view class="waitpayquantity1">
+                <text class="waitpaytext3"><block wx:if="{{item.Color}}">颜色：{{item.Color}}</block><block wx:if="{{item.Color}}"> 尺寸：{{item.Size}}</block><block wx:if="{{item.Version}}"> 版本：{{item.Version}}</block></text>
+              </view>
+              <view class="waitpayquantity2">
+                <text class="waitpaytext4">￥</text>
+                <text class="waitpaytext5">{{item.SalePrice}}</text>
+              </view>
+            </view>
+          </view>
+        </navigator>
+        <view class="waitpaytotal">
+          <view class="waitpaytotal1">
+            <text>共{{items.OrderItemList.length}}件商品</text>
+            <text class="waitpaytext7">合计</text>
+            <text class="waitpaytext8">￥{{items.OrderTotalAmount}}</text>
+          </view>
+        </view>
+        <view class="waitpayment">
+          <view class="waitpaytop">
+            <navigator class="waitpaytext9" url="/pages/order/logistics/logistics?id={{items.OrderId}}">
+              查看物流
+            </navigator>
+            <view class="waitpaytext10" data-index="{{index}}" bindtap="confirmReceipt">确认收货</view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+    <view class='kong' wx:else if="{{toReceiveOrderData.length==0}}">
+      <image src='/imgs/dingdan.png'></image>
+      <view>亲，您还没有订单信息</view>
+    </view>
+  </swiper-item>
+
+  <!-- ///////////////////////////////////已完成 -->
+
+
+  <swiper-item>
+    <view class="{{completedOrderData.length>0?'huikongbai':'kongbai'}}"></view>
+    <scroll-view lower-threshold='1' scroll-y style='height:{{winHeight - 55}}px' bindscrolltolower="upref" wx:if="{{completedOrderData.length>0}}">
+      <view class="waitpay" wx:key="{{index}}" wx:for="{{completedOrderData}}" wx:for-item="items">
+        <view class="waitpayname">
+          <text class="waitpayname1">{{items.ShopName}}</text>
+          <!-- <text class="waitpayname2">{{items.OrderStatusDescription}}</text> -->
+          <text class="waitpayname2 {{items.HasOrderRefund?'red':''}}">{{items.OrderStatusDescription}}<block wx:if="{{items.HasOrderRefund}}">(有退款记录)</block></text>
+        </view>
+        <navigator url="/pages/order/orderdetail/orderdetail?orderid={{items.OrderId}}&status={{items.OrderStatus}}">
+          <view class="waitpayshop" wx:key="{{index}}" wx:for="{{items.OrderItemList}}">
+            <image src="{{item.ThumbnailsUrl}}"></image>
+            <view class="waitpaydescription">
+              <view class="waitpayquantity">
+                <text class="waitpaytext1">{{item.ProductName}}</text>
+                <text class="waitpaytext2">x{{item.Quantity}}</text>
+              </view>
+              <view class="waitpayquantity1">
+                <text class="waitpaytext3"><block wx:if="{{item.Color}}">颜色：{{item.Color}}</block><block wx:if="{{item.Color}}"> 尺寸：{{item.Size}}</block><block wx:if="{{item.Version}}"> 版本：{{item.Version}}</block></text>
+              </view>
+              <view class="waitpayquantity2">
+                <text class="waitpaytext4">￥</text>
+                <text class="waitpaytext5">{{item.SalePrice}}</text>
+              </view>
+            </view>
+          </view>
+        </navigator>
+        <view class="waitpaytotal">
+          <view class="waitpaytotal1">
+            <text>共{{items.OrderItemList.length}}件商品</text>
+            <text class="waitpaytext7">合计</text>
+            <text class="waitpaytext8">￥{{items.OrderTotalAmount}}</text>
+          </view>
+        </view>
+        <view class="waitpayment">
+          <view class="waitpaytop">
+            <navigator url="/pages/order/logistics/logistics?id={{items.OrderId}}">
+              <view class="accomplish">查看物流</view>
+            </navigator>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+    <view class='kong' wx:else if="{{completedOrderData.length==0}}">
+      <image src='/imgs/dingdan.png'></image>
+      <view>亲，您还没有订单信息</view>
+    </view>
+  </swiper-item>
+
+
+  <!-- 、、、、、、、、、、、、、、、、、、退款 -->
+  <swiper-item>
+    <view class="{{drawBackOrderData.length>0?'huikongbai':'kongbai'}}"></view>
+    <scroll-view lower-threshold='1' scroll-y style='height:{{winHeight - 55}}px' bindscrolltolower="upref" wx:if="{{drawBackOrderData.length>0}}">
+      <view class="waitpay" wx:key="{{index}}" wx:for="{{drawBackOrderData}}">
+        <view class="waitpayname">
+          <text class="waitpayname1">{{item.ShopName}}</text>
+          <text class="waitpayname2 red">
+          <block wx:if="{{item.RefundAuditStatus==0}}">买家取消退货/退款</block>
+          <block wx:if="{{item.RefundAuditStatus==1}}">待商家审核</block>
+          <block wx:if="{{item.RefundAuditStatus==2}}">待买家寄货</block>
+          <block wx:if="{{item.RefundAuditStatus==3}}">待商家收货</block>
+          <block wx:if="{{item.RefundAuditStatus==4}}">商家拒绝</block>
+          <block wx:if="{{item.RefundAuditStatus==5}}">商家通过审核</block>
+          <block wx:if="{{item.RefundAuditStatus==6}}">待平台确认</block>
+          <block wx:if="{{item.RefundAuditStatus==7}}">退款成功</block>
+          <block wx:if="{{item.RefundAuditStatus==8}}">退款关闭</block>
+          <block wx:if="{{item.RefundAuditStatus==9}}">支付平台处理中</block>
+          </text>
+        </view>
+        <navigator hover-class="none" url="/pages/order/returns0/returns0?id={{item.Id}}&refundType={{item.OrderRefundMode==3?2:1}}">
+          <view class="waitpayshop">
+            <image src="{{item.ThumbnailsUrl}}"></image>
+            <view class="waitpaydescription">
+              <view class="waitpayquantity">
+                <text class="waitpaytext1">{{item.ProductName}}</text>
+                <text class="waitpaytext2">x{{item.Quantity}}</text>
+              </view>
+              <view class="waitpayquantity">
+                <text class="waitpaytext3"><block wx:if="{{item.Color}}">颜色：{{item.Color}}</block><block wx:if="{{item.Color}}"> 尺寸：{{item.Size}}</block><block wx:if="{{item.Version}}"> 版本：{{item.Version}}</block></text>
+              </view>
+              <view class="waitpayquantity">
+                <text class="waitpaytext4">￥<text class="waitpaytext5">{{item.SalePrice}}</text></text>
+              </view>
+            </view>
+          </view>
+        </navigator>
+        <view class="exchange">
+          <view class="exchange1">
+            <view class="exchange2">{{item.OrderRefundMode==3?'退货退款':'仅退款'}}</view>
+            <navigator hover-class="none" class="exchange3" url="/pages/order/returns0/returns0?id={{item.Id}}&refundType={{item.OrderRefundMode==3?2:1}}">查看详情</navigator>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+    <view class='kong' wx:else if="{{drawBackOrderData.length==0}}">
+      <image src='/imgs/dingdan.png'></image>
+      <view>亲，您还没有订单信息</view>
+    </view>
+  </swiper-item>
+
+</swiper>

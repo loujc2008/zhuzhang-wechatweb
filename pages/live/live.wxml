@@ -1,0 +1,124 @@
+<import src="/pages/template/template.wxml" />
+<view class="choice">
+  <view class="{{tab==0?'on':'off'}}" data-tab="0" bindtap='swichNav'>热门</view>
+  <view class="{{tab==1?'on':'off'}}" data-tab="1" bindtap='swichNav'>最新</view>
+  <view class="{{tab==2?'on':'off'}}" data-tab="2" bindtap='swichNav'>回放</view>
+</view>
+
+<swiper current="{{tab}}" bindchange="bindChange" class="swiper">
+  <!-- 热门 -->
+  <swiper-item>
+    <scroll-view wx:if='{{hotData.list.length>0}}' scroll-y bindscrolltolower='onPull' lower-threshold='1' class='list'>
+      <view class='li' wx:key='{{index}}' wx:for='{{hotData.list}}'>
+        <view bindtap='openVerticall' data-id='{{item.Id}}'>
+          <view class='li-img'>
+            <image src='/imgs/default.jpg' wx:if="{{item.LiveRoomLogoFullPath===''}}"></image>
+            <image src='{{item.LiveRoomLogoFullPath}}' wx:else></image>
+            <view class='mask'>
+            </view>
+            <view class="pandp">
+              <view class="count">
+                <image src="/imgs/zan.png"></image>
+                <view class="praise">{{item.PraisedCountString}}</view>
+              </view>
+              <view class="count">
+                <image src="/imgs/paly-1.png"></image>
+                <view class="play">{{item.RankingString}}</view>
+              </view>
+            </view>
+          </view>
+          <view class='li-info'>
+            <text class='live-status {{item.LiveRoomStatus==1?"status-red":"status-zi"}}'>{{item.LiveRoomStatus==1?'直播中':'回放'}}</text>
+            <text class='product-name'>{{item.LiveRoomTitle}}</text>
+            <text class='shop-name'>{{item.LiveRoomName}}</text>
+            <view class='list-img'>
+              <image src='{{items.ProductImage}}' wx:if='{{index<3}}' wx:for="{{item.LiveProductList}}" wx:for-item="items" wx:key="{{index}}"></image>
+              <view>
+                <text class='num'>{{item.LiveProductCount}}件</text>
+                <text class="lasttext2">直播购</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+    <template wx:else is="default" data="{{img:'/imgs/no-cart.png',text:'购物车是空的哦，去逛逛吧'}}" />
+  </swiper-item>
+  <!-- 最新 -->
+  <swiper-item>
+    <scroll-view wx:if='{{newsData.list.length>0}}' scroll-y bindscrolltolower='onPull' lower-threshold='1' class='list'>
+      <view class='li' wx:key='{{index}}' wx:for='{{newsData.list}}'>
+        <view bindtap='openVerticall' data-id='{{item.Id}}'>
+          <view class='li-img'>
+            <image src='/imgs/default.jpg' wx:if="{{item.LiveRoomLogoFullPath===''}}"></image>
+            <image src='{{item.LiveRoomLogoFullPath}}' wx:else></image>
+            <view class='mask'>
+            </view>
+            <view class="pandp">
+              <view class="count">
+                <image src="/imgs/zan.png"></image>
+                <view class="praise">{{item.PraisedCount}}</view>
+              </view>
+              <view class="count">
+                <image src="/imgs/paly-1.png"></image>
+                <view class="play">{{item.RankingString}}</view>
+              </view>
+            </view>
+          </view>
+          <view class='li-info'>
+            <text class='live-status {{item.LiveRoomStatus==1?"status-red":"status-zi"}}'>{{item.LiveRoomStatus==1?'直播中':'回放'}}</text>
+            <text class='product-name'>{{item.LiveRoomTitle}}</text>
+            <text class='shop-name'>{{item.LiveRoomName}}</text>
+            <view class='list-img'>
+              <image src='{{items.ProductImage}}' wx:for="{{item.LiveProductList}}" wx:for-item="items" wx:key="{{index}}" wx:if='{{index<3}}'></image>
+
+              <view>
+                <text class='num'>{{item.LiveProductCount}}件</text>
+                <text class="lasttext2">直播购</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+    <template wx:else is="default" data="{{img:'/imgs/no-cart.png',text:'购物车是空的哦，去逛逛吧'}}" />
+  </swiper-item>
+  <!-- 回放 -->
+  <swiper-item>
+    <scroll-view wx:if='{{backData.list.length>0}}' scroll-y bindscrolltolower='onPull' lower-threshold='1' class='list'>
+      <view class='li' wx:key='{{index}}' wx:for='{{backData.list}}'>
+        <view bindtap='openVerticall' data-id='{{item.Id}}'>
+          <view class='li-img'>
+            <image src='/imgs/default.jpg' wx:if="{{item.LiveRoomLogoFullPath===''}}"></image>
+            <image src='{{item.LiveRoomLogoFullPath}}' wx:else></image>
+            <view class='mask'>
+            </view>
+            <view class="pandp">
+              <view class="count">
+                <image src="/imgs/zan.png"></image>
+                <view class="praise">{{item.PraisedCount}}</view>
+              </view>
+              <view class="count">
+                <image src="/imgs/paly-1.png"></image>
+                <view class="play">{{item.RankingString}}</view>
+              </view>
+            </view>
+          </view>
+          <view class='li-info'>
+            <text class='live-status {{item.LiveRoomStatus==1?"status-red":"status-zi"}}'>{{item.LiveRoomStatus==1?'直播中':'回放'}}</text>
+            <text class='product-name'>{{item.LiveRoomTitle}}</text>
+            <text class='shop-name'>{{item.LiveRoomName}}</text>
+            <view class='list-img'>
+              <image src='{{items.ProductImage}}' wx:if='{{index<3}}' wx:for="{{item.LiveProductList}}" wx:for-item="items" wx:key="{{index}}"></image>
+              <view>
+                <text class='num'>{{item.LiveProductCount}}件</text>
+                <text class="lasttext2">直播购</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+    <template wx:else is="default" data="{{img:'/imgs/no-cart.png',text:'购物车是空的哦，去逛逛吧'}}" />
+  </swiper-item>
+</swiper>

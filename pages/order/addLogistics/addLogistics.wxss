@@ -1,0 +1,46 @@
+.box {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.li {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  width: 80%;
+  line-height: 40px;
+}
+
+.li text {
+  font-size: 30rpx;
+  margin-right: 10%;
+}
+
+picker {
+  font-size: 30rpx;
+  display: inline-block;
+  flex: 1 1 50%;
+  padding: 0 10rpx;
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #000;
+  border-radius: 5px;
+}
+
+input {
+  flex: 1 1 50%;
+  font-size: 30rpx;
+  padding: 0 10rpx;
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #FA95B0;
+}
+
+button{
+  margin-top: 50px;
+  width: 80%;
+  border-radius: 5px;
+  background-color: #FA95B0;
+  color: #fff;
+}

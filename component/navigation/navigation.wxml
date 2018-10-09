@@ -1,0 +1,17 @@
+<view class='quick-nav'>
+  <navigator url='/pages/user/user' class='nav _home {{showNavs ? "_show":"_hide"}}' open-type="switchTab">
+    <image src='/pages/commoditydetail/imgs/nav-user.png'></image>
+  </navigator>
+  <navigator url='/pages/shop/shop' class='nav _shop {{showNavs ? "_show":"_hide"}}' open-type="switchTab">
+    <image src='/pages/commoditydetail/imgs/nav-shop.png'></image>
+  </navigator>
+  <navigator url='/pages/choiceness/choiceness' class='nav _user {{showNavs ? "_show":"_hide"}}' open-type="switchTab">
+    <image src='/pages/commoditydetail/imgs/nav-home.png'></image>
+  </navigator>
+  <view class='nav _close {{showNavs ? "_show":"_hide"}}' bindtap='showNav'>
+    <image src='/pages/commoditydetail/imgs/nav-close.png'></image>
+  </view>
+  <view class='nav _main {{showNavs ? "_hide":"_show"}}' bindtap='showNav'>
+    <view>快捷导航</view>
+  </view>
+</view>

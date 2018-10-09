@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "购物袋",
+  "usingComponents": {
+    "product-list": "/component/product/product"
+  }
+}

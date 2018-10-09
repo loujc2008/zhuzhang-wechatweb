@@ -1,0 +1,12 @@
+<view class="babydis" wx:if="{{twoifydata.length>0}}">
+  <navigator class="baby" wx:for="{{twoifydata}}" wx:key="{{index}}" url="./video/video?storeid={{item.Id}}&title={{item.Name}}" hover-class="none">
+    <image src="{{item.Img}}" mode='scaleToFill'></image>
+    <view class="babyname">{{item.Name}}</view>
+    <view class="buy">{{item.PlayCount}}次播放</view>
+  </navigator>
+  <view wx:if="{{!also}}" class="also">没有更多了</view>
+</view>
+<view wx:if="{{twoifydata.length<=0}}" class="kong">
+  <image src="/imgs/ship.png" class="kontu"></image>
+  <view class="kongzi">还没有视频哦~</view>
+</view>

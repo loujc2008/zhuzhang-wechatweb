@@ -1,0 +1,11 @@
+<view class='box'>
+  <view class='li'>
+    <text>物流公司:</text>
+    <input placeholder='请填写物流公司' bindinput='inputCompany'></input>
+  </view>
+  <view class='li'>
+    <text>快递单号:</text>
+    <input placeholder='请填写快递单号' bindinput='inputCourierNumber'></input>
+  </view>
+  <button bindtap='sure'>确定</button>
+</view>

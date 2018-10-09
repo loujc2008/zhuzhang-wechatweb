@@ -1,0 +1,88 @@
+<view class='logistics'>
+
+  <view class='steps _end'>
+    <text class='_t1 _block'>申请已经提交，请等待商家审核</text>
+    <text class='_t2 _block'>商家将在48小时内审核，未处理的申请将自动通过</text>
+    <icon class='step-icon'>
+      <image class='' src='./imgs/home.png'></image>
+    </icon>
+  </view>
+
+  <!--买家取消退款  -->
+  <block wx:if="{{SellerAuditStatus==0}}">
+    <view class='steps _lightup'>
+      <text class='_t1 _block'>买家取消了退货/退款</text>
+      <text class='_t2 _block'>申请已关闭</text>
+      <icon class='step-icon'>
+        <image class='' src='./imgs/arrow_up.png'></image>
+      </icon>
+    </view>
+    <view class='steps _start'>
+      <button class='obtn'>重新提交申请</button>
+      <icon class='step-icon'>
+        <image class='' src='./imgs/icon1.png'></image>
+      </icon>
+    </view>
+  </block>
+
+<!--买家未做操作  -->
+  <view wx:if="{{SellerAuditStatus==1}}" class='steps _start'>
+    <button class='obtn'>取消退款申请</button>
+    <icon class='step-icon'>
+      <image class='' src='./imgs/icon1.png'></image>
+    </icon>
+  </view>
+
+<!--买家申请退款成功  -->
+  <block wx:if="{{SellerAuditStatus==5&&refundType==1}}">
+    <view class='steps _lightup'>
+      <text class='_t1 _block'>申请已经通过</text>
+      <text class='_t2 _block'>请耐心等待退款，预计2-3个工作日</text>
+      <icon class='step-icon'>
+        <image class='' src='./imgs/arrow_up.png'></image>
+      </icon>
+    </view>
+    <view class='steps _start'>
+      <text class='_t1 _block'>退款成功</text>
+      <text class='_t2 _block'>感谢您的合作</text>
+      <icon class='step-icon'>
+        <image class='' src='./imgs/arrow_up.png'></image>
+      </icon>
+    </view>
+  </block>
+
+<!--买家申请退货退款成功  -->
+  <block wx:if="{{SellerAuditStatus==5&&refundType==2}}">
+    <view class='steps _lightup'>
+      <text class='_t1 _block'>申请已经通过，请退货</text>
+      <text class='_t2 _block'>请点击填写退货信息</text>
+      <icon class='step-icon'>
+        <image class='' src='./imgs/arrow_up.png'></image>
+      </icon>
+    </view>
+    <view class='steps _start'>
+      <button class='obtn' bindtap='openLogistics'>填写物流信息</button>
+      <icon class='step-icon'>
+        <image class='' src='./imgs/icon1.png'></image>
+      </icon>
+    </view>
+  </block>
+
+<!--买家申请退款失败 -->
+  <block wx:if="{{SellerAuditStatus==4}}">
+    <view class='steps _lightup _reject'>
+      <text class='_t1 _block'>商家拒绝了退款</text>
+      <text class='_t2 _block'>不想退，就是不想退</text>
+      <icon class='step-icon'>
+        <image class='' src='./imgs/arrow_up.png'></image>
+      </icon>
+    </view>
+    <view class='steps _start'>
+      <button class='obtn' bindtap='openLogistics'>申请仲裁</button>
+      <icon class='step-icon'>
+        <image class='' src='./imgs/icon1.png'></image>
+      </icon>
+    </view>
+  </block>
+
+</view>

@@ -1,0 +1,711 @@
+
+ @import '../../../minmoney/minmoney.wxss'; 
+ .zczc{
+   display: none; 
+  /* visibility: hidden */
+} 
+.zczc1{
+   display: block; 
+  /* visibility: visible */
+}
+/* .videoall {
+  background: #f6f7f9;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+} */
+
+/* .video {
+  width: 100%;
+  height: 420rpx;
+  z-index: 100;
+} */
+
+/* .video video {
+  width: 100%;
+  height: 100%;
+} */
+
+/* .entershop {
+  height: 120rpx;
+  background: #fff;
+  padding: 20rpx 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  border-bottom: 20rpx solid #f6f7f9;
+} */
+
+/* .entershop > image {
+  width: 36rpx;
+  height: 32rpx;
+}
+
+.entershop navigator {
+  display: flex;
+  align-items: center;
+} */
+
+/* .shopimg {
+  width: 98rpx;
+  height: 98rpx;
+  border-radius: 50%;
+  background: red;
+  margin-right: 32rpx;
+}
+
+.shopname {
+  width: 265rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+} */
+
+/* .howattention {
+  font-size: 22rpx;
+  color: #9d9d9d;
+} */
+
+/* .attention {
+  font-size: 22rpx;
+  color: #f683a2;
+  width: 155rpx;
+  height: 55rpx;
+  border: 1rpx solid #f683a2;
+  border-radius: 50rpx;
+  text-align: center;
+  line-height: 55rpx;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+} */
+
+/* .attention text {
+  font-weight: bold;
+  font-size: 36rpx;
+  margin-right: 10rpx;
+}
+
+.attention-yes {
+  font-size: 22rpx;
+  color: #91959c;
+  width: 155rpx;
+  height: 55rpx;
+  border: 1rpx solid #d6d7d8;
+  border-radius: 50rpx;
+  text-align: center;
+  line-height: 55rpx;
+}
+
+.attention-yes image {
+  width: 20rpx;
+  height: 20rpx;
+  margin-right: 15rpx;
+} */
+
+/* .produclist {
+  position: relative;
+  z-index: 10;
+} */
+
+/* .produc {
+  display: flex;
+  background: #fff;
+  padding-right: 30rpx;
+  margin-bottom: 7rpx;
+}
+
+.producimg {
+  width: 299rpx;
+  height: 302rpx;
+  background: #000;
+  margin-right: 61rpx;
+} */
+
+/* .producname {
+  font-size: 26rpx;
+  font-weight: bold;
+  text-align: center;
+  width: 350rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+} */
+
+/* .procount {
+  display: flex;
+  padding: 20rpx 0 40rpx 0;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+} */
+
+/* .procount1 {
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-right: 15rpx;
+} */
+
+/* .procount2 {
+  font-size: 22rpx;
+  color: #92969c;
+  margin-left: 15rpx;
+} */
+
+/* .probuy {
+  font-size: 22rpx;
+  color: #fff;
+  width: 180rpx;
+  height: 59rpx;
+  background-image: linear-gradient(to right, #fa6e84, #ff4e93);
+  text-align: center;
+  line-height: 59rpx;
+  border-radius: 5px;
+} */
+
+/* .producmsg {
+  padding-top: 72rpx;
+}   */
+
+/* .producmsg {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+} */
+
+/*立即购买 start  */
+
+.purchase {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 623rpx;
+  z-index: 100;
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.detail5 {
+  display: flex;
+  margin: 0 30rpx;
+  height: 192rpx;
+  border-bottom: 1rpx solid #ebebeb;
+  position: relative;
+}
+
+/* .scroll {
+  height: 83%;
+} */
+
+.scroll-list {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.moneyandsize {
+  margin-left: 75rpx;
+  margin-top: 30rpx;
+}
+
+.detailmoney1 {
+  position: relative;
+}
+
+.money1 {
+  font-size: 40rpx;
+  color: #ff3434;
+}
+
+.freight1 {
+  font-size: 22rpx;
+  color: #b8b8b8;
+  padding-left: 23rpx;
+}
+
+.detailimg6 {
+  width: 140rpx;
+  height: 140rpx;
+  border: 1rpx solid #e8e8e8;
+  border-radius: 5rpx;
+  margin-top: 15rpx;
+}
+
+.address-wrap {
+  margin: 0 30rpx;
+}
+
+.detailimg7 {
+  width: 28rpx;
+  height: 31rpx;
+  position: fixed;
+  top: 605rpx;
+  left: 660rpx;
+  padding: 30rpx;
+}
+
+.changesize2 {
+  color: #d9d9d9;
+  font-size: 23rpx;
+  margin-top: 20rpx;
+}
+
+/*颜色  */
+
+.changecolor {
+  padding: 30rpx 0;
+  margin: 0 30rpx;
+  border-bottom: 1rpx solid #ebebeb;
+}
+
+.color {
+  font-size: 27rpx;
+  font-weight: bold;
+}
+
+.color1 {
+  margin-top: 18rpx;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.ctext {
+  padding: 14rpx;
+  border: 1rpx solid #ebebeb;
+  font-size: 22rpx;
+  background: #fff;
+  margin: 2rpx 40rpx 2rpx 0;
+}
+
+.ccolor {
+  background-image: linear-gradient(to right, #fa6e84, #ff4e93);
+  color: #fff;
+}
+
+/*尺码  */
+
+.size {
+  padding: 30rpx 0;
+  margin: 0 30rpx;
+  border-bottom: 1rpx solid #ebebeb;
+}
+
+.size1 {
+  font-size: 27rpx;
+  font-weight: bold;
+}
+
+.stext {
+  padding: 14rpx;
+  border: 1rpx solid #ebebeb;
+  font-size: 22rpx;
+  background: #fff;
+  margin: 2rpx 40rpx 2rpx 0;
+}
+
+.size2 {
+  margin-top: 18rpx;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.csize {
+  background-image: linear-gradient(to right, #fa6e84, #ff4e93);
+  color: #fff;
+}
+
+/*数量  */
+
+.math {
+  padding: 30rpx 0;
+  margin: 0 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1 1 auto;
+}
+
+.math1 {
+  font-size: 27rpx;
+  font-weight: bold;
+}
+
+.math2 {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.math2 text {
+  font-size: 23rpx;
+  background-color: #f0f0f0;
+  margin: 0 1rpx;
+  width: 66rpx;
+  height: 54rpx;
+  text-align: center;
+  line-height: 54rpx;
+}
+
+.no-btn {
+  background-color: #f7f7f7 !important;
+}
+
+.btn-default {
+  background-color: #ccc;
+}
+
+/*确认按钮  */
+
+.affirm {
+  width: 100%;
+  height: 104rpx;
+  display: flex;
+  font-size: 30rpx;
+}
+
+.affirm button {
+  flex: 1;
+  border-radius: 0;
+  height: 110rpx;
+  line-height: 110rpx;
+  font-size: 30rpx;
+}
+
+.affirm button::after {
+  border-radius: 0;
+}
+
+.add-cart {
+  background-color: #fff;
+}
+
+.no-cart {
+  color: #999;
+}
+
+.now-buy {
+  background-image: linear-gradient(to right, #fa6e84, #ff4e93);
+  color: #fff;
+}
+
+.no-buy {
+  background-color: #bcbcbc;
+  color: #fff;
+}
+
+/*立即购买 end  */
+
+/*订单详情 start  */
+
+.arrow2r image {
+  width: 17rpx;
+  height: 32rpx;
+  margin-top: 20rpx;
+  background-size: cover;
+}
+
+.no-address-yet {
+  padding: 70rpx 0 38rpx;
+}
+
+.add-address-btn {
+  width: 69rpx;
+  height: 86rpx;
+  margin: 0 auto;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.add-address-btn image {
+  width: 69rpx;
+  height: 86rpx;
+}
+
+.no-daddress-tips {
+  display: block;
+  margin-top: 30rpx;
+  text-align: center;
+  line-height: 30rpx;
+  font-size: 26rpx;
+}
+
+.color9 {
+  color: #999;
+  margin-left: auto;
+}
+
+.address {
+  display: flex;
+  padding: 40rpx;
+  flex-direction: row;
+}
+
+.address-icon image {
+  width: 25rpx;
+  height: 32rpx;
+  background-size: contain;
+}
+
+.address-detail {
+  width: 640rpx;
+  padding: 0 20rpx;
+  color: #333;
+}
+
+.contacts {
+  display: block;
+  margin-bottom: 5rpx;
+  color: #333;
+  font-size: 26rpx;
+}
+
+.address-details {
+  display: block;
+  font-size: 24rpx;
+  color: #a7a7a7;
+}
+
+.address-bg {
+  height: 2px;
+  width: 100%;
+  display: flex;
+}
+
+.address-bg image {
+  height: 2px;
+  width: 100%;
+}
+
+/*商品详情  */
+
+.shop-detail {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  padding: 40rpx;
+  border-bottom: 1px solid #ccc;
+}
+
+.shop-detail image {
+  width: 80px;
+  height: 80px;
+}
+
+.shop-detail view {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  margin-left: 50rpx;
+  width: 460rpx;
+}
+
+.shop-detail text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.Specifications {
+  font-size: 26rpx;
+  color: #ccc;
+}
+
+/*运费  */
+
+.freight {
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 20rpx 30rpx;
+  font-size: 26rpx;
+  flex: 1;
+}
+
+.freight view {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin-top: 60rpx;
+}
+
+.freight view text:first-child {
+  font-size: 28rpx;
+}
+
+.freight view text:last-child {
+  font-weight: 900;
+  color: #999;
+}
+
+.freight view .money {
+  font-size: 32rpx;
+  color: red !important;
+}
+
+.hengscroll1 {
+  height: 83%;
+}
+
+.payment {
+  border-radius: 0;
+  width: 100%;
+  background-color: #fb6986;
+  color: #fff;
+  font-size: 30rpx;
+  height: 110rpx;
+  line-height: 110rpx;
+}
+
+.payment::after {
+  border-radius: 0;
+}
+
+.detail-title {
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 26rpx;
+}
+
+.detail-title image {
+  width: 28rpx;
+  height: 31rpx;
+  position: absolute;
+  right: 15rpx;
+  top: 15rpx;
+}
+
+/*订单详情 end  */
+
+/* 竖屏 */
+
+page {
+  background-color: #f6f7f9;
+  height: 100%;
+}
+
+.upright {
+  background-image: linear-gradient(to bottom, #213244, #573640);
+  height: 100%;
+  position: relative;
+  /* display: none; */
+}
+
+.padding {
+  padding: 34rpx 105rpx;
+  height:80%;
+}
+
+.upvideo {
+  width: 541rpx;
+  height: 960rpx;
+}
+
+.uprightshop {
+  padding-left: 30rpx;
+  padding-top: 16rpx;
+}
+
+.uprightshopimg {
+  position: relative;
+  margin-right: 29rpx;
+  width: 163rpx;
+  height: 150rpx;
+}
+
+.uprightshopimg image {
+  width: 163rpx;
+  height: 150rpx;
+}
+
+.uprightshopflex {
+  display: flex;
+}
+
+.uprightprice {
+  position: absolute;
+  bottom: 10rpx;
+  text-align: center;
+  line-height: 37rpx;
+  background: #000;
+  opacity: 0.5;
+  color: #fff;
+  font-size: 19rpx;
+  width: 163rpx;
+  height: 37rpx;
+}
+
+.verticalpurchase {
+  position: absolute;
+  bottom: 190rpx;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  background-color: #fff;
+  height: 995rpx;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.shuscroll {
+  height: 71%;
+}
+
+.shudetailimg7 {
+  width: 28rpx;
+  height: 31rpx;
+  position: fixed;
+  top: 85rpx;
+  left: 690rpx;
+}
+
+.shumath {
+  display: flex;
+  padding: 0 30rpx;
+  justify-content: space-between;
+  margin-top: 30rpx;
+}
+.shop-detail wx-text{
+  font-size:26rpx;
+color:#ccc;
+}
+.videocoupon{
+  box-sizing: border-box;
+  padding: 0 30rpx;
+ display: flex;
+ justify-content: space-between;
+ height: 106rpx;
+ line-height: 106rpx;
+}
+.videocoupon1{
+ font-size: 26rpx;
+}
+.videocoupon1text2{
+  margin-left: 30rpx;
+  color:#ccc;
+}
+.videocoupon2text1{
+  font-size: 26rpx;
+  color:red;
+}
+.videocoupon2text2{
+  font-size: 26rpx;
+  color:#ccc;
+  margin-left: 20rpx;
+}
+.huitiao{
+  background:#f6f7f9;
+  width: 100%;
+  height:20rpx
+}

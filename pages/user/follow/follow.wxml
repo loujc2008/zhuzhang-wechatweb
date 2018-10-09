@@ -1,0 +1,20 @@
+<view wx:if="{{shopData.length>0}}">
+  <view class="shopall" wx:for="{{shopData}}" wx:key="{{index}}">
+    <navigator hover-class="none" open-type='redirect' url="../../dianpu/dianpu?shopId={{item.ShopId}}">
+      <view class="shop1">
+        <image binderror='logoError' data-idx="{{index}}" src="{{item.ShopLogo?item.ShopLogo:'/imgs/default.jpg'}}"></image>
+        <view class="shop2">
+          <view class="shop3">{{item.ShopName}}</view>
+          <view class="shop4">
+            <text>{{item.ConcertedTotal}}</text>
+            <text class="shop5">人关注</text>
+          </view>
+        </view>
+      </view>
+    </navigator>
+  </view>
+</view>
+<view wx:if="{{shopData.length<=0}}" class="kong">
+  <image src="/imgs/gz.png" class="kontu"></image>
+  <view class="kongzi">还没有关注任何店铺哦~</view>
+</view>

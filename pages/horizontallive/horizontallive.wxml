@@ -1,0 +1,173 @@
+<view class="all">
+  <!-- 头部 -->
+  <view class="vltop">
+    <image src="{{LiveInfo.LiveRoomLogoFullPath}}" class="vltop1img1"></image>
+    <view class="vltop1name">
+      <view class="name">{{LiveInfo.LiveRoomName}}</view>
+      <view class="vltop1attention">
+        <view class="attention">关注人数：</view>
+        <view class="attentio1">{{LiveInfo.PraisedCount}}</view>
+      </view>
+    </view>
+    <view class="vltop2">关注</view>
+    <view class="vltop3">{{LiveInfo.OnlineCount}}人 正在观看</view>
+    <view class="vltop4">
+      <image src="/imgs/{{LiveInfo.AlreadyPraised?'xing-2':'17'}}.png" bindtap="{{LiveInfo.AlreadyPraised?'':'appreciation'}}" class="vltop4img"></image>
+    </view>
+    <view class="vltop5">
+      <image src="/imgs/18.png" class="vltop5img"></image>
+    </view>
+  </view>
+  <view class='all-content'>
+    <!--sku  -->
+    <view class="blackb" hidden='{{isSku}}'>
+      <image src="/imgs/11.png" class="close" bindtap='close'></image>
+      <view class="info">
+        <image src="{{shopDetail.imgUrl}}" class="detailimg6"></image>
+        <view class="moneyandsize">
+          <view class='number'>
+            <text class='{{idx==-1?"red":""}}'>{{idx==-1?'直播中':idx+1}}</text>
+          </view>
+          <view class="detailmoney1">￥
+            <text class="money1">{{sku.SalePrice?sku.SalePrice:shopDetail.price}}</text>
+          </view>
+          <view class="changesize2">请选择： 颜色、尺码、数量</view>
+        </view>
+      </view>
+
+      <scroll-view style='height:{{height-359}}px' scroll-y='true'>
+
+        <view class='scroll-list'>
+          <view class="changecolor" wx:if="{{colors.length>0}}">
+            <view class="color">颜色</view>
+            <view class="color1">
+              <text wx:if="{{colors.length>0}}" class="ctext {{index==color?'ccolor':''}}" wx:for="{{colors}}" data-idx="{{index}}" bindtap='btnColor' wx:key="{{index}}">{{item}}</text>
+            </view>
+          </view>
+          <view class="changecolor" wx:if="{{sizes.length>0}}">
+            <view class="color">尺码</view>
+            <view class="color1">
+              <text wx:if="{{sizes.length>0}}" wx:for="{{sizes}}" class="ctext {{index==size?'ccolor':''}}" data-idx="{{index}}" bindtap='btnSize' wx:key="{{index}}">{{item}}</text>
+            </view>
+          </view>
+          <view class="changecolor" wx:if="{{versions.length>0}}">
+            <view class="color">版本</view>
+            <view class="color1">
+              <text wx:if="{{versions.length>0}}" wx:for="{{versions}}" class="ctext {{index==version?'ccolor':''}}" data-idx="{{index}}" bindtap='btnVersion' wx:key="{{index}}">{{item}}</text>
+            </view>
+          </view>
+          <view class="math">
+            <view class="math1">数量</view>
+            <view class="math2">
+              <text bindtap='min' class="{{num<=1?'no-btn':''}}">-</text>
+              <text>{{num}}</text>
+              <text bindtap='add' class="{{num>=sku.Stock?'no-btn':''}}">+</text>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+      <view class='blackb-btn'>
+        <view bindtap='openShopBag'>
+          <image src='/imgs/05.png'></image>
+          购物袋
+        </view>
+        <button class='affirm' bindtap='addCart'>加入购物车</button>
+        <button class='buy-now' bindtap='rapid'>立即购买</button>
+      </view>
+    </view>
+    <!-- 视屏 -->
+
+    <video url="" class="hvideo"></video>
+
+    <!-- 互动部分 -->
+    <view class="vlbottom">
+      <view class='mask'></view>
+      <scroll-view class="vlscroll" scroll-y>
+        <view class="vlbottomtext">1111111</view>
+        <view class="vlbottomtext">1111111</view>
+        <view class="vlbottomtext">1111111</view>
+        <view class="vlbottomtext">1111111</view>
+        <view class="vlbottomtext">1111111</view>
+      </scroll-view>
+      <view class="vlbottominput" wx:if="{{inpcount%2==0}}">
+        <input placeholder="说点什么..." auto-focus class="vlbottominput1" />
+      </view>
+      <image src="/imgs/19.png" class="vlbottomimg" bindtap='vlbottomimg'></image>
+    </view>
+  </view>
+
+  <!-- 商品 -->
+  <scroll-view scroll-x class="hscroll">
+    <view class="hproduceall">
+      <view class="vlproduce" data-id='{{LiveInfo.CurrentLiveProduct.ProductId}}' data-idx='-1' catchtap='Eject'>
+        <view class='liveing'>直播中</view>
+        <image src="{{LiveInfo.CurrentLiveProduct.ProductImage}}" class="vlproduceimg"></image>
+        <view class="vlproduceprice">￥{{LiveInfo.CurrentLiveProduct.MinSalePrice}}</view>
+        <view class='triangle' hidden='{{!(!isSku&&idx==-1)}}'></view>
+      </view>
+      <view wx:for="{{LiveInfo.LiveProductList}}" class="vlproduce" wx:key="{{index}}" data-id='{{item.ProductId}}' data-idx='{{index}}' catchtap='Eject'>
+        <view class='live-num'>{{index+1}}</view>
+        <image src="{{item.ProductImage}}" class="vlproduceimg"></image>
+        <view class="vlproduceprice">￥{{item.MinSalePrice}}</view>
+        <view class='triangle' hidden='{{!(!isSku&&index==idx)}}'></view>
+      </view>
+    </view>
+  </scroll-view>
+  <!-- 快捷下单 -->
+  <view class="rapid" wx:if="{{rapid}}">
+    <view class="rapidcover"></view>
+    <view class="rapidall">
+      <view class="rapidtop">
+        <view class="rapidtoptext">快捷下单</view>
+        <image src="/imgs/11.png" class="rapidclose" bindtap='rapidclose'></image>
+      </view>
+      <view class="rapidaddres2" wx:if="{{!rapidaddres}}">
+        <image src="/imgs/orders/confirm_address_icon.png" class="rapidaddresimg2" bindtap='adddizhi'></image>
+      </view>
+      <view class="rapidaddres" wx:else>
+        <view class="rapidname">{{addressMsg.userName}} {{addressMsg.telNumber}}</view>
+        <view class="raddress">收货地址：{{addressMsg.address}}</view>
+        <image src="/imgs/orders/confirm_address_line.png" class="rapidaddresimg"></image>
+      </view>
+      <view class="rapidproduce">
+        <view class="rhshopname">BURBERRY官方旗舰店</view>
+        <view class="rspecification">
+          <image src="/imgs/orders/goods01.jpg" class="rspecificationimg1"></image>
+          <view class="rproduce">
+            <view class="rproducename">女士彩色条纹修身连衣裙</view>
+            <view class="rproducecolor">颜色： 黑色</view>
+            <view class="rproducenoney">￥ 3200.00</view>
+          </view>
+          <view class="raddcount">
+            <view class="rproducecount">x{{num}}</view>
+            <view class="raddandmin">
+              <button class="rmin" bindtap='min'>-</button>
+              <input disabled="true" value='{{num}}' class="rcount" />
+              <button class="radd" bindtap='add'>+</button>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="rapidsubmit">提交订单</view>
+    </view>
+  </view>
+
+
+  <!-- 购物袋  -->
+  <view class='rapid' wx:if="{{shopBag}}">
+    <view class="rapidcover"></view>
+    <view class="shop-bag">
+      <view class="shop-bag-title">
+        <view class="rapidtoptext">购物袋</view>
+        <image src="/imgs/11.png" class="rapidclose" bindtap='shopBagclose'></image>
+      </view>
+
+      <view class='shop-bag-content' style='height:{{height*0.65-58}}px'>
+        <scroll-view scroll-y class='shop-bag-scroll' style='height:{{height*0.65-113}}px'>
+          <include src="../shop/shop.wxml" />
+        </scroll-view>
+      </view>
+      >>>>>>> 92d6a03206abc40e3113add6c6ab433019658ce4
+    </view>
+  </view>
+</view>

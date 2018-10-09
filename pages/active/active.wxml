@@ -1,0 +1,45 @@
+<view style="background:#{{active.BackgroundColor}}">
+  <navigator url="/pages/classify/inside/video/video?storeid={{active.HeadModel.StoreId}}" class="navigator" hover-class='none'>
+    <image src="{{active.VideoCoverImgDisplay}}" class="topimg"></image>
+    <!-- <image src="/imgs/avtiveplay.png" class="topimg2"></image> -->
+  </navigator>
+  <view class="active1all" wx:for="{{active.VideoModels}}" wx:key="{{index}}">
+    <view class="bg">
+      <view class="activetitle">
+        <view class="activetitle1">{{item.ModuleName}}</view>
+        <view class="activetitle2">VIDEO</view>
+      </view>
+      <view class="avall">
+        <view class="av" wx:for="{{item.SpecialVideoStoreModels}}" wx:key="{{index}}">
+          <navigator url="/pages/classify/inside/video/video?storeid={{item.StoreId}}" class="avimg" hover-class='none'>
+            <image src="{{item.StoreImg}}" class="avimg1"></image>
+            <image src="/imgs/play.png" class="avimg2"></image>
+          </navigator>
+          <view class="avtitle">{{item.StoreName}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="main2">
+    <view class="activeall2">
+      <view class="activetitle22">
+        <view class="activetitle2-1">{{active.ProductModelName}}</view>
+        <view class="activetitle2-2">COMMODITY</view>
+      </view>
+      <navigator url="/pages/commoditydetail/commoditydetail?id={{item.ProductId}}" class="apall {{index==active.ProductModels.length-1?'border':''}}" wx:for="{{active.ProductModels}}" wx:key="{{index}}" hover-class='none'>
+        <image src="{{item.ProductImg}}" class="apimg"></image>
+        <view class="aptext">
+          <view class="aptitle">{{item.ProductName}}</view>
+          <view class="pands">
+            <view class="price">{{item.ProductPrice}}
+              <text>元</text>
+            </view>
+            <view class="shop">
+              <image src="/imgs/gwc.png" class="shopimg"></image>
+            </view>
+          </view>
+        </view>
+      </navigator>
+    </view>
+  </view>
+</view>

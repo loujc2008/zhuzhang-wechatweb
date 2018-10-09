@@ -1,0 +1,151 @@
+page {
+  background-color: #fff;
+  height: 100%;
+}
+
+.collecttab {
+  height: 86rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.same {
+  flex: 1;
+}
+
+.default {
+  margin-left: 140rpx;
+  width: 82rpx;
+  line-height: 80rpx;
+  text-align: center;
+  color: #7f7f7f;
+  font-weight: bold;
+  font-size: 28rpx;
+}
+
+.red {
+  margin-left: 140rpx;
+  width: 82rpx;
+  height: 86rpx;
+  line-height: 86rpx;
+  text-align: center;
+  color: #000;
+  flex: 1;
+  border-bottom: 6rpx solid #f683a2;
+  font-weight: bold;
+  font-size: 28rpx;
+  box-sizing: border-box;
+}
+
+.babydis {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.linear {
+  height: 12rpx;
+  width: 100%;
+  background-image: linear-gradient(to bottom, #efefef, #fff);
+  opacity: 0.5;
+  margin-top: 86rpx;
+}
+
+.baby {
+  background: #fff;
+  margin-bottom: 58rpx;
+}
+
+.baby image {
+  width: 373rpx;
+  height: 373rpx;
+}
+
+.babyname {
+  width: 315rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 26rpx;
+  margin-left: 30rpx;
+  margin-top: 30rpx;
+}
+
+.buy {
+  margin-top: 30rpx;
+  width: 315rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.buyprice {
+  margin-left: 30rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.buypeople {
+  font-size: 22rpx;
+  color: #d3d3d3;
+  margin-top: 10rpx;
+}
+
+.shopall {
+  height: 185rpx;
+  border-bottom: 1rpx solid #f3f3f3;
+  background: #fff;
+}
+
+.shop1 {
+  padding: 30rpx;
+  display: flex;
+}
+
+.shop1 image {
+  width: 91rpx;
+  height: 91rpx;
+}
+
+.shop2 {
+  margin-top: 15rpx;
+  margin-left: 23rpx;
+}
+
+.shop3 {
+  font-size: 26rpx;
+  font-weight: bold;
+}
+
+.shop4 {
+  font-size: 24rpx;
+  color: #a3a3a3;
+  /* position: relative; */
+}
+
+.shop5 {
+  margin-left: 20rpx;
+}
+
+.kong {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.kontu {
+  width: 378rpx!important;
+  height: 242rpx!important;
+}
+
+.kongzi {
+  font-size: 26rpx;
+  color: #878787;
+}

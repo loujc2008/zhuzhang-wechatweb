@@ -1,0 +1,421 @@
+
+.bannerall {
+  width: 100%;
+}
+
+.activeswiper {
+  width: 100%;
+  height: 400rpx;
+}
+
+.swiper-item {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.swipernavigator {
+  width: 100%;
+  height: 100%;
+}
+
+.swiperimg {
+  width: 100%;
+  height: 100%;
+}
+
+.swipertext1 {
+  font-size: 30rpx;
+}
+
+.swipertext2 {
+  font-size: 26rpx;
+}
+
+/* 热门直播 */
+
+.liveall {
+  width: 100%;
+  margin-top: 55rpx;
+  margin-bottom: 62rpx;
+}
+
+.livetitle {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 34rpx;
+}
+
+.livetitle1 {
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.livemore {
+  display: flex;
+  width: 60rpx;
+  height: 22rpx;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.livemore text {
+  font-size: 22rpx;
+  color: #b8b8b8;
+}
+
+.livemore image {
+  width: 8rpx;
+  height: 14rpx;
+}
+
+.scroll {
+  width: 100%;
+  height: 350rpx;
+}
+
+.scrolldisplay {
+  display: flex;
+  padding: 0 10rpx;
+  box-sizing: border-box;
+  justify-content: space-between;
+}
+
+.scrolllive {
+  position: relative;
+}
+
+.scrollimg {
+  width: 238rpx;
+  height: 238rpx;
+}
+
+.zhuangtaiimg {
+  width: 86rpx;
+  height: 33rpx;
+  line-height: 33rpx;
+  border-radius: 20rpx 0rpx 0rpx 20rpx;
+  background-image: linear-gradient(to left, #ff2664, #ff1e82);
+  position: absolute;
+  top: 10rpx;
+  right: 0rpx;
+  font-size: 20rpx;
+  color: #fff;
+  text-align: center;
+}
+
+.huifang {
+  width: 86rpx;
+  height: 33rpx;
+  line-height: 33rpx;
+  border-radius: 20rpx 0rpx 0rpx 20rpx;
+  background: #8e8e8e;
+  position: absolute;
+  top: 10rpx;
+  right: 0rpx;
+  font-size: 20rpx;
+  color: #fff;
+  text-align: center;
+}
+
+.scrolltext {
+  padding-left: 20rpx;
+  font-size: 24rpx;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+  -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+  -webkit-line-clamp: 1; /** 显示的行数 **/
+  overflow: hidden; /** 隐藏超出的内容 **/
+  width: 218rpx;
+}
+
+/* 推荐店铺 */
+
+.dianpuall {
+  width: 100%;
+  background: #f5f5f5;
+  padding: 44rpx 0 60rpx 30rpx;
+  box-sizing: border-box;
+}
+
+.dianputitle {
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-bottom: 32rpx;
+}
+
+.d-scroll {
+  width: 100%;
+  height: 500rpx;
+}
+
+.d-scrolldisplay {
+  display: flex;
+  min-width: 750rpx;
+}
+
+.dianpu-to {
+  width: 450rpx;
+  height: 350rpx;
+  position: relative;
+  margin-right: 30rpx;
+}
+
+.shopimg {
+  width: 400rpx;
+  height: 500rpx;
+}
+
+.shopmask {
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  width: 400rpx;
+  height: 500rpx;
+  background: #000;
+  opacity: 0.4;
+}
+
+.shoptext {
+  position: absolute;
+  top: 240rpx;
+  left: 21rpx;
+}
+
+.shoptext1 {
+  font-size: 26rpx;
+  font-weight: bold;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+  -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+  -webkit-line-clamp: 1; /** 显示的行数 **/
+  overflow: hidden; /** 隐藏超出的内容 **/
+  width: 358rpx;
+  color: #fff;
+  margin-bottom: 18rpx;
+}
+
+.shoptext2 {
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #fff;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+  -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+  -webkit-line-clamp: 1; /** 显示的行数 **/
+  overflow: hidden; /** 隐藏超出的内容 **/
+  width: 358rpx;
+  margin-bottom: 38rpx;
+}
+
+.border {
+  width: 98rpx;
+  border-bottom: 1rpx solid #fff;
+  margin-bottom: 26rpx;
+}
+
+.shoptext3 {
+  font-size: 24rpx;
+  color: #fff;
+}
+
+/* 上面是热门直播、专题活动、推荐店铺 */
+
+.recommendtitle {
+  margin-top: 45rpx;
+  margin-bottom: 45rpx;
+  margin-left: 30rpx;
+}
+
+.recommendtitle1 {
+  font-size: 30rpx;
+  margin-right: 10rpx;
+  font-weight: bold;
+}
+
+.shu {
+  font-size: 25rpx;
+  color: #bfbfbf;
+}
+
+.recommendtitle2 {
+  height: 23rpx;
+  font-size: 28rpx;
+  color: #bfbfbf;
+  margin-left: 10rpx;
+}
+
+.videoShop {
+  position: relative;
+  height: 500rpx;
+  /* margin-bottom: 5rpx; */
+}
+
+.videoShop image {
+  width: 100%;
+  height: 100%;
+}
+
+.recommendmask {
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: 0.1;
+  position: absolute;
+  bottom: 0;
+}
+
+.videoShoptext {
+  position: absolute;
+  top: 440rpx;
+  color: #fff;
+  display: flex;
+  font-size: 24rpx;
+  width: 100%;
+  justify-content: center;
+  opacity: 0.5;
+}
+
+.swiper-content {
+  width: 100%;
+  height: 100%;
+}
+
+.bg-img {
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.bg-img image {
+  width: 100%;
+  height: 100%;
+}
+
+.bg-play {
+  position: absolute;
+  width: 100%;
+  height: 465rpx;
+  top: 0;
+  left: 0;
+}
+
+.bg-play image {
+  width: 78rpx;
+  height: 78rpx;
+  position: absolute;
+  top: 220rpx;
+  z-index: 6;
+  left: 340rpx;
+}
+
+.search {
+  background-color: #fff;
+  width: 690rpx;
+  padding: 20rpx 30rpx;
+}
+
+.search input {
+  height: 60rpx;
+  line-height: 60rpx;
+}
+
+.search-prompt {
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: absolute;
+  left: 30rpx;
+  top: 20rpx;
+  width: 690rpx;
+  z-index: 100;
+  font-size: 24rpx;
+  color: #b8b8b8;
+}
+
+.search-prompt image {
+  margin-right: 20rpx;
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.video-label {
+  position: absolute;
+  top: 30rpx;
+  left: 30rpx;
+  border: 1rpx solid #999;
+  padding: 15rpx 30rpx;
+  border-radius: 50rpx;
+  font-size: 24rpx;
+  background-color: #fff;
+}
+
+.hr {
+  width: 265rpx;
+  height: 1px;
+  margin: 0px auto;
+  padding: 0px;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.video-text {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.videoShoptext1 {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #fff;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 7rpx;
+  margin-top: 178rpx;
+}
+
+.videoShoptext2 {
+  font-size: 24rpx;
+  color: #fff;
+  width: 100%;
+  text-align: center;
+  margin-top: 8rpx;
+}
+
+.videoShoptext4 {
+  display: flex;
+  /* justify-content: space-between; */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 690rpx;
+  padding: 30rpx 30rpx 40rpx 30rpx;
+  color: #fff;
+  font-size: 24rpx;
+  align-items: center;
+}
+
+.videoShoptext4_1 {
+  position: absolute;
+  left: 30rpx;
+  bottom: 20rpx;
+}
+
+.videoShoptext4_2 {
+  position: absolute;
+  right: 30rpx;
+  bottom: 20rpx;
+}

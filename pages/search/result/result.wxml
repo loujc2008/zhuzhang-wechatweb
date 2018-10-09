@@ -1,0 +1,42 @@
+<view bindtap='openSearch' class='search'>
+  <image src='/imgs/search.png'></image>
+  <input disabled placeholder='{{text}}' confirm-type='搜索' placeholder-class='search-placeholder'></input>
+  <view>搜索</view>
+</view>
+<view class='result-title'>
+  <view class='{{name=="商品"?"on":""}}' bindtap='telSwitch' data-name='商品'>商品</view>
+  <view class='{{name=="视频"?"on":""}}' bindtap='telSwitch' data-name='视频'>视频</view>
+  <view class='{{name=="店铺"?"on":""}}' bindtap='telSwitch' data-name='店铺'>店铺</view>
+</view>
+<view class='result-mask'>
+  <view class='mask'></view>
+</view>
+<product-list wx:if='{{name=="商品"}}' product-list='{{products.arr}}' page-type='2'></product-list>
+<view wx:if='{{name=="视频"}}' class='babydis'>
+  <navigator open-type='redirect' class="baby" wx:for="{{videos.arr}}" wx:key="{{index}}" url="/pages/classify/inside/video/video?storeid={{item.Id}}&title={{item.Name}}" hover-class="none">
+    <image src="{{item.Img}}" mode='scaleToFill'></image>
+    <view class="babyname">{{item.Name}}</view>
+    <view class="buy">{{item.PlayCount}}次播放</view>
+  </navigator>
+</view>
+<view wx:if='{{name=="店铺"}}' class='shop'>
+  <navigator open-type='redirect' wx:for='{{shops.arr}}' wx:key="{{index}}" url="/pages/dianpu/dianpu?shopId={{item.Id}}" hover-class="none" class='shop-title'>
+    <image src="{{item.LogoFullPath?item.LogoFullPath:'/imgs/default.jpg'}}"></image>
+    <view class='shop-content'>
+      <view class='shop-info'>
+        <text class="shop-name">{{item.ShopName}}</text>
+        <view class='shop-info-num'>
+          <text>{{item.ConcernedCount}} 关注</text>
+          <text>{{item.StoreCount}}个视频</text>
+          <text>{{item.ProductCount}}件商品</text>
+        </view>
+      </view>
+      <image src="/imgs/search_you.png"></image>
+    </view>
+  </navigator>
+</view>
+<view class='no-more' wx:if='{{name=="商品"&&!products.also&&products.arr.length!=0||name=="视频"&&!videos.also&&videos.arr.length!=0||name=="店铺"&&!shops.also&&shops.arr.length!=0}}'>没有更多了</view>
+<view wx:if='{{name=="商品"&&products.arr.length==0||name=="视频"&&videos.arr.length==0||name=="店铺"&&shops.arr.length==0}}' class='default'>
+  <image src='/imgs/null-search.png'></image>
+  <text>没有找到{{name}},换一个试试吧</text>
+</view>

@@ -1,0 +1,75 @@
+<!-- 搜索 -->
+<navigator hover-class='none' url="/pages/search/search" class='search'>
+  <input disabled placeholder-class='search-placeholder'></input>
+  <view class='search-prompt'>
+    <image src='/imgs/22.jpg' class='frist-search'></image>请输入关键词搜索</view>
+</navigator>
+<!-- 热门直播、推荐店铺、专题活动 -->
+<view class="bannerall">
+  <!-- 专题活动 -->
+  <swiper indicator-dots autoplay circular interval="5000" duration="500" wx:if="{{bannerData.SpecialModels.length>0}}" class="activeswiper">
+    <block wx:for="{{bannerData.SpecialModels}}" wx:key="{{index}}" >
+      <swiper-item class="swiper-item">
+        <navigator url="/pages/active/active?id={{item.SpecialModel.SpecialId}}" hover-class='none' class="swipernavigator">
+          <image src="{{item.SpecialModel.ThumbnailDisplay}}" class="swiperimg" />
+        </navigator>
+      </swiper-item>
+    </block>
+  </swiper>
+  <!-- 热门直播 -->
+  <view class="liveall" wx:if="{{bannerData.LiveroomModels[0].LiveroomModels.length>0}}">
+    <navigator url="/pages/live/live" hover-class='none' class="livetitle">
+      <view class="livetitle1">热门直播</view>
+      <view class="livemore">
+        <text>更多</text>
+        <image src="/imgs/66.png"></image>
+      </view>
+    </navigator>
+    <view class="scrolldisplay">
+      <navigator url="/pages/verticallive/verticallive?Id={{item.LiveroomId}}" hover-class='none' class="scrolllive" wx:for="{{bannerData.LiveroomModels}}" wx:key="{{index}}" wx:for="{{bannerData.LiveroomModels[0].LiveroomModels}}">
+        <image src="{{item.LiveroomImg}}" class="scrollimg"></image>
+        <view class="{{item.LiveroomStatusWX?'zhuangtaiimg':'huifang'}}">{{item.LiveroomStatusWX?'直播中':'回放'}}</view>
+        <view class="scrolltext">{{item.LiveroomName}}</view>
+      </navigator>
+    </view>
+  </view>
+  <!-- 推荐店铺 -->
+  <view class="dianpuall" wx:if="{{bannerData.SellerModels.length>0}}">
+    <view class="dianputitle">推荐店铺</view>
+    <scroll-view class="d-scroll" scroll-x>
+      <view class="d-scrolldisplay" style='width:{{bannerData.SellerModels.length*430}}rpx'>
+        <view wx:for="{{bannerData.SellerModels}}" wx:key="{{index}}" data-shopid='{{item.SellerModel.ShopId}}' class="dianpu-to" catchtap='todianpu'>
+          <image src="{{item.BackgroundImgDisplay}}" class="shopimg"></image>
+          <view class="shopmask"></view>
+          <view class="shoptext">
+            <view class="shoptext1">{{item.SellerModel.ShopName}}</view>
+            <view class="shoptext2">{{item.AdvertisementName}}</view>
+            <view class="border"></view>
+            <view class="shoptext3">Recommend</view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>
+<!-- //推荐视屏 -->
+<view class="recommend">
+  <view class="recommendtitle">
+    <view class="recommendtitle1">推荐视频</view>
+  </view>
+  <navigator hover-class="none" url='../classify/inside/video/video?title={{item.StoreName}}&storeid={{item.StoreId}}' class="videoShop" wx:for="{{shopdata}}" wx:key="{{index}}">
+    <image src="{{item.ImageUrlFull}}"></image>
+    <view class="recommendmask"></view>
+    <view class='video-text'>
+      <view class="videoShoptext1">{{item.StoreName}}</view>
+      <view class='hr'></view>
+      <view class="videoShoptext2">{{item.ShopName}}</view>
+    </view>
+    <view class="videoShoptext4">
+      <view wx:if="{{item.RandomVideoTagName}}" class="videoShoptext4_1">
+        #{{item.RandomVideoTagName}}#
+      </view>
+      <view class="videoShoptext4_2">{{item.DurationDisplay}}</view>
+    </view>
+  </navigator>
+</view>

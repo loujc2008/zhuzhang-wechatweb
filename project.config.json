@@ -1,0 +1,83 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "1.7.2",
+	"appid": "wx9e620b872145f4b6",
+	"projectname": "%E8%A7%86%E9%9C%93",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": 0,
+					"name": "退款",
+					"pathName": "pages/order/apply/apply",
+					"query": ""
+				},
+				{
+					"id": 1,
+					"name": "购物车",
+					"pathName": "pages/shop/shop",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "确认订单",
+					"pathName": "pages/confirmorder/confirmorder",
+					"query": ""
+				},
+				{
+					"id": 3,
+					"name": "订单详情",
+					"pathName": "pages/order/orderdetail/orderdetail",
+					"query": ""
+				},
+				{
+					"id": 4,
+					"name": "店铺",
+					"pathName": "pages/dianpu/dianpu",
+					"query": ""
+				},
+				{
+					"id": 5,
+					"name": "1",
+					"pathName": "pages/verticallive/verticallive",
+					"query": ""
+				},
+				{
+					"id": 6,
+					"name": "2",
+					"pathName": "pages/verticallive/verticallive",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "4",
+					"pathName": "pages/classify/classify",
+					"query": ""
+				},
+				{
+					"id": 8,
+					"name": "commodity",
+					"pathName": "pages/christmas/christmas",
+					"query": ""
+				}
+			]
+		}
+	}
+}

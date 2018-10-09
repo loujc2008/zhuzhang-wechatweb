@@ -1,0 +1,27 @@
+<swiper vertical class="swiper">
+  <swiper-item>
+    <view class="bg">
+      <image src="http://urshow-1253203608.file.myqcloud.com/wechatapp/zhuanti/20171218/GIF0.gif" class="top-gif"></image>
+      <image src="http://urshow-1253203608.file.myqcloud.com/wechatapp/zhuanti/20171130/white.gif" class="jiantou"></image>
+    </view>
+  </swiper-item>
+  <swiper-item>
+    <view class="bg1">
+      <image src="http://urshow-1253203608.file.myqcloud.com/wechatapp/zhuanti/20171130/black.gif" class="jiantou"></image>
+    </view>
+  </swiper-item>
+  <swiper-item>
+    <view class="bg2">
+      <image src="http://urshow-1253203608.file.myqcloud.com/wechatapp/zhuanti/20171130/black.gif" class="jiantou"></image>
+    </view>
+  </swiper-item>
+  <swiper-item>
+    <view class="bg3">
+      <image src="http://urshow-1253203608.file.myqcloud.com/wechatapp/zhuanti/20171130/black.gif" class="jiantou"></image>
+    </view>
+  </swiper-item>
+  <swiper-item>
+    <view class="bg4">
+    </view>
+  </swiper-item>
+</swiper>

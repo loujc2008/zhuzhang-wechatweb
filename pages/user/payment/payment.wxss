@@ -1,0 +1,433 @@
+/* pages/user/payment/payment.wxss */
+
+page {
+  background: #f6f7f9;
+}
+
+.swiper-tab {
+  display: flex;
+  text-align: center;
+  line-height: 40px;
+  background: #fff;
+  justify-content: space-around;
+}
+
+.swiper-tab-list {
+  color: #000;
+  font-size: 28rpx;
+  position: relative;
+}
+
+.kongbai {
+  width: 100%;
+  height: 10px;
+  background: #fff;
+}
+
+.huikongbai {
+  width: 100%;
+  height: 20rpx;
+}
+
+.on {
+  border-bottom: 2px solid #fa6e84;
+  font-weight: bold;
+}
+
+.swiper-box {
+  display: block;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* swiper-item {
+  padding: 0 30rpx;
+} */
+
+.swiper-box .payall {
+  background: #fff;
+  margin-bottom: 20rpx;
+  /* padding: 0 30rpx; */
+}
+
+.tradename {
+  width: 690rpx;
+  height: 85rpx;
+  line-height: 85rpx;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 45rpx;
+  padding: 0 30rpx;
+}
+
+.tradename1 {
+  font-size: 30rpx;
+  color: #000;
+  font-weight: bold;
+  width: 400rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tradename2 {
+  font-size: 25rpx;
+  opacity: 0.5;
+}
+
+.shangpin1 {
+  display: flex;
+  width: 690rpx;
+  padding-top: 35rpx;
+}
+
+.shangpin image {
+  width: 201rpx;
+  height: 203rpx;
+}
+
+.description {
+  margin-left: 27rpx;
+  font-size: 30rpx;
+}
+
+.quantity {
+  margin-bottom: 34rpx;
+  /* position: relative; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.waitpayquantity1 {
+  margin-bottom: 34rpx;
+}
+
+.text1 {
+  width: 330rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: bold;
+}
+
+.text2 {
+  margin-left: 100rpx;
+}
+
+.text3 {
+  opacity: 0.5;
+}
+
+.text4 {
+  font-weight: bold;
+}
+
+.border {
+  padding: 0 30rpx;
+}
+
+.total {
+  display: flex;
+  font-size: 25rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  border-top: 2rpx solid #e7e7e7;
+}
+
+.text7 {
+  opacity: 0.5;
+  margin-left: auto;
+}
+
+.text8 {
+  margin-left: 30rpx;
+  color: red;
+}
+
+.allnavgatior {
+  padding: 0 30rpx;
+  /* background: #f6f7f9; */
+  padding-bottom: 35rpx;
+}
+
+/* 、、、、、、、、、、、、、、、、、、、、、、、、、、 代付款*/
+
+.swiper-box .waitpay {
+  margin-bottom: 20rpx;
+  overflow: hidden;
+}
+
+.waitpayname {
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  height: 85rpx;
+  line-height: 85rpx;
+  padding: 0 30rpx;
+  margin-bottom: 25rpx;
+}
+
+.waitpayname1 {
+  width: 400rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 30rpx;
+  color: #000;
+  font-weight: bold;
+}
+
+.waitpayname2 {
+  font-size: 30rpx;
+  opacity: 0.5;
+}
+
+.red {
+  color: red;
+}
+
+.waitpayshop {
+  background: #f6f7f9;
+  padding: 0 30rpx;
+  display: flex;
+  width: 690rpx;
+  margin-bottom: 20rpx;
+}
+
+.waitpayshop image {
+  width: 201rpx;
+  height: 203rpx;
+}
+
+.waitpaydescription {
+  margin-left: 27rpx;
+  font-size: 30rpx;
+}
+
+.waitpayquantity {
+  margin-bottom: 34rpx;
+  /* position: relative; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.waitpayquantity1 {
+  margin-bottom: 34rpx;
+}
+
+.waitpaytext1 {
+  width: 330rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: bold;
+}
+
+.waitpaytext2 {
+  margin-left: 100rpx;
+  /* position: absolute;
+  top:0;
+  left:330rpx; */
+}
+
+.waitpaytext3 {
+  opacity: 0.5;
+}
+
+.waitpaytext4 {
+  font-weight: bold;
+}
+
+.waitpaytext5 {
+  font-weight: 100;
+}
+
+.waitpaytotal {
+  font-size: 25rpx;
+  background: #fff;
+  height: 116rpx;
+  line-height: 116rpx;
+  padding: 0 30rpx;
+  padding-bottom: 20rpx;
+}
+
+.waitpaytotal1 {
+  display: flex;
+  width: 690rpx;
+  border-bottom: 2rpx solid #e7e7e7;
+}
+
+.waitpaytext7 {
+  opacity: 0.5;
+}
+
+.waitpaytext8 {
+  margin-left: 40rpx;
+  color: red;
+}
+
+.waitpaytext-7 {
+  opacity: 0.5;
+  margin-left: auto;
+}
+
+.waitpaytext-7-1 {
+  opacity: 0.5;
+}
+
+.waitpaytext-8 {
+  margin: 0 40rpx;
+  color: red;
+}
+
+.waitpayment {
+  height: 113rpx;
+  background: #fff;
+  font-size: 26rpx;
+}
+
+.waitpaytop {
+  display: flex;
+  padding-top: 10rpx;
+}
+
+.waitpaytext9 {
+  width: 195rpx;
+  height: 66rpx;
+  line-height: 66rpx;
+   /* border: 2rpx solid #e7e7e7;  */
+   /* border:0; */
+  text-align: center;
+  margin-left: 270rpx;
+  border-radius: 0;
+  background-color: #fff;
+  font-size: 24rpx;
+  box-sizing: content-box;
+  padding: 0;
+}
+
+.waitpaytext9::after {
+  border-radius: 0;
+}
+
+.waitpaytext10 {
+  width: 195rpx;
+  height: 66rpx;
+  line-height: 66rpx;
+  border: 2rpx solid #e7e7e7;
+  color: #fff;
+  margin: 0 28rpx;
+  background: #fa6e84;
+  text-align: center;
+}
+
+/* ................................待发货 */
+
+.waitsend {
+  font-size: 25rpx;
+  background: #fff;
+  height: 116rpx;
+  line-height: 116rpx;
+  padding: 0 30rpx;
+}
+
+.waitsend1 {
+  width: 690rpx;
+  border-bottom: 2rpx solid #e7e7e7;
+}
+
+.waitsendtext7 {
+  opacity: 0.5;
+  margin-left: 350rpx;
+}
+
+.waitsendtext8 {
+  margin-left: 40rpx;
+  color: red;
+}
+
+/* /////////////////////////////////已完成 */
+
+.accomplish {
+  width: 195rpx;
+  height: 66rpx;
+  line-height: 66rpx;
+  border: 2rpx solid #e7e7e7;
+  text-align: center;
+  margin-left: 490rpx;
+  background: #fa6e84;
+  color: #fff;
+}
+
+/* ///////////////////////////退款 */
+
+.exchange {
+  height: 113rpx;
+  background: #fff;
+  font-size: 26rpx;
+}
+
+.exchange1 {
+  display: flex;
+  padding-top: 20rpx;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+}
+
+.exchange2 {
+  padding-top: 23rpx;
+}
+
+.exchange3 {
+  width: 195rpx;
+  height: 66rpx;
+  line-height: 66rpx;
+  border: 2rpx solid #e7e7e7;
+  color: #fff;
+  margin-left: 380rpx;
+  background: #fa6e84;
+  text-align: center;
+}
+
+/* .without{
+  margin-left:162 rpx;
+  margin-top: 100rpx;
+  width: 414rpx;
+  height:313rpx;
+} */
+
+.kong {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: #fff;
+  color: #a3a7ac;
+  font-size: 28rpx;
+}
+
+.kong image {
+  margin-top: -210px;
+  width: 414rpx;
+  height: 313rpx;
+}
+
+.kong view {
+  margin-top: 74rpx;
+}
+
+.num {
+  height: 28rpx;
+  line-height: 28rpx;
+  width: 28rpx;
+  border-radius: 50%;
+  background-color: red;
+  color: #fff;
+  position: absolute;
+  top: 10rpx;
+  right: -12rpx;
+  text-align: center;
+  font-size: 20rpx;
+}

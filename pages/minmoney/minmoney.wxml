@@ -1,0 +1,38 @@
+<view hidden="{{!showFororder}}" class="coupon">
+  <!-- <view class="couponmask"></view> -->
+  <view class="couponcontent">
+    <view class="couponcontent1">使用优惠券</view>
+    <view class="diyong" wx:if="{{totalAmount>=fororder[sIdx].Amount&&totalAmount>=fororder[sIdx].Limitation}}">您已选择优惠券一张，共可抵用¥{{fororder[sIdx].Amount}}</view>
+    <scroll-view scroll-y class="couponscroll">
+      <!-- <view bindtap='selectFororder' wx:for="{{fororder}}" wx:key="{{index}}" data-idx="{{index}}" class="couponcontent2">
+        <view class="couponcontent2-text">满{{item.Limitation}}减{{item.Amount}}</view>
+        <view class="couponcontent-ok">
+          <icon type="{{index==sIdx?'success':'circle'}}" color="{{index==sIdx?'rgb(251,109,131)':''}}" size="18" />
+        </view>
+      </view>
+      <view bindtap='selectFororder' data-idx="{{fororder.length}}" class="couponcontent2">
+        <view class="couponcontent2-text">不使用优惠</view>
+        <view class="couponcontent-ok">
+          <icon type="{{fororder.length==sIdx?'success':'circle'}}" color="{{fororder.length==sIdx?'rgb(251,109,131)':''}}" size="18" />
+        </view>
+      </view> -->
+      <view class="discountlist" wx:for="{{fororder}}" wx:key="{{index}}" data-idx="{{index}}" bindtap='selectFororder'>
+        <image src="{{totalAmount>item.Amount&&totalAmount>=item.Limitation?'/imgs/discount2.jpg':'/imgs/21.png'}}" class="discountlist-img"></image>
+        <view class="discount-price {{totalAmount>item.Amount&&totalAmount>=item.Limitation?'':'nomz'}}">
+          <text class="discount-price1">￥</text>
+          <text class="discount-price2">{{item.Amount}}</text>
+        </view>
+        <view class="discountmsg">
+          <view class="msg1 {{totalAmount>item.Amount&&totalAmount>=item.Limitation?'':'nomz'}}">{{item.CouponName}}</view>
+          <view class="msg2 {{totalAmount>item.Amount&&totalAmount>=item.Limitation?'':'nomz'}}">{{item.CouponDescription}}</view>
+          <view class="msg3">{{n.formatTime(item.StartDate)}}-{{n.formatTime(item.EndDate)}}</view>
+        </view>
+        <view class="couponcontent-ok bg" wx:if="{{totalAmount>item.Amount&&totalAmount>=item.Limitation}}">
+          <icon type="success" color="{{index==sIdx&&totalAmount>item.Amount&&totalAmount>=item.Limitation?'rgb(251,109,131)':'rgb(208,208,208)'}}" size="18" />
+        </view>
+      </view>
+    </scroll-view>
+    <view class="attend">注意：每次只能使用一张优惠券，不可叠加使用</view>
+    <image src="/imgs/11.png" bindtap='closeFororder' class="closecoupon">关闭</image>
+  </view>
+</view>

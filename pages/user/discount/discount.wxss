@@ -1,0 +1,183 @@
+@import '/pages/discounttan/discounttan.wxss';
+page {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.swiper-tab {
+  display: flex;
+  text-align: center;
+  height: 47px;
+  line-height: 47px;
+  background: #fff;
+  justify-content: space-around;
+}
+
+.swiper-tab-list {
+  color: #a3a3a3;
+  font-size: 26rpx;
+}
+
+.swiper-box {
+  flex: 1;
+  height: 90%;
+}
+.yinying{
+   box-shadow: 0 0 50rpx rgba(0, 0, 0, 0.3);
+}
+.kongimg {
+  margin-left: 180rpx;
+  width: 413rpx;
+  height: 272rpx;
+  margin-top: 180rpx;
+}
+
+ .swiper-item {
+  background:#f4f8f9;
+} 
+
+.on {
+  border-bottom: 5rpx solid #fa6e84;
+  font-weight: bold;
+  color: #fd4663;
+}
+
+/* --------------------------------------------------未使用华丽分割线-------------------------------------------------------*/
+
+.unused {
+  display: flex;
+  padding: 30rpx 14rpx 0 14rpx;
+}
+
+.what {
+  position: relative;
+  height: 228rpx;
+}
+
+.whatimg {
+  height: 228rpx;
+  width: 71rpx;
+}
+
+.whattext {
+  z-index: 5;
+  position: absolute;
+  left: 25rpx;
+  top: 60rpx;
+  width: 30rpx;
+  font-size: 24rpx;
+  color: #fff;
+}
+
+/* 空白区域 */
+
+.blank {
+  position: relative;
+}
+
+.blankimg {
+  width: 716rpx;
+  height: 212rpx;
+}
+
+.blankimg1 {
+  width: 540rpx;
+  height: 2rpx;
+  position: absolute;
+  left: 20rpx;
+  bottom: 75rpx;
+}
+
+.blankimg2 {
+  width: 108rpx;
+  height: 107rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.blanktxt {
+  position: absolute;
+  top: 25rpx;
+  left: 37rpx;
+  height: 170rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.blanktxt-1 {
+  width: 510rpx;
+  height: 95rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.blanktxt-1-price {
+  color: #f36967;
+}
+
+.blanktxt-1-price .one {
+  font-size: 38rpx;
+  font-weight: bold;
+}
+
+.blanktxt-1-price .two {
+  font-size: 80rpx;
+  font-weight: bold;
+}
+
+.blanktxt-2 {
+  display: flex;
+  flex-direction: column;
+  font-size: 24rpx;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding-top: 20rpx;
+  width: 225rpx;
+}
+
+.blanktxt-2-count {
+  color: #666666;
+}
+
+.blanktxt-3 {
+  display: flex;
+  font-size: 22rpx;
+  width: 533rpx;
+  justify-content: space-between;
+  color: #999999;
+}
+
+.blanktxt-3-date {
+  width: 250rpx;
+}
+
+/* --------------------------------------------------已使用华丽分割线------------------------------------------------ */
+
+.blanktxt-1-priceuse {
+  color: #ccc;
+}
+
+.blanktxt-1-priceuse .one {
+  font-size: 38rpx;
+  font-weight: bold;
+}
+
+.blanktxt-1-priceuse .two {
+  font-size: 80rpx;
+  font-weight: bold;
+}
+
+.blanktxt-2-countuse {
+  color: #ccc;
+}
+
+.blanktxt-2-typeuse {
+  color: #ccc;
+}
+.blanktxt-2-type{
+  color:#333333;
+}
