@@ -2,11 +2,6 @@
 var mta = require('./statistics/mta_analysis.js')
 App({
   onLaunch() {
-
-    
-
-
-
     // this.userLogin();
     mta.App.init({
       "appID": "500558992",
@@ -109,11 +104,13 @@ App({
               },
               method: "POST",
               success: function (res) {
-                console.log(res)
+                
                 that.globalData.openid = res.data.Value.OpenId;
-                console.log(that.globalData.openid)
+                
                 that.globalData.sessionKey = res.data.Value.SessionKey;
                 that.globalData.userid = res.data.Value.UserId;
+                console.log(res)
+                console.log(that.globalData.openid)
                 console.log("app" + that.globalData.userid)
                 if (that.callback) {
                   that.callback()

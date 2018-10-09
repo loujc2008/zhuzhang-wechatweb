@@ -1,3 +1,14 @@
+import {
+  Prompt, getregionid, GetFreight, compatible, pay, install, showModal, getAccessToken,
+  getTemplateList,
+  sendTemplateInfo
+} from '../../utils/util.js'
+import trackSDK from '../../utils/index.js'
+import minmoney from '../minmoney/minmoney.js'
+import freight from '../../utils/freight.js'
+const app = getApp()
+var mta = require('../../statistics/mta_analysis.js')
+
 // pages/authorize/authorize.js
 Page({
 
@@ -19,10 +30,19 @@ Page({
         if (res.authSetting['scope.userInfo']) {
           wx.getUserInfo({
             success: function (res) {
-              console.log("用户已经授权过"+res.userInfo)
               //用户已经授权过
               let app = getApp();
               app.toChoiceness();
+            },
+            complete:function(res2){
+              console.log("用户已经授权过" + JSON.stringify(res2.userInfo));
+              app.globalData.userInfo = res2.userInfo;
+              console.log(app.globalData.userInfo)
+              app.globalData.openid = res2.userInfo.OpenId;
+              console.log(app.globalData.openid)
+              app.globalData.sessionKey = res2.userInfo.SessionKey;
+              app.globalData.userid = res2.userInfo.UserId;
+              console.log("app" + app.globalData.userid)
             }
           })
         }
@@ -33,7 +53,6 @@ Page({
   bindGetUserInfo: function (e) {
     console.log(e.detail.userInfo)
     if (e.detail.userInfo) {
-      let app = getApp();
       app.globalData.userInfo = e.detail.userInfo;
       app.wxLogin();
       //用户按了允许授权按钮

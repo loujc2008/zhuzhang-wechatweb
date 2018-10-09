@@ -182,11 +182,11 @@ function pay(ids, money, names) {
           resolve(1)
         },
         complete() {
-          console.log(app.globalData.userid)
-          console.log(res.Value.package.substring(10))
-          console.log(ids)
-          console.log(money)
-          console.log(names.join('\n'))
+          // console.log(app.globalData.userid)
+          // console.log(res.Value.package.substring(10))
+          // console.log(ids)
+          // console.log(money)
+          // console.log(names.join('\n'))
         }
       })
     })
