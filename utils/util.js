@@ -79,7 +79,8 @@ wx.ajax = function ({ method = 'GET', url, data, header }) {
         }
       },
       fail(err) {
-        return reject(res.data.Message)
+        // return reject(res.data.Message)
+        return reject(err.errMsg);
       }
     })
   })

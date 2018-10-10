@@ -18,17 +18,17 @@ let page = {
       isAuto: true
     })
     this.getVideo();
-    wx.ajax({
-      url: 'api/wechatapp/banner/getbannerlist',
-      data: {
-        sign: app.globalData.sign
-      },
-      method: 'POST'
-    }).then((res) => {
-      this.setData({
-        bannerData: res.Value
-      })
-    })
+    // wx.ajax({
+    //   url: 'api/wechatapp/banner/getbannerlist',
+    //   data: {
+    //     sign: app.globalData.sign
+    //   },
+    //   method: 'POST'
+    // }).then((res) => {
+    //   this.setData({
+    //     bannerData: res.Value
+    //   })
+    // })
   },
   onHide() {
     this.setData({
