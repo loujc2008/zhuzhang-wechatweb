@@ -33,17 +33,9 @@ Page({
               //用户已经授权过
               let app = getApp();
               app.toChoiceness();
+              console.log("用户已经授权过" + JSON.stringify(res.userInfo));
+              app.wxLogin();
             },
-            complete:function(res2){
-              console.log("用户已经授权过" + JSON.stringify(res2.userInfo));
-              app.globalData.userInfo = res2.userInfo;
-              console.log(app.globalData.userInfo)
-              app.globalData.openid = res2.userInfo.OpenId;
-              console.log(app.globalData.openid)
-              app.globalData.sessionKey = res2.userInfo.SessionKey;
-              app.globalData.userid = res2.userInfo.UserId;
-              console.log("app" + app.globalData.userid)
-            }
           })
         }
       }
@@ -55,21 +47,6 @@ Page({
     if (e.detail.userInfo) {
       app.globalData.userInfo = e.detail.userInfo;
       app.wxLogin();
-      //用户按了允许授权按钮
-      // wx.login({
-      //   success: res => {
-      //     // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      //     if (res.code) {
-      //       //发起网络请求
-      //       console.log('获取用户登录态成功！' + res.errMsg);
-      //       app.toChoiceness();
-      //       app.getOpenId();
-      //     } else {
-      //       console.log('获取用户登录态失败！' + res.errMsg)
-      //     }
-      //   }
-      // })
-
     } else {
       //用户按了拒绝按钮
     }

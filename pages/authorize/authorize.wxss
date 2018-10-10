@@ -1,1 +1,9 @@
 /* pages/authorize/authorize.wxss */
+.btn{
+  position: relative;
+  height: 100%;
+}
+
+button{
+  width: 100%;
+}

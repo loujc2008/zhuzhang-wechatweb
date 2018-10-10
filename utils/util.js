@@ -161,11 +161,11 @@ function pay(ids, money, names) {
       method: 'POST',
       url: 'api/wechatapp/pay',
       data: {
-        openId: app.globalData.openid,
-        IdList: '',
+        OpenId: app.globalData.openid,
         Ids: ids.join(','),
         sign: app.globalData.sign,
         SessionKey: '',
+        UserId:app.globalData.userid
       }
     }).then((res) => {
       wx.requestPayment({

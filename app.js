@@ -15,7 +15,7 @@ App({
   globalData: {
     scene: 1,
     userInfo: null,
-    mallApiUrl: "api.feyjia.com/",
+    mallApiUrl: "api.urshow.cn/",
     userid: 0,
     openid: 0,
     sign: "Ea1OWCAnQWD4GCijZ2ChEB83i+7MXQahK7/Kd9jrmYHi+rQ9PvalLOYWa5JIYep9QbOamIej1KEPuQvyKuhlN/DXpUB3YKjHTx6I+hk8nAd7F6J/y80IbZ5tVgptGhE2",
@@ -56,9 +56,9 @@ App({
             success: function (res) {
               console.log(res)
               that.globalData.openid = res.data.Value.OpenId;
-              console.log(that.globalData.openid)
               that.globalData.sessionKey = res.data.Value.SessionKey;
               that.globalData.userid = res.data.Value.UserId;
+              console.log(that.globalData.openid)
               console.log("app" + that.globalData.userid);
               that.toChoiceness();
               if (that.callback) {
