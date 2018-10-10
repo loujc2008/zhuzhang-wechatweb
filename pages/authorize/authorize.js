@@ -32,9 +32,10 @@ Page({
             success: function (res) {
               //用户已经授权过
               let app = getApp();
+              app.wxLogin();
               app.toChoiceness();
               console.log("用户已经授权过" + JSON.stringify(res.userInfo));
-              app.wxLogin();
+              app.globalData.userInfo = res.userInfo;
             },
           })
         }
@@ -45,6 +46,7 @@ Page({
   bindGetUserInfo: function (e) {
     console.log(e.detail.userInfo)
     if (e.detail.userInfo) {
+      //用户按了允许按钮
       app.globalData.userInfo = e.detail.userInfo;
       app.wxLogin();
     } else {
